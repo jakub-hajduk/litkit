@@ -1,7 +1,7 @@
 import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
 import { Aria, BaseElementInterface, HostListener, HostUpdate } from 'litkit'
-import { Constructor } from '../../types/types'
+import { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
 
@@ -17,7 +17,7 @@ export type DelegatedFormFieldInterface<V> = {
   value: V
 };
 
-export const DelegatedFormField = <V extends FormValue = FormValue, Base extends Constructor<BaseElementInterface & LitElement> = Constructor<BaseElementInterface & LitElement>>(superClass: Base) => {
+export const DelegatedFormField = <V extends FormValue = FormValue, Base extends LitConstructor & Constructor<BaseElementInterface> = Constructor<BaseElementInterface & LitElement>>(superClass: Base) => {
   class DelegatedFormFieldMixin extends superClass {
     static shadowRootOptions = {mode: 'closed', delegatesFocus: true};
     static formAssociated = true;

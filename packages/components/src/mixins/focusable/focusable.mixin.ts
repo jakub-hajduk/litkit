@@ -1,7 +1,6 @@
 import type { PropertyValues } from 'lit'
 import { Listen } from 'litkit'
-import { BaseComponentConstructor } from '../../components/base/base.component'
-import type { Constructor } from '../../types/types'
+import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface FocusableElementInterface {
   focus(options?: FocusOptions): void;
@@ -15,7 +14,7 @@ export interface FocusableElementInterface {
  *
  * Mixin that makes element focusable.
  */
-export const Focusable = <Base extends BaseComponentConstructor>(superClass: Base) => {
+export const Focusable = <Base extends LitConstructor>(superClass: Base) => {
   class FocusableElement extends superClass {
     connectedCallback() {
       super.connectedCallback();

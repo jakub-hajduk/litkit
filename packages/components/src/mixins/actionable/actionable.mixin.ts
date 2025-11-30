@@ -1,16 +1,16 @@
 import { property } from 'lit/decorators.js'
 import { CustomEventEmitter, Listen, ListenKeys } from 'litkit'
-import type { BaseComponentConstructor } from '../../components/base/base.component'
-import type { Constructor } from '../../types/types'
+import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface ActionableInterface {
+  action: CustomEventEmitter
   value?: string | number
   click(value?: string | number): void;
 }
 
-export const Actionable = <Base extends BaseComponentConstructor>(superClass: Base) => {
+export const Actionable = <Base extends LitConstructor>(superClass: Base) => {
   class ActionableMixin extends superClass {
-    action = new CustomEventEmitter(this, 'action')
+    action: CustomEventEmitter = new CustomEventEmitter(this as any, 'action')
 
     @property({
       reflect: true,

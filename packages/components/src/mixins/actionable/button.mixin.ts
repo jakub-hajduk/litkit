@@ -1,7 +1,6 @@
 import { property } from 'lit/decorators.js'
-import { Aria, CustomEventEmitter, Internals, Listen, ListenKeys, State } from 'litkit'
-import type { BaseComponentConstructor } from '../../components/base/base.component'
-import type { Constructor } from '../../types/types'
+import { Aria, BaseElementInterface, CustomEventEmitter, Internals, Listen, ListenKeys, State } from 'litkit'
+import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface ButtonInterface {
   label?: string;
@@ -12,7 +11,7 @@ export interface ButtonInterface {
   click(value?: string | number): void;
 }
 
-export const Button = <Base extends BaseComponentConstructor>(superClass: Base) => {
+export const Button = <Base extends LitConstructor>(superClass: Base) => {
   class ButtonMixin extends superClass {
     action = new CustomEventEmitter(this, 'action')
     static formAssociated = true
@@ -46,7 +45,7 @@ export const Button = <Base extends BaseComponentConstructor>(superClass: Base) 
     @Listen('click')
     @Listen('touchend')
     @ListenKeys('keydown', ['Space', 'Enter'])
-    public click(value?: string | number) {
+    public click(this: this & BaseElementInterface, value?: string | number) {
       if (value) this.value = value
 
       if (this.disabled) return

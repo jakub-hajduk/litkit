@@ -1,10 +1,9 @@
-import type { BaseComponentConstructor } from '../../components/base/base.component'
-import type { Constructor } from '../../types/types'
+import { Constructor, LitConstructor } from '../types/types'
 
 export interface BlankInterface {
 }
 
-export const Blank = <Base extends BaseComponentConstructor>(superClass: Base) => {
+export const Blank = <Base extends LitConstructor>(superClass: Base) => {
   class BlankMixin extends superClass {
   }
 

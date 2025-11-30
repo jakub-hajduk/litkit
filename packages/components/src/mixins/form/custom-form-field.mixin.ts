@@ -1,7 +1,7 @@
+import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, HostUpdate, Internals } from 'litkit'
-import { BaseComponentConstructor } from '../../components/base/base.component'
-import { Constructor } from '../../types/types'
+import { Aria, BaseElementInterface, HostUpdate, Internals } from 'litkit'
+import { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
 
@@ -16,7 +16,7 @@ export type CustomFormFieldInterface = {
   value: any
 };
 
-export const CustomFormField = <Base extends BaseComponentConstructor>(superClass: Base) => {
+export const CustomFormField = <Base extends LitConstructor>(superClass: Base) => {
   class CustomFormFieldMixin extends superClass {
     static shadowRootOptions = {mode: 'closed', delegatesFocus: true};
     static formAssociated = true;
@@ -59,7 +59,7 @@ export const CustomFormField = <Base extends BaseComponentConstructor>(superClas
       this.dispatchEvent(changeEvent);
     }
 
-    connectedCallback() {
+    connectedCallback(this: this & BaseElementInterface) {
       super.connectedCallback();
 
       this[HostUpdate].watch<typeof this.value>('value', (value) => {
