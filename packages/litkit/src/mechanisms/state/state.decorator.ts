@@ -8,7 +8,7 @@ type ElementInstance = ReactiveElement & {
   [HostUpdate]?: UpdateController;
 }
 
-export function State(state: string, converter?: ConverterFn): MethodDecorator {
+export function State(state: string, converter?: ConverterFn): PropertyDecorator {
   return function <ElementClass extends LitElement>(
     target: ElementClass,
     decoratedPropName: keyof ElementClass
@@ -32,5 +32,5 @@ export function State(state: string, converter?: ConverterFn): MethodDecorator {
         });
       }
     );
-  } as MethodDecorator;
+  } as PropertyDecorator;
 }

@@ -1,25 +1,41 @@
 import { property } from 'lit/decorators.js'
 import { Aria, HostListener, HostUpdate, Internals } from 'litkit'
-import { BaseComponent } from '../../components/base/base.component'
+import { BaseComponent, BaseComponentConstructor } from '../../components/base/base.component'
 import { Constructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
 
-export type AccessibleFieldInterface = BaseComponent & {
+export type DelegatedFormFieldInterface<V> = {
+  required?: boolean;
+  readOnly?: boolean;
+  disabled?: boolean;
   label?: string;
   description?: string;
   _delegatedElement?: HTMLElement | null;
   emitChange(): void;
   emitInput(): void;
+  value: V
 };
 
-export const FormField = <Base extends Constructor<AccessibleFieldInterface>>(superClass: Base) => {
-  class BasicA11yElement extends superClass {
+export const DelegatedFormField = <V extends FormValue = FormValue, Base extends BaseComponentConstructor = BaseComponentConstructor>(superClass: Base) => {
+  class DelegatedFormFieldMixin extends superClass {
     static shadowRootOptions = {mode: 'closed', delegatesFocus: true};
-
     static formAssociated = true;
 
-    value: FormValue = null;
+    _delegatedElement: any;
+    value: any;
+
+    @Aria('ariaRequired')
+    @property({ type: Boolean, reflect: true })
+    required = false;
+
+    @Aria('ariaReadOnly')
+    @property({ type: Boolean, reflect: true })
+    readOnly = false;
+
+    @Aria('ariaDisabled')
+    @property({ type: Boolean, reflect: true })
+    disabled = false;
 
     /**
      * field name for screen readers. This should be used only when field is used without acc-label element.
@@ -45,39 +61,27 @@ export const FormField = <Base extends Constructor<AccessibleFieldInterface>>(su
       this.dispatchEvent(changeEvent);
     }
 
-    connectedCallback() {
-      super.connectedCallback();
-
-      this[HostUpdate].watch<typeof this.value>('value', (value) => {
-        this[Internals].setFormValue(value);
-      });
-
-      this[HostUpdate].watch('value', () => {
-        this.emitInput();
-      });
-
-      this[HostUpdate].watch('value', () => {
-        this.emitChange();
-      });
-    }
-
-    async firstUpdated() {
+    async firstUpdated(this: DelegatedFormFieldInterface<V> & BaseComponent) {
       await this.updateComplete;
 
+
       if (this._delegatedElement) {
+        this[HostUpdate].watch('value', (value: string) => {
+          (this._delegatedElement as HTMLInputElement).value = value;
+        })
+
         this[HostListener].registerListener('input', (event: Event) => {
-          event.preventDefault()
-          this.value = (event.target as HTMLInputElement).value;
+          event.stopImmediatePropagation()
+          this.value = (event.target as HTMLInputElement).value as any;
           this.emitInput()
         }, { element: this._delegatedElement })
         .attach()
 
         this[HostListener].registerListener('change', (event: Event) => {
-          event.preventDefault()
+          event.stopImmediatePropagation()
           this.emitChange()
         }, { element: this._delegatedElement })
         .attach()
-
 
         this[HostUpdate].watch('label', (value: string) => {
           this._delegatedElement?.setAttribute('aria-label', value);
@@ -90,5 +94,5 @@ export const FormField = <Base extends Constructor<AccessibleFieldInterface>>(su
     }
   }
 
-  return BasicA11yElement as Constructor<AccessibleFieldInterface> & Base;
+  return DelegatedFormFieldMixin as Constructor<DelegatedFormFieldInterface<V>> & Base;
 };
