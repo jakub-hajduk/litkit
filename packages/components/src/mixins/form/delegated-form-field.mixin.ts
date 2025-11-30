@@ -1,6 +1,7 @@
+import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, HostListener, HostUpdate, Internals } from 'litkit'
-import { BaseComponent, BaseComponentConstructor } from '../../components/base/base.component'
+import { Aria, BaseElementInterface, HostListener, HostUpdate } from 'litkit'
+import { BaseComponentConstructor } from '../../components/base/base.component'
 import { Constructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
@@ -61,9 +62,8 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
       this.dispatchEvent(changeEvent);
     }
 
-    async firstUpdated(this: DelegatedFormFieldInterface<V> & BaseComponent) {
+    async firstUpdated(this: DelegatedFormFieldInterface<V> & BaseElementInterface & LitElement) {
       await this.updateComplete;
-
 
       if (this._delegatedElement) {
         this[HostUpdate].watch('value', (value: string) => {

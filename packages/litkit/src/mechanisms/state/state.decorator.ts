@@ -1,13 +1,8 @@
 import { LitElement, ReactiveElement } from 'lit';
 import { initializeBase } from '../initialize/initialize'
-import { attachInternals, Internals } from '../internals/internals';
-import { UpdateController, HostUpdate } from '../update/update.controller';
+import { Internals } from '../internals/internals';
+import { HostUpdate } from '../update/update.controller';
 import type { ConverterFn } from './types'
-
-type ElementInstance = ReactiveElement & {
-  [Internals]?: ElementInternals;
-  [HostUpdate]?: UpdateController;
-}
 
 export function State(state: string, converter?: ConverterFn): PropertyDecorator {
   return function <ElementClass extends LitElement>(
@@ -24,8 +19,10 @@ export function State(state: string, converter?: ConverterFn): PropertyDecorator
           const isState = converter ? converter(value) : Boolean(value);
 
           if (isState) {
+            // @ts-ignore
             internals.states.add(state);
           } else {
+            // @ts-ignore
             internals.states.delete(state);
           }
         });

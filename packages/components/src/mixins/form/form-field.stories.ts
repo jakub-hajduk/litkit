@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/web-components-vite'
-import { css, html } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
 import { Role } from 'litkit'
-import { BaseComponent } from '../../components/base/base.component'
 import { CustomFormField } from '../../mixins/form/custom-form-field.mixin'
 import { DelegatedFormField } from '../../mixins/form/delegated-form-field.mixin'
+import { Base } from '../base/base.mixin'
 
 const meta: Meta = {
   title: 'Form field',
@@ -22,7 +22,7 @@ const base = css`
 
 @Role('textbox')
 @customElement('test-delegated-field')
-class DelegatedFieldCE extends DelegatedFormField(BaseComponent) {
+class DelegatedFieldCE extends DelegatedFormField(Base(LitElement)) {
   static styles = [base, css`
       input {
           all: unset;
@@ -52,7 +52,7 @@ export const DelegatedField = {
 
 @Role('radiogroup')
 @customElement('test-custom-field')
-class CustomFieldCE extends CustomFormField(BaseComponent) {
+class CustomFieldCE extends CustomFormField(Base(LitElement)) {
   static styles = [
     base,
     css`

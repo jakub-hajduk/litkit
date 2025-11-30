@@ -18,7 +18,8 @@ export function Command(
         const listener = initializeBase(instance)[HostListener]
         const originalMethod = target[decoratedFnName] as EventListener;
 
-        const decoratedMethod = (event: CommandEvent) => {
+        // @ts-ignore
+      const decoratedMethod = (event: CommandEvent) => {
           if (event.command === `--${commandName}`) {
             return originalMethod.call(instance, event);
           }

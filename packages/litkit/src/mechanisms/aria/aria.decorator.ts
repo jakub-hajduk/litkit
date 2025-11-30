@@ -1,10 +1,8 @@
 import { LitElement, ReactiveElement } from 'lit';
 import { initializeBase } from '../initialize/initialize'
-import type { AriaProperty } from './types';
+import type { AriaProperty, ConverterFn } from './types'
 import { HostUpdate } from '../update/update.controller';
 import { Internals } from '../internals/internals';
-
-type ConverterFn = (newValue: any, oldValue: any) => any;
 
 export function Aria(
   ariaProperty: AriaProperty,
@@ -25,6 +23,7 @@ export function Aria(
         const update = instance[HostUpdate]
 
         update.watch(decoratedProp, (newValue, oldValue) => {
+          // @ts-ignore
           internals[ariaProperty] = converter
             ? converter(newValue, oldValue)
             : String(newValue);

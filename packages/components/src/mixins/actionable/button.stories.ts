@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/web-components-vite';
-import { css, html } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { Role } from 'litkit'
-import { BaseComponent } from '../../components/base/base.component'
+import { Role, Internals } from 'litkit'
 import { Button } from '../../mixins/actionable/button.mixin'
 import { Focusable } from '../../mixins/focusable/focusable.mixin'
+import { Base } from '../base/base.mixin'
 
 const meta: Meta = {
   title: 'Button',
@@ -26,7 +26,7 @@ const base = css`
 
 @Role('button')
 @customElement('test-button')
-class ButtonCE extends Focusable(Button(BaseComponent)) {
+class ButtonCE extends Focusable(Button(Base(LitElement))) {
   static styles=[base ]
 
   render() {

@@ -1,4 +1,4 @@
-import { LitElement, css, html, type CSSResult, TemplateResult } from 'lit'
+import { LitElement, css, html, type CSSResult, type TemplateResult } from 'lit'
 import { customElement } from 'lit/decorators.js';
 
 @customElement('my-dropdown')
