@@ -1,0 +1,64 @@
+{
+  "name": "litkit",
+  "version": "0.0.0",
+  "description": "Helpers for lit components",
+  "keywords": [],
+  "author": {
+    "name": "Jakub Hajduk",
+    "email": "devhajduk@gmail.com"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsdown --watch ./src/",
+    "build": "tsdown",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "@storybook/web-components-vite": "catalog:",
+    "biome": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "lit": "catalog:"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./aria": {
+      "import": "./dist/aria.mjs",
+      "require": "./dist/aria.cjs"
+    },
+    "./events": {
+      "import": "./dist/events.mjs",
+      "require": "./dist/events.cjs"
+    },
+    "./internals": {
+      "import": "./dist/internals.mjs",
+      "require": "./dist/internals.cjs"
+    },
+    "./listeners": {
+      "import": "./dist/listeners.mjs",
+      "require": "./dist/listeners.cjs"
+    },
+    "./state": {
+      "import": "./dist/state.mjs",
+      "require": "./dist/state.cjs"
+    },
+    "./update": {
+      "import": "./dist/update.mjs",
+      "require": "./dist/update.cjs"
+    },
+    "./package.json": "./package.json"
+  }
+}
