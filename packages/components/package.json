@@ -1,0 +1,39 @@
+{
+  "name": "litkit/components",
+  "version": "0.0.0",
+  "description": "Headless design system",
+  "keywords": [],
+  "author": {
+    "name": "Jakub Hajduk",
+    "email": "devhajduk@gmail.com"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsdown --watch ./src",
+    "build": "tsdown",
+    "check": "biome check",
+    "fix": "biome check --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "@storybook/web-components-vite": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "lit": "catalog:",
+    "litkit": "workspace:*"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  }
+}
