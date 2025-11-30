@@ -1,0 +1,24 @@
+{
+  "name": "@repo/preview",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "litkit development preview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "storybook dev -p 6006"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "@storybook/web-components": "catalog:",
+    "@storybook/web-components-vite": "catalog:",
+    "lit": "catalog:",
+    "storybook": "catalog:",
+    "vite": "^7.1.12",
+    "typescript": "catalog:"
+  }
+}
