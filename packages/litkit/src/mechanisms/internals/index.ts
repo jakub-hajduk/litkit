@@ -1,1 +1,1 @@
-export { attachInternals, Internals } from './internals'
+export * from './internals'

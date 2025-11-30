@@ -1,2 +1,2 @@
-export type { ConverterFn }  from './types';
-export { State } from './state.decorator'
+export * from './types';
+export * from './state.decorator'

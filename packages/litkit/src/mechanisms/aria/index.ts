@@ -1,3 +1,4 @@
 export type { AriaProperty }  from './types'
 
-export { Aria } from './aria.decorator'
+export * from './aria.decorator'
+export * from './role.decorator'

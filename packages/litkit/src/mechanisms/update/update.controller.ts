@@ -13,6 +13,8 @@ export class UpdateController implements ReactiveController {
 
   watch<T extends any>(property: PropertyKey, handler: Handler<T>): void {
     (this.handlers[property] ??= []).push(handler);
+    // @ts-expect-error - To be done later... (Yeah, sure...)
+    handler(this.host[property], undefined)
   }
 
   hostUpdate(): void {

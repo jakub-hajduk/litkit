@@ -1,1 +1,1 @@
-export { CustomEventEmitter } from './custom-event-emitter'
+export * from './custom-event-emitter'
