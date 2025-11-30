@@ -7,7 +7,7 @@ export const HostListener: unique symbol = Symbol('hostListener');
 export class HostListenerController implements ReactiveController {
   host: ReactiveControllerHost & HTMLElement;
 
-  private events: ReturnType<typeof detachableEvent>[] = [];
+  private events: DetachableEventReturn[] = [];
 
   get boundEvents(): DetachableEventReturn[] {
     return this.events;
@@ -33,7 +33,7 @@ export class HostListenerController implements ReactiveController {
     eventName: string,
     method: EventListener,
     options: ListenOptions = {}
-  ): void {
+  ): DetachableEventReturn {
     const event = detachableEvent(
       options.element ?? this.host,
       eventName,
@@ -41,5 +41,6 @@ export class HostListenerController implements ReactiveController {
       options
     );
     this.events.push(event);
+    return event
   }
 }

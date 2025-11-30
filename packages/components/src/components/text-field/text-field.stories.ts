@@ -1,7 +1,7 @@
-import type { Meta } from '@storybook/web-components-vite';
+import type { Meta } from '@storybook/web-components-vite'
 import { css, html } from 'lit'
-import { query } from 'lit/decorators.js'
-import { FormField } from '../../mixins/form/form.mixin'
+import { customElement, query } from 'lit/decorators.js'
+import { Aria } from 'litkit'
 import { TextFieldComponent } from './text-field.component'
 
 const meta: Meta = {
@@ -10,23 +10,35 @@ const meta: Meta = {
 
 export default meta
 
+const styles = css`
+    :host {
+        border: 1px solid green;
+        border-radius: 8px;
+        border-radius: 10px;
+        corner-shape: squircle;
+        display: block;
+        height: auto;
+    }
+    input {
+        all: unset;
+        padding: 8px 12px;
+    }
+    `
+
+@customElement('test-text-field')
 class TextField extends TextFieldComponent {
-  static styles = [
-    css`:host { background-color: red; } input { all: unset; background-color: green; color: white; }`
-  ]
+  static styles = [styles]
 
   @query('input')
   _delegatedElement: HTMLInputElement;
 
   render() {
-    return html`<h1>Te</h1><input type="text" />`
+    return html`<input id="control" type="text" />`
   }
 }
 
-customElements.define('text-field', TextField)
-
 export const Default = {
   render: (props) => {
-    return html`<text-field></text-field>`
+    return html`<test-text-field required></test-text-field>`
   }
 }

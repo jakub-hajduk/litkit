@@ -1,14 +1,19 @@
-import { css } from 'lit'
-import { Aria } from 'litkit'
+import { property } from 'lit/decorators.js'
+import { Aria, Role } from 'litkit'
 import { FormField } from '../../mixins/form/form.mixin'
 import { BaseComponent } from '../base/base.component'
 
+@Role('textbox')
 export class TextFieldComponent extends FormField(BaseComponent) {
-  @Aria('role') _role = 'textbox'
+  @Aria('ariaRequired')
+  @property({ type: Boolean, reflect: true })
+  required = false;
 
-  constructor() {
-    super()
-    console.log('dsd')
-  }
+  @Aria('ariaReadOnly')
+  @property({ type: Boolean, reflect: true })
+  readOnly = false;
 
+  @Aria('ariaDisabled')
+  @property({ type: Boolean, reflect: true })
+  disabled = false;
 }
