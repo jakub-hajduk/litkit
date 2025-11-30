@@ -12,7 +12,7 @@
     "dev": "tsdown --watch ./src",
     "build": "tsdown",
     "check": "biome check",
-    "fix": "biome check --fix",
+    "format": "biome check --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "./dist/index.cjs",

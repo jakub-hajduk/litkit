@@ -1,5 +1,6 @@
 export * from './mechanisms/aria'
 export * from './mechanisms/custom-event-emitter'
+export * from './mechanisms/initialize'
 // export * from './mechanisms/dropdown'
 export * from './mechanisms/internals'
 export * from './mechanisms/listen'

@@ -14,6 +14,9 @@
         "$TURBO_DEFAULT$",
         "!**/.turbo/**"
       ]
-    }
+    },
+    "format": {
+      "dependsOn": ["^format"]
+    },
   }
 }

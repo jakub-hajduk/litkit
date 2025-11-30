@@ -1,14 +1,7 @@
 import { LitElement, ReactiveElement } from 'lit';
-import { attachInternals, Internals } from '../internals'
-import {
-  HostListener,
-  HostListenerController,
-} from './listen.controller';
+import { initializeBase } from '../initialize/initialize'
+import { HostListener, } from './listen.controller';
 import type { EventName, ListenOptions } from './types'
-
-type ElementInstance = ReactiveElement & {
-  [HostListener]?: HostListenerController;
-}
 
 export function Listen(
   eventName: EventName,
@@ -23,11 +16,9 @@ export function Listen(
 
     const constructor = target.constructor as typeof ReactiveElement;
 
-    constructor.addInitializer((instance: ElementInstance) => {
-      const listener = (instance[HostListener] ??=
-        new HostListenerController(instance));
-
-        const eventHandlerMethod = target[decoratedFnName] as EventListener;
+    constructor.addInitializer((instance: ReactiveElement) => {
+      const listener = initializeBase(instance)[HostListener]
+       const eventHandlerMethod = target[decoratedFnName] as EventListener;
 
         listener.registerListener(
           eventName,

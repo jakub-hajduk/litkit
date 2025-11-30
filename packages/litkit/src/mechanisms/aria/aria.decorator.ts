@@ -1,7 +1,8 @@
 import { LitElement, ReactiveElement } from 'lit';
+import { initializeBase } from '../initialize/initialize'
 import type { AriaProperty } from './types';
-import { UpdateController, HostUpdate } from '../update/update.controller';
-import { attachInternals, Internals } from '../internals/internals';
+import { HostUpdate } from '../update/update.controller';
+import { Internals } from '../internals/internals';
 
 type ConverterFn = (newValue: any, oldValue: any) => any;
 
@@ -17,16 +18,11 @@ export function Aria(
 
     constructor.addInitializer(
       (
-        instance: ReactiveElement & {
-          [HostUpdate]?: UpdateController;
-          [Internals]?: ElementInternals;
-        }
+        inst: ReactiveElement
       ) => {
-        const internals = (instance[Internals] ??=
-          attachInternals(instance));
-        const update = (instance[HostUpdate] ??= new UpdateController(
-          instance
-        ));
+        const instance = initializeBase(inst)
+        const internals = instance[Internals]
+        const update = instance[HostUpdate]
 
         update.watch(decoratedProp, (newValue, oldValue) => {
           internals[ariaProperty] = converter
