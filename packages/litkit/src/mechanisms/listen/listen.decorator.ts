@@ -18,14 +18,13 @@ export function Listen(
 
     constructor.addInitializer((instance: ReactiveElement) => {
       const listener = initializeBase(instance)[HostListener]
-       const eventHandlerMethod = target[decoratedFnName] as EventListener;
+      const eventHandlerMethod = target[decoratedFnName] as EventListener;
 
-        listener.registerListener(
-          eventName,
-          eventHandlerMethod,
-          options
-        );
-      }
-    );
+      listener.registerListener(
+        eventName,
+        eventHandlerMethod,
+        options
+      );
+    });
   } as MethodDecorator;
 }

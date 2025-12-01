@@ -1,19 +1,19 @@
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, CustomEventEmitter, Internals, Listen, ListenKeys, State } from 'litkit'
+import { Action, Aria, BaseElementInterface, CustomEventEmitter, Internals, Listen, ListenKeys, State } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface ButtonInterface {
+  actionEvent: CustomEventEmitter;
   label?: string;
   description?: string;
   disabled?: boolean;
   submit?: boolean;
-  value?: string | number;
-  click(value?: string | number): void;
+  click(): void;
 }
 
 export const Button = <Base extends LitConstructor>(superClass: Base) => {
   class ButtonMixin extends superClass {
-    action = new CustomEventEmitter(this, 'action')
+    actionEvent = new CustomEventEmitter(this, 'action')
     static formAssociated = true
 
     @Aria('ariaLabel')
@@ -24,9 +24,6 @@ export const Button = <Base extends LitConstructor>(superClass: Base) => {
     @property({ type: String, reflect: true })
     description?: string;
 
-    /**
-     * Whether button is disabled or not
-     */
     @State('disabled')
     @Aria('ariaDisabled')
     @property({ type: Boolean, reflect: true })
@@ -37,20 +34,12 @@ export const Button = <Base extends LitConstructor>(superClass: Base) => {
       type: Boolean
     }) submit?: boolean
 
-    @property({
-      reflect: true,
-      type: String
-    }) value?: string | number
-
-    @Listen('click')
-    @Listen('touchend')
-    @ListenKeys('keydown', ['Space', 'Enter'])
-    public click(this: this & BaseElementInterface, value?: string | number) {
-      if (value) this.value = value
+    @Action()
+    public click(this: this & BaseElementInterface) {
 
       if (this.disabled) return
 
-      const prevented = !this.action.emit(this.value)
+      const prevented = !this.actionEvent.emit()
 
       if (prevented) return
 

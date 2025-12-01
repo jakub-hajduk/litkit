@@ -168,7 +168,7 @@ export type KeyboardEventCode =
   | 'F24'
   | (string & {});
 
-export type EventName = keyof HTMLElementEventMap & (string & {});
+export type EventName = keyof HTMLElementEventMap | string & {};
 
 export interface ListenOptions extends AddEventListenerOptions {
   element?: HTMLElement;

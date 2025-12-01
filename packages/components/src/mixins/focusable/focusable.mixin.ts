@@ -1,19 +1,11 @@
 import type { PropertyValues } from 'lit'
-import { Listen } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface FocusableElementInterface {
-  focus(options?: FocusOptions): void;
-  blur(): void;
   disableFocus(): void;
   enableFocus(): void;
 }
 
-/**
- * Focusable mixin
- *
- * Mixin that makes element focusable.
- */
 export const Focusable = <Base extends LitConstructor>(superClass: Base) => {
   class FocusableElement extends superClass {
     connectedCallback() {
@@ -35,16 +27,6 @@ export const Focusable = <Base extends LitConstructor>(superClass: Base) => {
 
     enableFocus() {
       this.tabIndex = 0;
-    }
-
-    @Listen('focus')
-    focus(options?: FocusOptions) {
-      super.focus(options);
-    }
-
-    @Listen('blur')
-    blur() {
-      super.blur();
     }
   }
 

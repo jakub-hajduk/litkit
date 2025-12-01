@@ -25,7 +25,6 @@ const base = css`
 class DelegatedFieldCE extends DelegatedFormField(Base(LitElement)) {
   static styles = [base, css`
       input {
-          all: unset;
           padding: 8px 12px;
           box-sizing: border-box;
           width: 100%;

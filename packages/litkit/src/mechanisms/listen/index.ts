@@ -1,4 +1,5 @@
 export * from './types'
+export * from './action.decorator'
 export * from './listen.decorator'
 export * from './listen-keys.decorator'
 export * from './command.decorator'

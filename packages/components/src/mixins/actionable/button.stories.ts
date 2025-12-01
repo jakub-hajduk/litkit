@@ -27,7 +27,7 @@ const base = css`
 @Role('button')
 @customElement('test-button')
 class ButtonCE extends Focusable(Button(Base(LitElement))) {
-  static styles=[base ]
+  static styles=[base]
 
   render() {
     return html`<slot></slot>`
