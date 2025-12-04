@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/web-components-vite'
 import { css, html, LitElement } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { SlotChange, SlotController } from 'litkit'
+import { SlotChange } from 'litkit'
 
 const meta: Meta = {
   title: 'Slot Controller',

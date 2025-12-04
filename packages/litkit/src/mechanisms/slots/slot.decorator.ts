@@ -14,7 +14,6 @@ export function SlotChange(
     constructor.addInitializer((instance: ReactiveElement) => {
       const listener = ((instance as any)[SlotChangeListener] ??= new SlotController(instance as LitElement)) as SlotController
       const eventHandlerMethod = (target as any)[decoratedFnName] as SlotUpdateHandler;
-      console.log( slotName )
       listener.subscribe(slotName, eventHandlerMethod)
     });
   } as MethodDecorator;

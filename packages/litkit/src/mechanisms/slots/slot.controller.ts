@@ -34,6 +34,8 @@ export class SlotController implements ReactiveController {
           }
         }
 
+        slotUpdate({ target: slot } as unknown as Event)
+
         const event = detachableEvent(slot, 'slotchange', slotUpdate, { eventId: 'slotController:slotchange' })
 
         this.updateEventListeners.set(slot.name || 'default', event)

@@ -1,1 +1,1 @@
-export type SlotUpdateHandler = (nodes?: Node[]) => void
+export type SlotUpdateHandler = (nodes: Node[]) => void
