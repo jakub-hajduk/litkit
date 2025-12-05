@@ -1,5 +1,5 @@
 import { LitElement, ReactiveElement } from 'lit'
-import { attachInternals, Internals } from '../internals'
+import { ensureInternals, Internals } from '../internals'
 import type { AriaRole } from './types'
 
 export function Role(role: AriaRole): ClassDecorator {
@@ -9,7 +9,7 @@ export function Role(role: AriaRole): ClassDecorator {
 
     constructor.addInitializer((instance: ReactiveElement & { [Internals]?: ElementInternals; }) => {
       const internals = (instance[Internals] ??=
-        attachInternals(instance));
+        ensureInternals(instance));
 
       internals.role = role as string;
     })
