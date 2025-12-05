@@ -6,9 +6,10 @@ export const SlotChangeListener: unique symbol = Symbol('SlotChangeListener')
 
 export class SlotChangeController implements ReactiveController {
   host: LitElement & ReactiveControllerHost;
-  private slots: Map<string, Node[]> = new Map()
-  private updateEventListeners: Map<string, DetachableEventReturn> = new Map()
-  private subscriptions: Map<string, SlotUpdateHandler[]> = new Map();
+  private slots: Map<string | null, HTMLSlotElement> = new Map<string, HTMLSlotElement>()
+  private slotNodes: Map<string | null, Node[]> = new Map()
+  private updateEventListeners: Map<string | null, DetachableEventReturn> = new Map()
+  private subscriptions: Map<string | null, SlotUpdateHandler[]> = new Map();
 
   constructor(host: LitElement) {
     (this.host = host).addController(this);
@@ -19,13 +20,10 @@ export class SlotChangeController implements ReactiveController {
       const slotElements = Array.from(this.host.renderRoot.querySelectorAll('slot'))
 
       for (const slot of slotElements) {
-
-        const slotUpdate = (event: Event) => {
-          const slotTarget = event.target as HTMLSlotElement
-          const slotName = slotTarget.name || 'default'
-          const slottedNodes = slotTarget.assignedNodes().filter(node => node.nodeType !== Node.COMMENT_NODE)
-          this.slots.set(slotName, slottedNodes)
-
+        const slotUpdate = (slotElement: HTMLSlotElement) => {
+          const slotName = slot.name || null
+          const slottedNodes = slotElement.assignedNodes({flatten: true}).filter(node => node.nodeType !== Node.COMMENT_NODE)
+          this.slotNodes.set(slotName, slottedNodes)
           const handlers = this.subscriptions.get(slotName)
           if (!handlers) return;
 
@@ -33,23 +31,28 @@ export class SlotChangeController implements ReactiveController {
             handler(slottedNodes);
           }
         }
+        slotUpdate(slot)
 
-        slotUpdate({ target: slot } as unknown as Event)
+        this.slots.set(slot.name || null, slot)
 
-        const event = detachableEvent(slot, 'slotchange', slotUpdate, { eventId: 'slotController:slotchange' })
+        const event = detachableEvent(slot, 'slotchange', (event: Event) => slotUpdate(event.target as HTMLSlotElement), { eventId: 'slotController:slotchange' })
 
-        this.updateEventListeners.set(slot.name || 'default', event)
+        this.updateEventListeners.set(slot.name || null, event)
 
         event.attach()
       }
     })
   }
 
-  getNodes(slotName: string = 'default'): Node[] {
-    return this.slots.get(slotName) ?? []
+  getSlotElement(slotName: string | null = null): HTMLSlotElement | undefined {
+    return this.slots.get(slotName)
   }
 
-  subscribe(slotName: string = 'default', handler: SlotUpdateHandler): void {
+  getNodes(slotName: string | null = null): Node[] {
+    return this.slotNodes.get(slotName) ?? []
+  }
+
+  subscribe(slotName: string | null = null, handler: SlotUpdateHandler): void {
     const handlers = this.subscriptions.get(slotName) ?? []
     this.subscriptions.set(slotName, [...handlers, handler])
   }

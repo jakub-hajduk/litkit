@@ -6,7 +6,7 @@ export default defineConfig({
     aria: './src/mechanisms/aria/index.ts',
     events: './src/mechanisms/custom-event-emitter/index.ts',
     internals: './src/mechanisms/internals/index.ts',
-    listeners: './src/mechanisms/listen/index.ts',
+    listeners: './src/mechanisms/event-listener/index.ts',
     state: './src/mechanisms/state/index.ts',
     update: './src/mechanisms/update/index.ts',
   },

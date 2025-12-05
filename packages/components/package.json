@@ -2,6 +2,7 @@
   "name": "litkit/components",
   "version": "0.0.0",
   "description": "Headless design system",
+  "type": "module",
   "keywords": [],
   "author": {
     "name": "Jakub Hajduk",
