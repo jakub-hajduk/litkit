@@ -4,7 +4,7 @@ import type { SlotUpdateHandler } from './types'
 
 export const SlotChangeListener: unique symbol = Symbol('SlotChangeListener')
 
-export class SlotController implements ReactiveController {
+export class SlotChangeController implements ReactiveController {
   host: LitElement & ReactiveControllerHost;
   private slots: Map<string, Node[]> = new Map()
   private updateEventListeners: Map<string, DetachableEventReturn> = new Map()
@@ -59,4 +59,9 @@ export class SlotController implements ReactiveController {
       event.detach()
     }
   }
+}
+
+
+export function ensureSlotController<E extends LitElement>(instance: E): SlotChangeController {
+  return ((instance as any)[SlotChangeListener] ??= new SlotChangeController(instance))
 }

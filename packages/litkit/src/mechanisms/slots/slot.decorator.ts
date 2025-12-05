@@ -1,5 +1,5 @@
 import { LitElement, ReactiveElement } from 'lit';
-import { SlotChangeListener, SlotController } from './slot.controller'
+import { SlotChangeListener, SlotChangeController } from './slotChangeController'
 import type { SlotUpdateHandler } from './types'
 
 export function SlotChange(
@@ -12,7 +12,7 @@ export function SlotChange(
     const constructor = target.constructor as typeof ReactiveElement;
 
     constructor.addInitializer((instance: ReactiveElement) => {
-      const listener = ((instance as any)[SlotChangeListener] ??= new SlotController(instance as LitElement)) as SlotController
+      const listener = ((instance as any)[SlotChangeListener] ??= new SlotChangeController(instance as LitElement)) as SlotChangeController
       const eventHandlerMethod = (target as any)[decoratedFnName] as SlotUpdateHandler;
       listener.subscribe(slotName, eventHandlerMethod)
     });
