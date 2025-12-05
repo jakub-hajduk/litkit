@@ -1,5 +1,5 @@
 import { type LitElement, type ReactiveController, type ReactiveControllerHost } from 'lit'
-import { detachableEvent, type DetachableEventReturn } from '../listen'
+import { detachableEvent, type DetachableEventReturn } from '../event-listener'
 import type { SlotUpdateHandler } from './types'
 
 export const SlotChangeListener: unique symbol = Symbol('SlotChangeListener')

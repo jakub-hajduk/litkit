@@ -1,5 +1,5 @@
-import { type LitElement, type ReactiveController, type ReactiveControllerHost } from 'lit'
-import { HostUpdate, UpdateController } from '../update'
+import { type LitElement, type ReactiveController, type ReactiveControllerHost, type ReactiveElement } from 'lit'
+import { HostUpdateListener, HostUpdateController } from '../update'
 import { detachableEvent } from './detachable-event';
 import type { DetachableEventReturn, ListenOptions } from './types'
 
@@ -46,6 +46,6 @@ export class EventListenerController implements ReactiveController {
   }
 }
 
-export function ensureEventListener<E extends LitElement>(instance: E): EventListenerController {
-  return ((instance as any)[HostUpdate] ??= new UpdateController(instance));
+export function ensureEventListener<E extends LitElement | ReactiveElement>(instance: E): EventListenerController {
+  return ((instance as any)[HostUpdateListener] ??= new HostUpdateController(instance));
 }

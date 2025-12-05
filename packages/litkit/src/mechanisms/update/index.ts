@@ -1,2 +1,2 @@
 export * from './types';
-export * from './update.controller'
+export * from './host-update.controller'

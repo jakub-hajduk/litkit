@@ -1,6 +1,6 @@
 import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, EventListener, HostUpdate } from 'litkit'
+import { Aria, BaseElementInterface, EventListener, HostUpdateListener } from 'litkit'
 import { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
@@ -65,7 +65,7 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
       await this.updateComplete;
 
       if (this._delegatedElement) {
-        this[HostUpdate].watch('value', (value: string) => {
+        this[HostUpdateListener].watch('value', (value: string) => {
           (this._delegatedElement as HTMLInputElement).value = value;
         })
 
@@ -82,11 +82,11 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
         }, { element: this._delegatedElement })
         .attach()
 
-        this[HostUpdate].watch('label', (value: string) => {
+        this[HostUpdateListener].watch('label', (value: string) => {
           this._delegatedElement?.setAttribute('aria-label', value);
         })
 
-        this[HostUpdate].watch('description', (value: string) => {
+        this[HostUpdateListener].watch('description', (value: string) => {
           this._delegatedElement?.setAttribute('aria-description', value);
         })
       }

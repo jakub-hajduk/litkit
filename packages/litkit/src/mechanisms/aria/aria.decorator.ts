@@ -1,7 +1,7 @@
 import { LitElement, ReactiveElement } from 'lit';
 import { initializeBase } from '../initialize/initialize'
 import type { AriaProperty, ConverterFn } from './types'
-import { HostUpdate } from '../update/update.controller';
+import { HostUpdateListener } from '../update/host-update.controller';
 import { Internals } from '../internals/internals';
 
 export function Aria(
@@ -20,7 +20,7 @@ export function Aria(
       ) => {
         const instance = initializeBase(inst)
         const internals = instance[Internals]
-        const update = instance[HostUpdate]
+        const update = instance[HostUpdateListener]
 
         update.watch(decoratedProp, (newValue, oldValue) => {
           // @ts-ignore

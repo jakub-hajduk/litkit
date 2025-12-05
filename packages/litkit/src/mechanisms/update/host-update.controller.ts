@@ -1,9 +1,9 @@
-import { type ReactiveController, type ReactiveControllerHost } from 'lit';
+import { type LitElement, type ReactiveController, type ReactiveControllerHost } from 'lit'
 import type { Handler } from './types'
 
-export const HostUpdate: unique symbol = Symbol('Update');
+export const HostUpdateListener: unique symbol = Symbol('Update');
 
-export class UpdateController implements ReactiveController {
+export class HostUpdateController implements ReactiveController {
   host: ReactiveControllerHost;
   handlers: Record<PropertyKey, Handler<any>[]> = {};
 
@@ -30,4 +30,8 @@ export class UpdateController implements ReactiveController {
       }
     }
   }
+}
+
+export function ensureHostUpdateController<E extends LitElement>(instance: E): HostUpdateController {
+  return ((instance as any)[HostUpdateListener] ??= new HostUpdateController(instance));
 }

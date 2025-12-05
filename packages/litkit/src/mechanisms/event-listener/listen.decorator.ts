@@ -1,6 +1,5 @@
-import { LitElement, ReactiveElement } from 'lit';
-import { initializeBase } from '../initialize/initialize'
-import { EventListener, } from './event-listener.controller';
+import { LitElement, ReactiveElement } from 'lit'
+import { ensureEventListener, EventListener } from './event-listener.controller'
 import type { EventName, ListenOptions } from './types'
 
 export function Listen(
@@ -17,7 +16,7 @@ export function Listen(
     const constructor = target.constructor as typeof ReactiveElement;
 
     constructor.addInitializer((instance: ReactiveElement) => {
-      const listener = initializeBase(instance)[EventListener]
+      const listener = ensureEventListener(instance)
       const eventHandlerMethod = target[decoratedFnName] as EventListener;
 
       listener.registerListener(

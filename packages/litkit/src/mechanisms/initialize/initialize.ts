@@ -1,21 +1,20 @@
-import { LitElement, type ReactiveElement } from 'lit'
+import { LitElement } from 'lit'
 import { ensureInternals, Internals } from '../internals'
-import { EventListener, EventListenerController } from '../listen'
-import { HostUpdate, UpdateController } from '../update'
+import { ensureEventListener, EventListener, EventListenerController } from '../event-listener'
+import { ensureHostUpdateController, HostUpdateController, HostUpdateListener } from '../update'
 
 export interface BaseElementInterface {
   [Internals]: ElementInternals
   [EventListener]: EventListenerController
-  [HostUpdate]: UpdateController
+  [HostUpdateListener]: HostUpdateController
 }
 
 export type BaseComponentConstructor = new (...args: any[]) => LitElement & BaseElementInterface;
 
-
-export function initializeBase(instance: ReactiveElement | LitElement) {
+export function initializeBase(instance: LitElement) {
   (instance as any)[Internals] ??= ensureInternals(instance);
-  (instance as any)[HostUpdate] ??= new UpdateController(instance);
-  (instance as any)[EventListener] ??= new EventListenerController(instance);
+  (instance as any)[HostUpdateListener] ??= ensureHostUpdateController(instance);
+  (instance as any)[EventListener] ??= ensureEventListener(instance);
 
   return instance as LitElement & BaseElementInterface;
 }
