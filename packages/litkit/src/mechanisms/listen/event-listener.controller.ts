@@ -1,10 +1,11 @@
-import { type ReactiveController, type ReactiveControllerHost } from 'lit';
+import { type LitElement, type ReactiveController, type ReactiveControllerHost } from 'lit'
+import { HostUpdate, UpdateController } from '../update'
 import { detachableEvent } from './detachable-event';
 import type { DetachableEventReturn, ListenOptions } from './types'
 
-export const HostListener: unique symbol = Symbol('hostListener');
+export const EventListener: unique symbol = Symbol('HostListener');
 
-export class HostListenerController implements ReactiveController {
+export class EventListenerController implements ReactiveController {
   host: ReactiveControllerHost & HTMLElement;
 
   private events: DetachableEventReturn[] = [];
@@ -43,4 +44,8 @@ export class HostListenerController implements ReactiveController {
     this.events.push(event);
     return event
   }
+}
+
+export function ensureEventListener<E extends LitElement>(instance: E): EventListenerController {
+  return ((instance as any)[HostUpdate] ??= new UpdateController(instance));
 }

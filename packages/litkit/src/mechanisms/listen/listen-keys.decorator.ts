@@ -1,6 +1,6 @@
 import { LitElement, ReactiveElement } from 'lit';
 import { initializeBase } from '../initialize/initialize'
-import { HostListener } from './listen.controller';
+import { EventListener } from './event-listener.controller';
 import type { KeyboardEventCode, ListenOptions } from './types'
 
 export function ListenKeys(
@@ -18,7 +18,7 @@ export function ListenKeys(
     const constructor = target.constructor as typeof ReactiveElement;
 
     constructor.addInitializer((instance: ReactiveElement) => {
-        const listener = initializeBase(instance)[HostListener]
+        const listener = initializeBase(instance)[EventListener]
         const originalMethod = target[decoratedFnName] as EventListener;
 
         const decoratedMethod = (event: KeyboardEvent) => {

@@ -1,6 +1,6 @@
 import { LitElement, ReactiveElement } from 'lit';
 import { initializeBase } from '../initialize/initialize'
-import { HostListener } from './listen.controller';
+import { EventListener } from './event-listener.controller';
 
 export function Command(
   commandName: string,
@@ -15,7 +15,7 @@ export function Command(
     const constructor = target.constructor as typeof ReactiveElement;
 
     constructor.addInitializer((instance: ReactiveElement) => {
-        const listener = initializeBase(instance)[HostListener]
+        const listener = initializeBase(instance)[EventListener]
         const originalMethod = target[decoratedFnName] as EventListener;
 
         // @ts-ignore

@@ -1,6 +1,6 @@
 import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, HostListener, HostUpdate } from 'litkit'
+import { Aria, BaseElementInterface, EventListener, HostUpdate } from 'litkit'
 import { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
@@ -69,14 +69,14 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
           (this._delegatedElement as HTMLInputElement).value = value;
         })
 
-        this[HostListener].registerListener('input', (event: Event) => {
+        this[EventListener].registerListener('input', (event: Event) => {
           event.stopImmediatePropagation()
           this.value = (event.target as HTMLInputElement).value as any;
           this.emitInput()
         }, { element: this._delegatedElement })
         .attach()
 
-        this[HostListener].registerListener('change', (event: Event) => {
+        this[EventListener].registerListener('change', (event: Event) => {
           event.stopImmediatePropagation()
           this.emitChange()
         }, { element: this._delegatedElement })

@@ -1,5 +1,5 @@
 import { LitElement, ReactiveElement } from 'lit';
-import { SlotChangeListener, SlotChangeController } from './slotChangeController'
+import { SlotChangeListener, SlotChangeController } from './slot-change.controller'
 import type { SlotUpdateHandler } from './types'
 
 export function SlotChange(
