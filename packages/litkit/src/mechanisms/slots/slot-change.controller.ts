@@ -1,4 +1,4 @@
-import { type LitElement, type ReactiveController, type ReactiveControllerHost } from 'lit'
+import { type LitElement, type ReactiveController, type ReactiveControllerHost, type ReactiveElement } from 'lit'
 import { detachableEvent, type DetachableEventReturn } from '../event-listener'
 import type { SlotUpdateHandler } from './types'
 
@@ -10,7 +10,7 @@ export class SlotChangeController implements ReactiveController {
   private updateEventListeners: Map<string, DetachableEventReturn> = new Map()
   private subscriptions: Map<string, SlotUpdateHandler[]> = new Map();
 
-  constructor(host: LitElement & ReactiveControllerHost) {
+  constructor(host: LitElement) {
     (this.host = host).addController(this);
   }
 
@@ -62,6 +62,6 @@ export class SlotChangeController implements ReactiveController {
 }
 
 
-export function ensureSlotController<E extends LitElement>(instance: E): SlotChangeController {
-  return ((instance as any)[SlotChangeListener] ??= new SlotChangeController(instance))
+export function ensureSlotController<E extends LitElement | ReactiveElement>(instance: E): SlotChangeController {
+  return ((instance as any)[SlotChangeListener] ??= new SlotChangeController(instance as LitElement))
 }

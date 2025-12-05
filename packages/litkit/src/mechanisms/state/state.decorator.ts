@@ -1,7 +1,6 @@
-import { LitElement, ReactiveElement } from 'lit';
-import { initializeBase } from '../initialize/initialize'
-import { Internals } from '../internals/internals';
-import { HostUpdateListener } from '../update/host-update.controller';
+import { LitElement, ReactiveElement } from 'lit'
+import { ensureInternals } from '../internals/internals'
+import { ensureHostUpdateController } from '../update/host-update.controller'
 import type { ConverterFn } from './types'
 
 export function State(state: string, converter?: ConverterFn): PropertyDecorator {
@@ -10,10 +9,9 @@ export function State(state: string, converter?: ConverterFn): PropertyDecorator
     decoratedPropName: keyof ElementClass
   ): void {
     const constructor = target.constructor as typeof ReactiveElement;
-    constructor.addInitializer((inst: ReactiveElement) => {
-      const instance = initializeBase(inst)
-        const internals = instance[Internals]
-        const update = instance[HostUpdateListener]
+    constructor.addInitializer((instance: ReactiveElement) => {
+      const internals = ensureInternals(instance)
+      const update = ensureHostUpdateController(instance)
 
         update.watch(decoratedPropName, (value) => {
           const isState = converter ? converter(value) : Boolean(value);
