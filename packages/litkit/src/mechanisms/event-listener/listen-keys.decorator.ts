@@ -1,5 +1,6 @@
 import { LitElement, ReactiveElement } from 'lit'
-import { ensureEventListener, EventListener } from './event-listener.controller'
+import { addInitializer } from '../../shared/add-initializer.util'
+import { ensureHostEventListener } from './event-listener.controller'
 import type { KeyboardEventCode, ListenOptions } from './types'
 
 export function ListenKeys(
@@ -11,13 +12,8 @@ export function ListenKeys(
     target: ElementClass,
     decoratedFnName: keyof ElementClass
   ): void {
-    if (typeof eventName !== 'string')
-      throw new Error('Expected string value for event definition!');
-
-    const constructor = target.constructor as typeof ReactiveElement;
-
-    constructor.addInitializer((instance: ReactiveElement) => {
-        const listener = ensureEventListener(instance)
+    addInitializer(target, (instance: ReactiveElement) => {
+        const listener = ensureHostEventListener(instance)
         const originalMethod = target[decoratedFnName] as EventListener;
 
         const decoratedMethod = (event: KeyboardEvent) => {

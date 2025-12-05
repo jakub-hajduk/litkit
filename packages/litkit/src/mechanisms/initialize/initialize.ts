@@ -1,11 +1,11 @@
 import { LitElement } from 'lit'
 import { ensureInternals, Internals } from '../internals'
-import { ensureEventListener, EventListener, EventListenerController } from '../event-listener'
+import { ensureHostEventListener, HostEventListener, HostEventListenerController } from '../event-listener'
 import { ensureHostUpdateController, HostUpdateController, HostUpdateListener } from '../update'
 
 export interface BaseElementInterface {
   [Internals]: ElementInternals
-  [EventListener]: EventListenerController
+  [HostEventListener]: HostEventListenerController
   [HostUpdateListener]: HostUpdateController
 }
 
@@ -14,7 +14,7 @@ export type BaseComponentConstructor = new (...args: any[]) => LitElement & Base
 export function initializeBase(instance: LitElement) {
   (instance as any)[Internals] ??= ensureInternals(instance);
   (instance as any)[HostUpdateListener] ??= ensureHostUpdateController(instance);
-  (instance as any)[EventListener] ??= ensureEventListener(instance);
+  (instance as any)[HostEventListener] ??= ensureHostEventListener(instance);
 
   return instance as LitElement & BaseElementInterface;
 }

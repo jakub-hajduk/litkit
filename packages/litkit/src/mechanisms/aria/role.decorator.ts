@@ -6,7 +6,6 @@ export function Role(role: AriaRole): ClassDecorator {
   return function <ElementClass extends typeof LitElement>(
     constructor: ElementClass
   ) {
-
     constructor.addInitializer((instance: ReactiveElement & { [Internals]?: ElementInternals; }) => {
       const internals = (instance[Internals] ??=
         ensureInternals(instance));

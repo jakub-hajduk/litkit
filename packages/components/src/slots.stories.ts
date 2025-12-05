@@ -1,8 +1,7 @@
 import type { Meta } from '@storybook/web-components-vite'
-import { css, html, LitElement, PropertyValues } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { SlotChange, SlotChangeController, SlottedNodes, SlottedText } from 'litkit'
-import { mockElement } from './shared/mocked-element.util'
+import { SlotChange, SlottedNodes, SlottedText } from 'litkit'
 
 const meta: Meta = {
   title: 'Slot Controller',
@@ -110,7 +109,7 @@ function nd(node: Node): string {
       break
     default:
     case Node.ELEMENT_NODE:
-      return node.tagName
+      return (node as any).tagName || 'UNKNOWN_TAG'
       break
   }
 }

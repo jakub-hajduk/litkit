@@ -1,5 +1,6 @@
 import { LitElement, ReactiveElement } from 'lit'
-import { ensureEventListener, EventListener } from './event-listener.controller'
+import { addInitializer } from '../../shared/add-initializer.util'
+import { ensureHostEventListener, HostEventListener } from './event-listener.controller'
 import type { EventName, ListenOptions } from './types'
 
 export function Listen(
@@ -10,13 +11,9 @@ export function Listen(
     target: ElementClass,
     decoratedFnName: keyof ElementClass
   ): void {
-    if (typeof eventName !== 'string')
-      throw new Error('Expected string value for event definition!');
+    addInitializer(target, (instance: ReactiveElement) => {
+      const listener = ensureHostEventListener(instance)
 
-    const constructor = target.constructor as typeof ReactiveElement;
-
-    constructor.addInitializer((instance: ReactiveElement) => {
-      const listener = ensureEventListener(instance)
       const eventHandlerMethod = target[decoratedFnName] as EventListener;
 
       listener.registerListener(

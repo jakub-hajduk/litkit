@@ -1,4 +1,5 @@
 import { LitElement, ReactiveElement } from 'lit'
+import { addInitializer } from '../../shared/add-initializer.util'
 import { ensureInternals } from '../internals/internals'
 import { ensureHostUpdateController } from '../update/host-update.controller'
 import type { ConverterFn } from './types'
@@ -8,8 +9,7 @@ export function State(state: string, converter?: ConverterFn): PropertyDecorator
     target: ElementClass,
     decoratedPropName: keyof ElementClass
   ): void {
-    const constructor = target.constructor as typeof ReactiveElement;
-    constructor.addInitializer((instance: ReactiveElement) => {
+    addInitializer(target, (instance: ReactiveElement) => {
       const internals = ensureInternals(instance)
       const update = ensureHostUpdateController(instance)
 

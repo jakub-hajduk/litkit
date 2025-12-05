@@ -1,8 +1,8 @@
-import { LitElement, ReactiveElement } from 'lit';
-import { initializeBase } from '../initialize/initialize'
+import { LitElement, ReactiveElement } from 'lit'
+import { addInitializer } from '../../shared/add-initializer.util'
+import { ensureInternals } from '../internals/internals'
+import { ensureHostUpdateController } from '../update/host-update.controller'
 import type { AriaProperty, ConverterFn } from './types'
-import { HostUpdateListener } from '../update/host-update.controller';
-import { Internals } from '../internals/internals';
 
 export function Aria(
   ariaProperty: AriaProperty,
@@ -12,15 +12,9 @@ export function Aria(
     target: ElementClass,
     decoratedProp: keyof ElementClass
   ) {
-    const constructor = target.constructor as typeof ReactiveElement;
-
-    constructor.addInitializer(
-      (
-        inst: ReactiveElement
-      ) => {
-        const instance = initializeBase(inst)
-        const internals = instance[Internals]
-        const update = instance[HostUpdateListener]
+    addInitializer(target, (instance: ReactiveElement) => {
+        const internals = ensureInternals(instance)
+        const update = ensureHostUpdateController(instance)
 
         update.watch(decoratedProp, (newValue, oldValue) => {
           // @ts-ignore

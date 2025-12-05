@@ -1,5 +1,5 @@
 export * from './slot-change.controller'
-export * from './slot.decorator'
+export * from './slot-change.decorator'
 export * from './types'
 export * from './slotted-nodes.decorator'
 export * from './slotted-text.decorator'

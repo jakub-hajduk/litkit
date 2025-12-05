@@ -3,9 +3,9 @@ import { HostUpdateListener, HostUpdateController } from '../update'
 import { detachableEvent } from './detachable-event';
 import type { DetachableEventReturn, ListenOptions } from './types'
 
-export const EventListener: unique symbol = Symbol('HostListener');
+export const HostEventListener: unique symbol = Symbol('HostListener');
 
-export class EventListenerController implements ReactiveController {
+export class HostEventListenerController implements ReactiveController {
   host: ReactiveControllerHost & HTMLElement;
 
   private events: DetachableEventReturn[] = [];
@@ -46,6 +46,6 @@ export class EventListenerController implements ReactiveController {
   }
 }
 
-export function ensureEventListener<E extends LitElement | ReactiveElement>(instance: E): EventListenerController {
-  return ((instance as any)[HostUpdateListener] ??= new HostUpdateController(instance));
+export function ensureHostEventListener<E extends LitElement | ReactiveElement>(instance: E): HostEventListenerController {
+  return ((instance as any)[HostEventListener] ??= new HostEventListenerController(instance));
 }
