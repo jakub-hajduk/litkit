@@ -20,7 +20,7 @@ class SlotControllerCE extends LitElement {
         flex-direction: column;
         gap: 8px;
       }
-      
+
       hr {
           border-style: solid;
           border-color: #ccc;
@@ -33,8 +33,8 @@ class SlotControllerCE extends LitElement {
   @SlotChange()
   @SlotChange('header')
   @SlotChange('footer')
-  private reactToSlotChange(nodes: Node[]) {
-    console.log(nodes)
+  private reactToSlotChange(nodes: Node[], slot: HTMLSlotElement) {
+    console.log(slot.name || 'default', nodes)
   }
 
   render() {
@@ -154,11 +154,11 @@ export const SlottedNodesExample = {
             <p>paragraph</p>
             <strong>Strong</strong>
         </div>
-        
+
         <h1>Test</h1>
         <h2>Test 2</h2>
         <h3>Text 3</h3>
-        
+
     </test-slotted-nodes>`
   }
 }

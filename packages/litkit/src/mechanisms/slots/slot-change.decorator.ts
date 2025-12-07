@@ -4,7 +4,7 @@ import { SlotChangeListener, SlotChangeController } from './slot-change.controll
 import type { SlotUpdateHandler } from './types'
 
 export function SlotChange(
-  slotName: string = 'default',
+  slotName: string | null = null,
 ): MethodDecorator {
   return function <ElementClass extends LitElement>(
     target: ElementClass,

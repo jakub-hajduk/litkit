@@ -28,7 +28,7 @@ export class SlotChangeController implements ReactiveController {
           if (!handlers) return;
 
           for (const handler of handlers) {
-            handler(slottedNodes);
+            handler(slottedNodes, slotElement);
           }
         }
         slotUpdate(slot)
