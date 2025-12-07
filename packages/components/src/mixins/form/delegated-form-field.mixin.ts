@@ -1,6 +1,6 @@
 import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, HostEventListener, HostUpdateListener } from 'litkit'
+import { Aria, BaseElementInterface, HostEventListener, HostUpdateListener, State } from 'litkit'
 import { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
@@ -25,14 +25,17 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
     _delegatedElement: any;
     value: any;
 
+    @State('required')
     @Aria('ariaRequired')
     @property({ type: Boolean, reflect: true })
     required = false;
 
+    @State('readonly')
     @Aria('ariaReadOnly')
     @property({ type: Boolean, reflect: true })
     readOnly = false;
 
+    @State('disabled')
     @Aria('ariaDisabled')
     @property({ type: Boolean, reflect: true })
     disabled = false;

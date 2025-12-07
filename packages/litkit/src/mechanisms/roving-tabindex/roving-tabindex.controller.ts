@@ -89,8 +89,6 @@ export class RovingTabindexListController<T extends HTMLElement> implements Reac
 		}
 
 		this.setCurrentIndex(this.currentIndex);
-
-		console.log( this.hostEventController.boundEvents )
 	}
 
 	hostUpdate(): void {

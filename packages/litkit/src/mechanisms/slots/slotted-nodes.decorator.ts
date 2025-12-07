@@ -4,7 +4,7 @@ import { ensureSlotController } from '../slots'
 
 export function SlottedNodes(
   slotName: string | null = null,
-  filter?: (node: Node) => boolean
+  filterFn?: (node: Node) => boolean
 ): PropertyDecorator {
   return function <ElementClass extends LitElement>(
     target: ElementClass,
@@ -14,7 +14,7 @@ export function SlottedNodes(
       const slotController = ensureSlotController(instance)
       slotController.subscribe(slotName, (nodes) => {
         const oldValue = (instance as any)[decoratedFnName] as Node[];
-        const newValue = filter ? nodes.filter(filter) : nodes;
+        const newValue = filterFn ? nodes.filter(filterFn) : nodes;
         (instance as any)[decoratedFnName] = newValue
         instance.requestUpdate(decoratedFnName, oldValue)
       })

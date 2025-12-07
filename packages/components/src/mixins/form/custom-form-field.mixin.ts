@@ -1,9 +1,6 @@
-import { LitElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, HostUpdateListener, Internals } from 'litkit'
+import { Aria, BaseElementInterface, HostUpdateListener, Internals, State } from 'litkit'
 import { Constructor, LitConstructor } from '../../types/types'
-
-type FormValue = File | string | FormData | null;
 
 export type CustomFormFieldInterface = {
   required?: boolean;
@@ -13,40 +10,34 @@ export type CustomFormFieldInterface = {
   description?: string;
   emitChange(): void;
   emitInput(): void;
-  value: any
 };
 
 export const CustomFormField = <Base extends LitConstructor>(superClass: Base) => {
   class CustomFormFieldMixin extends superClass {
-    static shadowRootOptions = {mode: 'closed', delegatesFocus: true};
+    static shadowRootOptions = {mode: 'closed'};
     static formAssociated = true;
 
-    value: FormValue = null;
-
+    @State('required')
     @Aria('ariaRequired')
     @property({ type: Boolean, reflect: true })
     required = false;
 
+    @State('readonly')
     @Aria('ariaReadOnly')
     @property({ type: Boolean, reflect: true })
     readOnly = false;
 
+    @State('disabled')
     @Aria('ariaDisabled')
     @property({ type: Boolean, reflect: true })
     disabled = false;
 
-    /**
-     * field name for screen readers. This should be used only when field is used without acc-label element.
-     */
     @Aria('ariaLabel')
-    @property({ type: String, reflect: true, attribute: 'label' })
+    @property({ type: String, reflect: true })
     label?: string = '';
 
-    /**
-     * field description for screen readers. This should be used only when field is used without acc-label element.
-     */
     @Aria('ariaDescription')
-    @property({ type: String, reflect: true, attribute: 'description' })
+    @property({ type: String, reflect: true })
     description?: string = '';
 
     emitChange() {
