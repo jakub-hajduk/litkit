@@ -15,7 +15,7 @@ export const WithSingleSelect = <Base extends LitConstructor>(superClass: Base) 
   class WithSingleSelectMixin extends superClass {
     currentlySelectedTarget: OptionElement | undefined = undefined;
 
-    @Listen('selected')
+    @Listen('selected', {eventId: 'WithSingleSelect:selected'})
     private itemSelected(event: CustomEvent) {
       if ( this.currentlySelectedTarget) {
         this.currentlySelectedTarget.selected = false
@@ -29,5 +29,3 @@ export const WithSingleSelect = <Base extends LitConstructor>(superClass: Base) 
 
   return WithSingleSelectMixin as (Constructor<WithSingleSelectInterface> & Base);
 };
-
-

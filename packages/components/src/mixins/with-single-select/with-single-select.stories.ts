@@ -5,8 +5,9 @@ import { Action, Role, SelectableOptions } from 'litkit'
 import { Base } from '../base/base.mixin'
 import { Focusable } from '../focusable/focusable.mixin'
 import { CustomFormField } from '../form/custom-form-field.mixin'
-import { Selectable } from '../selectable/selectable.mixin'
+import { Selectable, SelectableInterface } from '../selectable/selectable.mixin'
 import { OptionElement, WithSingleSelect } from './with-single-select.mixin'
+import { RovingTabindexListController } from 'litkit'
 
 const meta: Meta = {
   title: 'Selectable',
@@ -54,6 +55,8 @@ class SingleSelectCE extends CustomFormField(WithSingleSelect(Base(LitElement)))
       }
   `]
 
+  focusTrap = new RovingTabindexListController(this, {getElements: () => this.options})
+
   @SelectableOptions()
   readonly options: OptionElement[] = []
 
@@ -67,16 +70,13 @@ export const SingleSelect = {
     let count = 5
     const addOption = () => {
       const hostElement = document.querySelector('test-single-select')
-      const newElement = document.createElement('test-option')
+      const newElement = document.createElement('test-option') as HTMLElement & SelectableInterface
 
-      const w = `option-${++count}`
+      const label = `option-${++count}`
 
-      newElement.value = w
-      newElement.innerText = w
-
+      newElement.value = label
+      newElement.innerText = label
       hostElement?.appendChild(newElement)
-
-      console.log(hostElement.options)
     }
 
     return html`

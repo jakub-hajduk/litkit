@@ -40,6 +40,10 @@ export class HostEventListenerController implements ReactiveController {
       eventName,
       method,
       options
+      // {
+      //   eventId: `${this.host.constru}:${eventName}:${method.name}`,
+      //  ...options
+      // }
     );
     this.events.push(event);
     return event
