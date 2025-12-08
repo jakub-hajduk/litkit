@@ -46,7 +46,9 @@ export class MySelect extends Focusable(CustomFormField(LitElement)) {
   options: MyOption[] = [];
 
   focusTrap = new RovingTabindexListController(this, {
-    getElements: () => this.options
+    getElements: () => this.options,
+    typeFocusValue: (el: MyOption) => el.label,
+    typeFocus: true
   })
 
   @property({ type: String, reflect: true })
@@ -57,9 +59,12 @@ export class MySelect extends Focusable(CustomFormField(LitElement)) {
 
   @Listen('click')
   @ListenKeys('keydown', ['ArrowDown', 'ArrowUp', 'Enter', 'Space'])
-  openDropdown() {
-    console.log( this )
+  openDropdown(event: Event) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    if (event.target !== this) return
     this.dropdown.show()
+    this.focusTrap.focus()
   }
 
   @Listen('selected')

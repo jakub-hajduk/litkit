@@ -144,15 +144,14 @@ export class RovingTabindexListController<T extends HTMLElement> implements Reac
 		this.focus(index);
 	}
 
-	private async focus(index?: number) {
-		await this.host.updateComplete;
+	public focus(index: number = this.currentIndex): void {
 		if (typeof index === 'number') this.currentIndex = index;
 
 		this.setCurrentIndex(index);
 		this.elements[index || this.currentIndex].focus();
 	}
 
-	private previous() {
+	public previous(): void {
 		if (this.currentIndex !== 0) {
 			this.focusByIndex(this.currentIndex - 1);
 		} else {
@@ -162,7 +161,7 @@ export class RovingTabindexListController<T extends HTMLElement> implements Reac
 		// this.events.emit('change', this.currentIndex);
 	}
 
-	private next() {
+	public next(): void {
 		if (this.currentIndex !== this.elements.length - 1) {
 			this.focusByIndex(this.currentIndex + 1);
 		} else {

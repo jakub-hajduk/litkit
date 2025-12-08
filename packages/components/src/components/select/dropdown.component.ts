@@ -25,17 +25,21 @@ export class MyDropdown extends LitElement {
     translate: 0 0;
 
     @starting-style {
-        opacity: 0;
-        translate: 0 -10px;
+      opacity: 0;
+      translate: 0 -10px;
     }
   }
   `;
 
   override popover = 'auto';
 
-  toggle: (toggle?: boolean) => boolean = this.togglePopover;
+  toggle(toggle?: boolean) {
+    this.togglePopover(toggle);
+  }
 
-  show: () => void = this.showPopover;
+  show() {
+    this.showPopover();
+  }
 
   hide() {
     this.hidePopover();
