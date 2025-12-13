@@ -1,4 +1,4 @@
-import type { LitElement } from "lit";
+import type { LitElement, ReactiveControllerHost } from "lit";
 
 export type HTMLElementOrComponent = LitElement | HTMLElement;
 
@@ -31,4 +31,21 @@ export interface FocusableListControllerOptions<T extends HTMLElement> {
 	 * @default (element) => element.innerText
 	 */
 	typeFocusValue: (el: T) => string;
+}
+
+
+
+export type Host = ReactiveControllerHost & LitElement
+
+export type FocusByPredicate<T extends HTMLElement = HTMLElement> = <E extends T>(element: E, index?: number, collection?: E[]) => boolean
+
+export interface RovingTabindexStrategy<T extends HTMLElement> {
+  mount?(host: Host): void
+  keydown(event: KeyboardEvent, currentElement: T | null, elements: T[]): T | undefined
+  unmount?(): void
+}
+
+export interface RTABINControllerOptions<T extends HTMLElement> {
+	getElements: <E extends HTMLElement>(element: E) => T[];
+	strategy: RovingTabindexStrategy<T>;
 }

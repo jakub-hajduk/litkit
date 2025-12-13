@@ -1,4 +1,4 @@
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { Role, CustomEventEmitter, State, Aria } from 'litkit';
 import { css, html, LitElement} from "lit";
 import { Action } from "litkit";
@@ -13,6 +13,11 @@ const styles = css`
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
+      transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+  }
+
+  :host(:hover) {
+      background-color: #f9f9f9;
   }
 
   :host(:state(selected)) {

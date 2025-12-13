@@ -1,8 +1,7 @@
 import { Meta } from "@storybook/web-components-vite";
 import { css, html, LitElement } from "lit";
-
 import './select.component';
-import './option.component';
+import "../option/option.component"
 import { customElement } from "lit/decorators.js";
 import { Focusable } from "../../mixins/focusable/focusable.mixin";
 
@@ -55,7 +54,11 @@ export const Select = () => html`
     <my-option value="red">Red</my-option>
     <my-option value="green">Green</my-option>
     <my-option value="blue">Blue</my-option>
-    <my-option value="disabled" disabled>Disabled</my-option>
+    <my-option value="orange">Orange</my-option>
+    <my-option value="yellow">Yellow</my-option>
+    <my-option value="pink">Pink</my-option>
+    <my-option value="Brown">Brown</my-option>
+    <my-option value="white" disabled>White</my-option>
   </my-select>
 </form>
 `;

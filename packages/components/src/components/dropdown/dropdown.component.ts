@@ -18,6 +18,10 @@ export class MyDropdown extends LitElement {
     transition: opacity ease, translate ease, display ease;
     transition-duration: 100ms;
     transition-behavior: allow-discrete;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 4px;
   }
 
   :host(:popover-open) {
