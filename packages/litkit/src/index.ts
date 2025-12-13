@@ -10,3 +10,5 @@ export * from './mechanisms/slots'
 export * from './mechanisms/options'
 export * from './mechanisms/roving-tabindex'
 export * from './mechanisms/generic-event-emitters'
+
+export * from './shared/add-initializer.util'

@@ -17,7 +17,7 @@ export class HostUpdateController implements ReactiveController {
     handler(this.host[property], undefined)
   }
 
-  hostUpdate(): void {
+  async hostUpdate(): Promise<void> {
     // @ts-expect-error - We're touching Lit's internals
     for (const [property, oldValue] of this.host._$changedProperties) {
       // @ts-expect-error - We need to get to the property.
@@ -25,8 +25,9 @@ export class HostUpdateController implements ReactiveController {
 
       if (!this.handlers[property]) continue;
 
+      await this.host.updateComplete
       for (const handler of this.handlers[property]) {
-        handler(newValue, oldValue);
+        await Promise.resolve(handler(newValue, oldValue));
       }
     }
   }

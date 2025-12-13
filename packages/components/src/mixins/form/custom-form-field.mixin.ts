@@ -1,21 +1,25 @@
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, HostUpdateListener, Internals, State } from 'litkit'
+import { addInitializer, Aria, ChangeEventEmitter, ensureHostUpdateController, ensureInternals, InputEventEmitter, State } from 'litkit'
 import { Constructor, LitConstructor } from '../../types/types'
+import { ReactiveElement } from 'lit';
 
 export type CustomFormFieldInterface = {
+  inputEvent: InputEventEmitter;
+  changeEvent: ChangeEventEmitter;
   required?: boolean;
   readOnly?: boolean;
   disabled?: boolean;
   label?: string;
   description?: string;
-  emitChange(): void;
-  emitInput(): void;
 };
 
 export const CustomFormField = <Base extends LitConstructor>(superClass: Base) => {
   class CustomFormFieldMixin extends superClass {
     static shadowRootOptions = {mode: 'closed'};
     static formAssociated = true;
+
+    public inputEvent = new InputEventEmitter(this);
+    public changeEvent = new ChangeEventEmitter(this)
 
     @State('required')
     @Aria('ariaRequired')
@@ -39,27 +43,18 @@ export const CustomFormField = <Base extends LitConstructor>(superClass: Base) =
     @Aria('ariaDescription')
     @property({ type: String, reflect: true })
     description?: string = '';
-
-    emitChange() {
-      const changeEvent = new Event('change', { bubbles: true });
-      this.dispatchEvent(changeEvent);
-    }
-
-    emitInput() {
-      const changeEvent = new InputEvent('input', { bubbles: true });
-      this.dispatchEvent(changeEvent);
-    }
-
-    connectedCallback(this: this & BaseElementInterface) {
-      super.connectedCallback();
-
-      this[HostUpdateListener].watch<typeof this.value>('value', (value) => {
-        this[Internals].setFormValue(value);
-        this.emitInput();
-        this.emitChange();
-      });
-    }
   }
+
+  addInitializer(CustomFormFieldMixin, (instance: ReactiveElement) => {
+    const updateListener = ensureHostUpdateController(instance)
+    const internals = ensureInternals(instance)
+
+    updateListener.watch('value', (value) => {
+      internals.setFormValue(value as any);
+      (instance as any).inputEvent?.emit();
+      (instance as any).changeEvent?.emit();
+    });
+  })
 
   return CustomFormFieldMixin as Constructor<CustomFormFieldInterface> & Base;
 };

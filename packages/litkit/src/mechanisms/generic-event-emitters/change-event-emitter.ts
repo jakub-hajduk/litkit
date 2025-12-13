@@ -4,7 +4,7 @@ export class ChangeEventEmitter {
 
   constructor(
     element: HTMLElement | Document,
-    options?: InputEventInit
+    options?: EventInit
   ) {
     this.element = element;
 

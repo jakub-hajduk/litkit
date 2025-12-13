@@ -1,19 +1,19 @@
-import { LitElement } from 'lit'
+import { LitElement, ReactiveElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, HostEventListener, HostUpdateListener, State } from 'litkit'
+import { Aria, BaseElementInterface, HostEventListener, HostUpdateListener, InputEventEmitter, State, addInitializer, ChangeEventEmitter } from 'litkit'
 import { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
 
 export type DelegatedFormFieldInterface<V> = {
+  inputEvent: InputEventEmitter;
+  changeEvent: ChangeEventEmitter;
   required?: boolean;
   readOnly?: boolean;
   disabled?: boolean;
   label?: string;
   description?: string;
   _delegatedElement?: HTMLElement | null;
-  emitChange(): void;
-  emitInput(): void;
   value: V
 };
 
@@ -21,6 +21,9 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
   class DelegatedFormFieldMixin extends superClass {
     static shadowRootOptions = {mode: 'closed', delegatesFocus: true};
     static formAssociated = true;
+
+    public inputEvent = new InputEventEmitter(this)
+    public changeEvent = new ChangeEventEmitter(this)
 
     _delegatedElement: any;
     value: any;
@@ -40,19 +43,13 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
     @property({ type: Boolean, reflect: true })
     disabled = false;
 
-    /**
-     * field name for screen readers. This should be used only when field is used without acc-label element.
-     */
     @Aria('ariaLabel')
     @property({ type: String, reflect: true, attribute: 'label' })
-    label?: string = '';
+    label?: string;
 
-    /**
-     * field description for screen readers. This should be used only when field is used without acc-label element.
-     */
     @Aria('ariaDescription')
     @property({ type: String, reflect: true, attribute: 'description' })
-    description?: string = '';
+    description?: string;
 
     emitChange() {
       const changeEvent = new Event('change', { bubbles: true });
@@ -75,13 +72,13 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
         this[HostEventListener].registerListener('input', (event: Event) => {
           event.stopImmediatePropagation()
           this.value = (event.target as HTMLInputElement).value as any;
-          this.emitInput()
+          this.inputEvent.emit()
         }, { element: this._delegatedElement })
         .attach()
 
         this[HostEventListener].registerListener('change', (event: Event) => {
           event.stopImmediatePropagation()
-          this.emitChange()
+          this.changeEvent.emit()
         }, { element: this._delegatedElement })
         .attach()
 
