@@ -1,10 +1,9 @@
 import type { Meta } from '@storybook/web-components-vite';
-import { css, html, LitElement } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { Role, Internals } from 'litkit'
-import { Button } from '../../mixins/actionable/button.mixin'
-import { Focusable } from '../../mixins/focusable/focusable.mixin'
-import { Base } from '../base/base.mixin'
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { Role } from 'litkit';
+import { Button } from '../../mixins/actionable/button.mixin';
+import { Focusable } from '../../mixins/focusable/focusable.mixin';
 
 const meta: Meta = {
   title: 'Button',
@@ -13,21 +12,19 @@ const meta: Meta = {
 
 export default meta
 
-
-const base = css`
-    :host {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        display: inline-block;
-        padding: 12px 12px;
-        cursor: pointer;
-    }
-`
-
 @Role('button')
 @customElement('test-button')
-class ButtonCE extends Focusable(Button(Base(LitElement))) {
-  static styles=[base]
+class ButtonCE extends Focusable(Button(LitElement)) {
+  static styles=[css`
+      :host {
+          border: 1px solid var(--neutral400);
+          color: var(--neutral1200);
+          border-radius: 8px;
+          display: inline-block;
+          padding: 12px 12px;
+          cursor: pointer;
+      }
+  `]
 
   render() {
     return html`<slot></slot>`

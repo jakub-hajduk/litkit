@@ -1,6 +1,6 @@
 import { property } from 'lit/decorators.js'
 import { addInitializer, Aria, ChangeEventEmitter, ensureHostUpdateController, ensureInternals, InputEventEmitter, State } from 'litkit'
-import { Constructor, LitConstructor } from '../../types/types'
+import type { Constructor, LitConstructor } from '../../types/types'
 import { ReactiveElement } from 'lit';
 
 export type CustomFormFieldInterface = {

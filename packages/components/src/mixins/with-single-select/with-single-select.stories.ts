@@ -1,13 +1,11 @@
 import type { Meta } from '@storybook/web-components-vite'
-import { css, html, LitElement, PropertyValues } from 'lit'
+import { css, html, LitElement } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { Action, Role, SelectableOptions } from 'litkit'
-import { Base } from '../base/base.mixin'
+import { Action, Role, RovingTabindexController, SelectableOptions } from 'litkit'
 import { Focusable } from '../focusable/focusable.mixin'
 import { CustomFormField } from '../form/custom-form-field.mixin'
-import { Selectable, SelectableInterface } from '../selectable/selectable.mixin'
-import { OptionElement, WithSingleSelect } from './with-single-select.mixin'
-import { RovingTabindexListController } from 'litkit'
+import { Selectable, type SelectableInterface } from '../selectable/selectable.mixin'
+import { type OptionElement, WithSingleSelect } from './with-single-select.mixin'
 
 const meta: Meta = {
   title: 'Selectable',
@@ -17,17 +15,18 @@ export default meta
 
 @Role('radio')
 @customElement('test-option')
-class OptionCE extends Selectable(Focusable(Base(LitElement))) {
+class OptionCE extends Selectable(Focusable(LitElement)) {
   static styles = [css`
       :host {
-          border: 1px solid #ccc;
+          border: 1px solid var(--neutral400);
+          color: var(--neutral1200);
           border-radius: 8px;
           padding: 8px 12px;
           display: block;
           cursor: pointer;
       }
       :host(:state(selected)) {
-          background: #f5f5f5;
+          background: var(--neutral200);
       }`]
 
   @Action()
@@ -43,10 +42,11 @@ class OptionCE extends Selectable(Focusable(Base(LitElement))) {
 
 @Role('radiogroup')
 @customElement('test-single-select')
-class SingleSelectCE extends CustomFormField(WithSingleSelect(Base(LitElement))) {
+class SingleSelectCE extends CustomFormField(WithSingleSelect(LitElement)) {
   static styles = [css`
       :host {
-        border: 1px solid #ccc;
+        border: 1px solid var(--neutral400);
+        color: var(--neutral1200);
         border-radius: 14px;
         padding: 8px;
         display: flex;
@@ -55,7 +55,9 @@ class SingleSelectCE extends CustomFormField(WithSingleSelect(Base(LitElement)))
       }
   `]
 
-  focusTrap = new RovingTabindexListController(this, {getElements: () => this.options})
+  rovingTabindex = new RovingTabindexController(this, {
+    getElements: () => this.options
+  })
 
   @SelectableOptions()
   readonly options: OptionElement[] = []

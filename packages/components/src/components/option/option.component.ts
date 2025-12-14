@@ -1,8 +1,6 @@
 import { customElement, property, state } from "lit/decorators.js";
-import { Role, CustomEventEmitter, State, Aria } from 'litkit';
-import { css, html, LitElement} from "lit";
-import { Action } from "litkit";
-import { SlottedText } from "litkit";
+import { Action, SlottedText, Role, CustomEventEmitter, State, Aria } from 'litkit';
+import { css, html, LitElement, type CSSResult, type TemplateResult } from "lit";
 
 const styles = css`
   :host {
@@ -17,12 +15,12 @@ const styles = css`
   }
 
   :host(:hover) {
-      background-color: #f9f9f9;
+      background-color: var(--neutral100);
   }
 
   :host(:state(selected)) {
-      background-color: #f0f0f0;
-      color: #333;
+      background-color: var(--neutral200);
+      color: var(--neutral1000);
   }
 
   :host(:state(disabled)) {
@@ -34,8 +32,8 @@ const styles = css`
 @Role('option')
 @customElement('my-option')
 export class MyOption extends LitElement {
-  static styles = [styles]
-  selectedEvent = new CustomEventEmitter<string>(this, 'selected', {bubbles: true, composed: true})
+  static styles: CSSResult[] = [styles]
+  selectedEvent: CustomEventEmitter<string> = new CustomEventEmitter<string>(this, 'selected', {bubbles: true, composed: true})
 
   @Aria('ariaDisabled')
   @State('disabled')
@@ -55,13 +53,13 @@ export class MyOption extends LitElement {
   label: string = ''
 
   @Action()
-  select() {
+  select(): void {
     if (this.disabled) return;
     this.selected = true;
     this.selectedEvent.emit(this.value);
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<slot></slot>`;
   }
 }

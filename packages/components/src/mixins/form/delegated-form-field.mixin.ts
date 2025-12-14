@@ -1,7 +1,6 @@
-import { LitElement, ReactiveElement } from 'lit'
 import { property } from 'lit/decorators.js'
-import { Aria, BaseElementInterface, HostEventListener, HostUpdateListener, InputEventEmitter, State, addInitializer, ChangeEventEmitter } from 'litkit'
-import { Constructor, LitConstructor } from '../../types/types'
+import { Aria, InputEventEmitter, State, ChangeEventEmitter, ensureHostEventListener, ensureHostUpdateController } from 'litkit'
+import type { Constructor, LitConstructor } from '../../types/types'
 
 type FormValue = File | string | FormData | null;
 
@@ -17,7 +16,7 @@ export type DelegatedFormFieldInterface<V> = {
   value: V
 };
 
-export const DelegatedFormField = <V extends FormValue = FormValue, Base extends LitConstructor & Constructor<BaseElementInterface> = Constructor<BaseElementInterface & LitElement>>(superClass: Base) => {
+export const DelegatedFormField = <V extends FormValue = FormValue, Base extends LitConstructor = LitConstructor>(superClass: Base) => {
   class DelegatedFormFieldMixin extends superClass {
     static shadowRootOptions = {mode: 'closed', delegatesFocus: true};
     static formAssociated = true;
@@ -51,42 +50,35 @@ export const DelegatedFormField = <V extends FormValue = FormValue, Base extends
     @property({ type: String, reflect: true, attribute: 'description' })
     description?: string;
 
-    emitChange() {
-      const changeEvent = new Event('change', { bubbles: true });
-      this.dispatchEvent(changeEvent);
-    }
-
-    emitInput() {
-      const changeEvent = new InputEvent('input', { bubbles: true });
-      this.dispatchEvent(changeEvent);
-    }
-
-    async firstUpdated(this: DelegatedFormFieldInterface<V> & BaseElementInterface & LitElement) {
+    async firstUpdated() {
       await this.updateComplete;
 
       if (this._delegatedElement) {
-        this[HostUpdateListener].watch('value', (value: string) => {
+        const HostUpdateListener = ensureHostUpdateController(this)
+        const HostEventListener = ensureHostEventListener(this)
+
+        HostUpdateListener.watch('value', (value: string) => {
           (this._delegatedElement as HTMLInputElement).value = value;
         })
 
-        this[HostEventListener].registerListener('input', (event: Event) => {
+        HostEventListener.registerListener('input', (event: Event) => {
           event.stopImmediatePropagation()
           this.value = (event.target as HTMLInputElement).value as any;
           this.inputEvent.emit()
         }, { element: this._delegatedElement })
         .attach()
 
-        this[HostEventListener].registerListener('change', (event: Event) => {
+        HostEventListener.registerListener('change', (event: Event) => {
           event.stopImmediatePropagation()
           this.changeEvent.emit()
         }, { element: this._delegatedElement })
         .attach()
 
-        this[HostUpdateListener].watch('label', (value: string) => {
+        HostUpdateListener.watch('label', (value: string) => {
           this._delegatedElement?.setAttribute('aria-label', value);
         })
 
-        this[HostUpdateListener].watch('description', (value: string) => {
+        HostUpdateListener.watch('description', (value: string) => {
           this._delegatedElement?.setAttribute('aria-description', value);
         })
       }

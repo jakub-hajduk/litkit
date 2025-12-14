@@ -1,9 +1,9 @@
-import { css, html, LitElement, PropertyPart } from "lit";
+import { css, html, LitElement, type CSSResult, type TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 @customElement('my-dropdown')
 export class MyDropdown extends LitElement {
-  static override styles = css`
+  static override styles: CSSResult = css`
   :host {
     position: absolute;
     inset: auto;
@@ -19,8 +19,9 @@ export class MyDropdown extends LitElement {
     transition-duration: 100ms;
     transition-behavior: allow-discrete;
 
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--neutral300);
+    color: var(--neutral1200);
+    border-radius: 8px;
     margin-top: 4px;
   }
 
@@ -37,19 +38,19 @@ export class MyDropdown extends LitElement {
 
   override popover = 'auto';
 
-  toggle(toggle?: boolean) {
+  toggle(toggle?: boolean): void {
     this.togglePopover(toggle);
   }
 
-  show() {
+  show(): void {
     this.showPopover();
   }
 
-  hide() {
+  hide(): void {
     this.hidePopover();
   }
 
-  override render() {
+  render(): TemplateResult {
     return html`<slot></slot>`;
   }
 }

@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "litkit": ["../litkit/src"]
-    },
-    "target": "es2020",
-    "module": "es2020",
-    "strict": true,
-    "moduleResolution": "bundler",
-    "esModuleInterop": true,
+    "composite": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM" ],
+
+    "esModuleInterop": false,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+
+    "strict": true,
+    "noEmit": true,
+    "useDefineForClassFields": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["**/*.stories.*"]
 }

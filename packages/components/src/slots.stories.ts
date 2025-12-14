@@ -13,7 +13,8 @@ export default meta
 class SlotControllerCE extends LitElement {
   static styles = [css`
       :host {
-        border: 1px solid #ccc;
+        border: 1px solid var(--neutral400);
+        color: var(--neutral1200);
         border-radius: 14px;
         padding: 8px;
         display: flex;
@@ -23,7 +24,7 @@ class SlotControllerCE extends LitElement {
 
       hr {
           border-style: solid;
-          border-color: #ccc;
+          border-color: var(--neutral700);
           border-width: 1px 0 0;
           width: 100%;
           height: 1px;

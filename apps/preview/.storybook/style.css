@@ -1,7 +1,91 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+/*
+
+https://leonardocolor.io/theme.html?name=Untitled&config=%7B%22baseScale%22%3A%22neutral%22%2C%22colorScales%22%3A%5B%7B%22name%22%3A%22neutral%22%2C%22colorKeys%22%3A%5B%22%2375845c%22%5D%2C%22colorspace%22%3A%22OKLAB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.2%22%2C%221.3%22%2C%221.7%22%2C%222.5%22%2C%223.23%22%2C%224.17%22%2C%225.49%22%2C%227.23%22%2C%229.44%22%2C%2212.27%22%2C%2215.33%22%2C%2217.93%22%5D%2C%22smooth%22%3Atrue%7D%2C%7B%22name%22%3A%22error%22%2C%22colorKeys%22%3A%5B%22%23be0924%22%5D%2C%22colorspace%22%3A%22OKLCH%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.2%22%2C%221.3%22%2C%221.7%22%2C%222.5%22%2C%223.23%22%2C%224.17%22%2C%225.49%22%2C%227.23%22%2C%229.44%22%2C%2212.27%22%2C%2215.33%22%2C%2217.93%22%5D%2C%22smooth%22%3Atrue%7D%2C%7B%22name%22%3A%22warning%22%2C%22colorKeys%22%3A%5B%22%23ffa725%22%5D%2C%22colorspace%22%3A%22OKLCH%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.2%22%2C%221.3%22%2C%221.7%22%2C%222.5%22%2C%223.23%22%2C%224.17%22%2C%225.49%22%2C%227.23%22%2C%229.44%22%2C%2212.27%22%2C%2215.33%22%2C%2217.93%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22success%22%2C%22colorKeys%22%3A%5B%22%23008020%22%5D%2C%22colorspace%22%3A%22OKLCH%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.2%22%2C%221.3%22%2C%221.7%22%2C%222.5%22%2C%223.23%22%2C%224.17%22%2C%225.49%22%2C%227.23%22%2C%229.44%22%2C%2212.27%22%2C%2215.33%22%2C%2217.93%22%5D%2C%22smooth%22%3Atrue%7D%2C%7B%22name%22%3A%22accent%22%2C%22colorKeys%22%3A%5B%22%23a94a4a%22%5D%2C%22colorspace%22%3A%22OKLCH%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.2%22%2C%221.3%22%2C%221.7%22%2C%222.5%22%2C%223.23%22%2C%224.17%22%2C%225.49%22%2C%227.23%22%2C%229.44%22%2C%2212.27%22%2C%2215.33%22%2C%2217.93%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22info%22%2C%22colorKeys%22%3A%5B%22%235a9cb5%22%5D%2C%22colorspace%22%3A%22OKLAB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.2%22%2C%221.3%22%2C%221.7%22%2C%222.5%22%2C%223.23%22%2C%224.17%22%2C%225.49%22%2C%227.23%22%2C%229.44%22%2C%2212.27%22%2C%2215.33%22%2C%2217.93%22%5D%2C%22smooth%22%3Atrue%7D%5D%2C%22lightness%22%3A100%2C%22contrast%22%3A1%2C%22saturation%22%3A100%2C%22formula%22%3A%22wcag2%22%7D
+*/
 
 :root {
     font-size: 12px;
+
+    --background: #ffffff;
+    --neutral100: #f4f5f1;
+    --neutral200: #e7ebe2;
+    --neutral300: #dee3d6;
+    --neutral400: #c0cab1;
+    --neutral500: #9ba985;
+    --neutral600: #85946d;
+    --neutral700: #73815a;
+    --neutral800: #606e48;
+    --neutral900: #4f5b3a;
+    --neutral1000: #3f492d;
+    --neutral1100: #2f3821;
+    --neutral1200: #212715;
+    --neutral1300: #14180b;
+    --error100: #fff0ef;
+    --error200: #ffe4e1;
+    --error300: #ffd8d4;
+    --error400: #fdb4ae;
+    --error500: #f4837e;
+    --error600: #e96562;
+    --error700: #dc4749;
+    --error800: #ca2531;
+    --error900: #b1001a;
+    --error1000: #910008;
+    --error1100: #710001;
+    --error1200: #530000;
+    --error1300: #380000;
+    --warning100: #fff2e3;
+    --warning200: #ffe7cb;
+    --warning300: #ffdcb3;
+    --warning400: #ffb860;
+    --warning500: #e69000;
+    --warning600: #cf7b00;
+    --warning700: #ba6700;
+    --warning800: #a45300;
+    --warning900: #903f00;
+    --warning1000: #7c2c00;
+    --warning1100: #681700;
+    --warning1200: #530000;
+    --warning1300: #380000;
+    --success100: #ecf5ec;
+    --success200: #dfefdf;
+    --success300: #cfe7cf;
+    --success400: #a3d2a3;
+    --success500: #69b46d;
+    --success600: #47a14e;
+    --success700: #248e33;
+    --success800: #007a1a;
+    --success900: #006605;
+    --success1000: #005200;
+    --success1100: #003f00;
+    --success1200: #002c00;
+    --success1300: #001c00;
+    --accent100: #faf1f1;
+    --accent200: #f6e6e5;
+    --accent300: #f2dddc;
+    --accent400: #e4bdbb;
+    --accent500: #d19491;
+    --accent600: #c47c79;
+    --accent700: #b86462;
+    --accent800: #aa4b4b;
+    --accent900: #95383a;
+    --accent1000: #802529;
+    --accent1100: #6b0e18;
+    --accent1200: #530004;
+    --accent1300: #380000;
+    --info100: #edf6f9;
+    --info200: #dbedf4;
+    --info300: #cce6f0;
+    --info400: #9ecee1;
+    --info500: #6cacc5;
+    --info600: #5697b0;
+    --info700: #46849c;
+    --info800: #377085;
+    --info900: #2b5d70;
+    --info1000: #214b5b;
+    --info1100: #173946;
+    --info1200: #0e2832;
+    --info1300: #061920;
 }
 
 * {

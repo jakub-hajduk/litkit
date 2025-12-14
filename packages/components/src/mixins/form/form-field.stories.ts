@@ -4,7 +4,6 @@ import { customElement, property, query } from 'lit/decorators.js'
 import { Role } from 'litkit'
 import { CustomFormField } from '../../mixins/form/custom-form-field.mixin'
 import { DelegatedFormField } from '../../mixins/form/delegated-form-field.mixin'
-import { Base } from '../base/base.mixin'
 
 const meta: Meta = {
   title: 'Form field',
@@ -14,7 +13,8 @@ export default meta
 
 const base = css`
     :host {
-        border: 1px solid #ccc;
+        border: 1px solid var(--neutral400);
+        color: var(--neutral1200);
         border-radius: 8px;
         display: block;
     }
@@ -22,7 +22,7 @@ const base = css`
 
 @Role('textbox')
 @customElement('test-delegated-field')
-class DelegatedFieldCE extends DelegatedFormField(Base(LitElement)) {
+class DelegatedFieldCE extends DelegatedFormField<string>(LitElement) {
   static styles = [base, css`
       input {
           padding: 8px 12px;
@@ -31,7 +31,7 @@ class DelegatedFieldCE extends DelegatedFormField(Base(LitElement)) {
       }`]
 
   @property({ type: String, reflect: true })
-  value: string  = ''
+  value: string = ''
 
   @query('input')
   _delegatedElement!: HTMLElement;
@@ -51,7 +51,7 @@ export const DelegatedField = {
 
 @Role('radiogroup')
 @customElement('test-custom-field')
-class CustomFieldCE extends CustomFormField(Base(LitElement)) {
+class CustomFieldCE extends CustomFormField(LitElement) {
   static styles = [
     base,
     css`
@@ -63,7 +63,8 @@ class CustomFieldCE extends CustomFormField(Base(LitElement)) {
         button {
             padding: 8px 12px;
             cursor: pointer;
-            border: 1px solid #ccc;
+            border: 1px solid var(--neutral400);
+            color: var(--neutral1200);
             border-radius: 4px;
         }
     `]

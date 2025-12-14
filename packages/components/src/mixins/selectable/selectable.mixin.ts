@@ -1,6 +1,6 @@
 import { property } from 'lit/decorators.js'
-import { Aria, CustomEventEmitter, Listen, ListenKeys, State } from 'litkit'
-import { LitConstructor, MaybePromise } from '../../types/types'
+import { Aria, CustomEventEmitter, State } from 'litkit'
+import type { Constructor, LitConstructor, MaybePromise } from '../../types/types'
 
 export interface SelectableInterface {
   selectedEvent: CustomEventEmitter;
@@ -8,6 +8,7 @@ export interface SelectableInterface {
   value?: string | number;
   canSelect?(): MaybePromise<boolean>;
   afterSelect?(): MaybePromise<void>;
+  select(): Promise<void>;
 }
 
 export const Selectable = <Base extends LitConstructor>(superClass: Base) => {
@@ -24,7 +25,7 @@ export const Selectable = <Base extends LitConstructor>(superClass: Base) => {
       type: String
     }) value?: string | number
 
-    public async select(this: SelectableInterface) {
+    public async select(this: SelectableInterface): Promise<void> {
       if (this.canSelect && !(await Promise.resolve(this.canSelect?.call(this)))) return
 
       const prevented = !this.selectedEvent.emit(this.value)
@@ -36,5 +37,5 @@ export const Selectable = <Base extends LitConstructor>(superClass: Base) => {
     }
   }
 
-  return SelectableMixin;
+  return SelectableMixin as Constructor<SelectableInterface> & Base;
 };

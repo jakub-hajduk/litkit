@@ -1,12 +1,9 @@
 import { customElement, property, query } from "lit/decorators.js";
-import { Listen, Role, RovingTabindexController } from "litkit";
+import { SlottedNodes, ListenKeys, Listen, Role, RovingTabindexController } from "litkit";
 import { MyOption } from "../option/option.component";
-import { css, html, LitElement } from "lit";
+import { css, html, LitElement, type CSSResult, type TemplateResult } from "lit";
 import { CustomFormField } from "../../mixins/form/custom-form-field.mixin";
-import { SlottedNodes } from "litkit";
 import { Focusable } from "../../mixins/focusable/focusable.mixin";
-import { ListenKeys } from "litkit";
-import "../dropdown/dropdown.component";
 import { MyDropdown } from "../dropdown/dropdown.component";
 
 const styles = css`
@@ -15,7 +12,8 @@ const styles = css`
       align-items: center;
       padding: 8px 12px;
       width: 100%;
-      border: 1px solid #ccc;
+      border: 1px solid var(--neutral400);
+      color: var(--neutral1200);
       box-sizing: border-box;
       border-radius: 4px;
       anchor-name: --reference-element;
@@ -27,7 +25,7 @@ const styles = css`
       outline: none;
       box-shadow:
           0 0 0 3px white,
-          0 0 0 6px #4E8098;
+          0 0 0 6px var(--neutral400);
   }
 
   my-dropdown {
@@ -40,7 +38,7 @@ const nonDisabled = (node: Node) => node instanceof MyOption && node.disabled ==
 @Role('combobox')
 @customElement('my-select')
 export class MySelect extends Focusable(CustomFormField(LitElement)) {
-  static styles = [
+  static styles: CSSResult[] = [
     styles
   ]
 
@@ -49,7 +47,7 @@ export class MySelect extends Focusable(CustomFormField(LitElement)) {
   @SlottedNodes(null, nonDisabled)
   options: MyOption[] = [];
 
-  rovingTabindex = new RovingTabindexController(this, {
+  rovingTabindex: RovingTabindexController<MyOption> = new RovingTabindexController(this, {
     getElements: () => this.options,
   })
 
@@ -61,7 +59,7 @@ export class MySelect extends Focusable(CustomFormField(LitElement)) {
 
   @Listen('click')
   @ListenKeys('keydown', ['ArrowDown', 'ArrowUp', 'Enter', 'Space'])
-  openDropdown(event: Event) {
+  openDropdown(event: Event): void {
     event.stopImmediatePropagation();
     event.preventDefault();
     if (event.target !== this) return
@@ -70,7 +68,7 @@ export class MySelect extends Focusable(CustomFormField(LitElement)) {
   }
 
   @Listen('selected')
-  select(event: CustomEvent<string>) {
+  select(event: CustomEvent<string>): void {
     const target = event.target as MyOption
     if (this.currentlySelectedTarget === target) return
 
@@ -85,7 +83,7 @@ export class MySelect extends Focusable(CustomFormField(LitElement)) {
     this.focus()
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
         <div>
           ${this.currentlySelectedTarget?.label || 'Nothing selected'}

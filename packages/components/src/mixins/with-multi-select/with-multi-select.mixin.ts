@@ -1,4 +1,4 @@
-import { Constructor, LitConstructor } from '../../types/types'
+import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface WithMultiselectInterface {
 }

@@ -1,8 +1,7 @@
 import type { Meta } from '@storybook/web-components-vite'
 import { css, html, LitElement } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { Action, Listen, ListenKeys, Role } from 'litkit'
-import { Base } from '../base/base.mixin'
+import { Action, Role } from 'litkit'
 import { Focusable } from '../focusable/focusable.mixin'
 import { Selectable } from './selectable.mixin'
 
@@ -14,7 +13,8 @@ export default meta
 
 const base = css`
     :host {
-        border: 1px solid #ccc;
+        border: 1px solid var(--neutral400);
+        color: var(--neutral1200);
         border-radius: 8px;
         padding: 8px 12px;
         display: block;
@@ -24,14 +24,14 @@ const base = css`
 
 @Role('button')
 @customElement('test-selectable')
-class SelectableCE extends Selectable(Focusable(Base(LitElement))) {
+class SelectableCE extends Selectable(Focusable(LitElement)) {
   static styles = [base, css`
       :host(:state(selected)) {
-          background: #f5f5f5;
+          background: var(--neutral200);
       }`]
 
   @Action()
-  click() {
+  click(): void {
     this.select()
   }
 

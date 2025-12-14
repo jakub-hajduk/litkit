@@ -1,7 +1,7 @@
 import { LitElement } from 'lit'
 import { Listen } from 'litkit'
-import { Constructor, LitConstructor } from '../../types/types'
-import { SelectableInterface } from '../selectable/selectable.mixin'
+import type { Constructor, LitConstructor } from '../../types/types'
+import type { SelectableInterface } from '../selectable/selectable.mixin'
 
 
 export type OptionElement =  LitElement & SelectableInterface

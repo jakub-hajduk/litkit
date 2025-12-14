@@ -1,5 +1,5 @@
 import { property } from 'lit/decorators.js'
-import { Action, Aria, BaseElementInterface, CustomEventEmitter, Internals, Listen, ListenKeys, State } from 'litkit'
+import { Action, Aria, CustomEventEmitter, ensureInternals, State } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types'
 
 export interface ButtonInterface {
@@ -29,13 +29,11 @@ export const Button = <Base extends LitConstructor>(superClass: Base) => {
     @property({ type: Boolean, reflect: true })
     disabled: boolean = false;
 
-    @property({
-      reflect: true,
-      type: Boolean
-    }) submit?: boolean
+    @property({ type: Boolean, reflect: true })
+    submit?: boolean
 
     @Action()
-    public click(this: this & BaseElementInterface) {
+    public click() {
 
       if (this.disabled) return
 
@@ -44,7 +42,8 @@ export const Button = <Base extends LitConstructor>(superClass: Base) => {
       if (prevented) return
 
       if (this.submit) {
-        this[Internals].form?.requestSubmit()
+        const internals = ensureInternals(this)
+        internals.form?.requestSubmit()
       }
     }
   }

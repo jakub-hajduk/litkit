@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/web-components-vite";
+import type { Meta } from "@storybook/web-components-vite";
 import { css, html, LitElement } from "lit";
 import './select.component';
 import "../option/option.component"
@@ -35,7 +35,7 @@ class Elo extends Focusable(LitElement) {
       }
       :host(:focus) {
 
-          background-color: red;
+          background-color: var(--neutral200);
       }
     `,
   ];

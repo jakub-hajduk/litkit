@@ -6,7 +6,7 @@ export function Action(): MethodDecorator {
   return function <ElementClass extends LitElement>(
     target: ElementClass,
     decoratedFnName: keyof ElementClass,
-    descriptor: PropertyDescriptor
+    descriptor: TypedPropertyDescriptor<any>
   ): void {
     Listen('click', {eventId: 'actionDecorator:click'})(target, decoratedFnName as string, descriptor);
     Listen('touchend', { eventId: 'actionDecorator:touchend' })(target, decoratedFnName as string, descriptor);
