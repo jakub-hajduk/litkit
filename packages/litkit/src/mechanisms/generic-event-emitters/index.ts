@@ -1,2 +1,2 @@
-export * from './change-event-emitter'
-export * from './input-event-emitter'
+export * from './change-event-emitter';
+export * from './input-event-emitter';

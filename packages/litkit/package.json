@@ -16,12 +16,12 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.4",
   "devDependencies": {
+    "@biomejs/biome": "catalog:",
     "@storybook/web-components-vite": "catalog:",
-    "biome": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"
   },
-  "dependencies": {
+  "peerDependencies": {
     "lit": "catalog:"
   },
   "main": "./dist/index.cjs",
@@ -35,25 +35,33 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./aria": {
-      "import": "./dist/aria.mjs",
-      "require": "./dist/aria.cjs"
+    "./event-listener": {
+      "import": "./dist/event-listener.mjs",
+      "require": "./dist/event-listener.cjs"
     },
-    "./events": {
-      "import": "./dist/events.mjs",
-      "require": "./dist/events.cjs"
+    "./generic-event-emitters": {
+      "import": "./dist/generic-event-emitters.mjs",
+      "require": "./dist/generic-event-emitters.cjs"
+    },
+    "./initialize": {
+      "import": "./dist/initialize.mjs",
+      "require": "./dist/initialize.cjs"
     },
     "./internals": {
       "import": "./dist/internals.mjs",
       "require": "./dist/internals.cjs"
     },
-    "./listeners": {
-      "import": "./dist/listeners.mjs",
-      "require": "./dist/listeners.cjs"
+    "./options": {
+      "import": "./dist/options.mjs",
+      "require": "./dist/options.cjs"
     },
-    "./state": {
-      "import": "./dist/state.mjs",
-      "require": "./dist/state.cjs"
+    "./roving-tabindex": {
+      "import": "./dist/roving-tabindex.mjs",
+      "require": "./dist/roving-tabindex.cjs"
+    },
+    "./slots": {
+      "import": "./dist/slots.mjs",
+      "require": "./dist/slots.cjs"
     },
     "./update": {
       "import": "./dist/update.mjs",

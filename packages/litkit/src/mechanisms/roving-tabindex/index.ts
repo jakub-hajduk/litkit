@@ -1,3 +1,3 @@
-export * from './roving-tabindex.controller'
-export * from './updown-focus.strategy'
-export * from './types'
+export * from './roving-tabindex.controller';
+export * from './types';
+export * from './updown-focus.strategy';

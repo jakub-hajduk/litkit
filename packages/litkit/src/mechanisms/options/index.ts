@@ -1,1 +1,1 @@
-export * from './options.decorator'
+export * from './options.decorator';

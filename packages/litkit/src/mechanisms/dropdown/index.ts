@@ -1,1 +1,1 @@
-export { Dropdown } from './dropdown.component'
+export { Dropdown } from './dropdown.component';

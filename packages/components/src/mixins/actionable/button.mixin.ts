@@ -13,7 +13,7 @@ export interface ButtonInterface {
 
 export const Button = <Base extends LitConstructor>(superClass: Base) => {
   class ButtonMixin extends superClass {
-    actionEvent = new CustomEventEmitter(this, 'action')
+    actionEvent = new CustomEventEmitter<undefined>(this, 'action')
     static formAssociated = true
 
     @Aria('ariaLabel')
@@ -34,7 +34,6 @@ export const Button = <Base extends LitConstructor>(superClass: Base) => {
 
     @Action()
     public click() {
-
       if (this.disabled) return
 
       const prevented = !this.actionEvent.emit()

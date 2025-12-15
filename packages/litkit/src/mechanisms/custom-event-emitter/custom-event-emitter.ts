@@ -1,3 +1,20 @@
+/**
+ * A utility class for creating and dispatching custom DOM events.
+ * It encapsulates the `CustomEvent` constructor and `dispatchEvent` method,
+ * providing a convenient and type-safe way for components to communicate
+ * or signal internal state changes through a standardized event mechanism.
+ *
+ * @example
+ *   @customElement('l-component')
+ *   export class Component extends LitElement {
+ *     private selectedEvent = new CustomEventEmitter<string>(this, 'selected')
+ *
+ *     public select(value?: string): void {
+ *       this.selectedEvent.emit(value);
+ *     }
+ *   }
+ *
+ */
 export class CustomEventEmitter<T = unknown> {
   private readonly options: CustomEventInit;
   private element: HTMLElement | Document;
@@ -6,7 +23,7 @@ export class CustomEventEmitter<T = unknown> {
   constructor(
     element: HTMLElement | Document,
     name: string,
-    options?: CustomEventInit<T>
+    options?: CustomEventInit<T>,
   ) {
     this.element = element;
     this.name = name;

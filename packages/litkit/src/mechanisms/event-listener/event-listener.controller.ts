@@ -1,10 +1,17 @@
-import { type LitElement, type ReactiveController, type ReactiveControllerHost, type ReactiveElement } from 'lit'
-import { HostUpdateListener, HostUpdateController } from '../update'
+import type {
+  LitElement,
+  ReactiveController,
+  ReactiveControllerHost,
+  ReactiveElement,
+} from 'lit';
 import { detachableEvent } from './detachable-event';
-import type { DetachableEventReturn, ListenOptions } from './types'
+import type { DetachableEventReturn, ListenOptions } from './types';
 
 export const HostEventListener: unique symbol = Symbol('HostListener');
 
+/**
+ * A reactive controller that listens for specific keyboard events and keys on the host or a designated element.
+ */
 export class HostEventListenerController implements ReactiveController {
   host: ReactiveControllerHost & HTMLElement;
 
@@ -30,26 +37,32 @@ export class HostEventListenerController implements ReactiveController {
     }
   }
 
+  /**
+   * Registers a listener for a specific keyboard event and key on the host or a designated element.
+   */
   public registerListener(
     eventName: string,
     method: EventListener,
-    options: ListenOptions = {}
+    options: ListenOptions = {},
   ): DetachableEventReturn {
     const event = detachableEvent(
       options.element ?? this.host,
       eventName,
       method,
-      options
+      options,
       // {
       //   eventId: `${this.host.constru}:${eventName}:${method.name}`,
       //  ...options
       // }
     );
     this.events.push(event);
-    return event
+    return event;
   }
 }
 
-export function ensureHostEventListener<E extends LitElement | ReactiveElement>(instance: E): HostEventListenerController {
-  return ((instance as any)[HostEventListener] ??= new HostEventListenerController(instance));
+export function ensureHostEventListener<E extends LitElement | ReactiveElement>(
+  instance: E,
+): HostEventListenerController {
+  return ((instance as any)[HostEventListener] ??=
+    new HostEventListenerController(instance));
 }

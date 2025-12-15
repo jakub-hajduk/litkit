@@ -168,20 +168,49 @@ export type KeyboardEventCode =
   | 'F24'
   | (string & {});
 
-export type EventName = keyof HTMLElementEventMap | string & {};
+export type EventName = keyof HTMLElementEventMap | (string & {});
 
 export interface ListenOptions extends AddEventListenerOptions {
+  /**
+   * The HTML element to which the event listener will be attached.
+   * If not provided, a default element (e.g., `document`) might be used depending on the context.
+   */
   element?: HTMLElement;
+  /**
+   * An optional identifier for the event listener, useful for debugging.
+   */
   eventId?: string;
 }
 
 export interface DetachableEventReturn {
-  id: string | undefined,
+  /**
+   * An optional identifier for the event for easier debugging.
+   * It is provided by {@link ListenOptions.eventId}.
+   */
+  id: string | undefined;
+  /**
+   * The details of the event listener.
+   */
   details: {
-    name: string,
-    handler: EventListenerOrEventListenerObject,
-    options: ListenOptions
-  },
-  attach: () => void,
-  detach: () => void
+    /**
+     * The name of the event (e.g., 'click', 'keydown', 'mouseup').
+     */
+    name: string;
+    /**
+     * The event handler function or object.
+     */
+    handler: EventListenerOrEventListenerObject;
+    /**
+     * Generic event options, including `capture`, `once`, `passive`, and the `element` to attach to.
+     */
+    options: ListenOptions;
+  };
+  /**
+   * A function that attaches the event listener to its specified element.
+   */
+  attach: () => void;
+  /**
+   * A function that removes the event listener from its specified element.
+   */
+  detach: () => void;
 }
