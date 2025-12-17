@@ -1,9 +1,5 @@
 import { defineConfig } from 'tsdown'
 
-
-
-
-
 export default defineConfig({
   entry: {
     index: './src/index.ts',
@@ -12,6 +8,7 @@ export default defineConfig({
     'internals': './src/mechanisms/internals/index.ts',
     'options': './src/mechanisms/options/index.ts',
     'roving-tabindex': './src/mechanisms/roving-tabindex/index.ts',
+    'css-state': './src/mechanisms/css-state/index.ts',
     'slots': './src/mechanisms/slots/index.ts',
     'update': './src/mechanisms/update/index.ts'
   },

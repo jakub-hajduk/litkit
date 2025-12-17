@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "tsdown --watch ./src/",
     "build": "tsdown",
+    "format": "biome --check --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",
@@ -35,6 +36,10 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./css-state": {
+      "import": "./dist/css-state.mjs",
+      "require": "./dist/css-state.cjs"
+    },
     "./event-listener": {
       "import": "./dist/event-listener.mjs",
       "require": "./dist/event-listener.cjs"
@@ -42,10 +47,6 @@
     "./generic-event-emitters": {
       "import": "./dist/generic-event-emitters.mjs",
       "require": "./dist/generic-event-emitters.cjs"
-    },
-    "./initialize": {
-      "import": "./dist/initialize.mjs",
-      "require": "./dist/initialize.cjs"
     },
     "./internals": {
       "import": "./dist/internals.mjs",

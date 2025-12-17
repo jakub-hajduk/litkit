@@ -4,7 +4,6 @@ export * from './mechanisms/css-state';
 export * from './mechanisms/custom-event-emitter';
 export * from './mechanisms/event-listener';
 export * from './mechanisms/generic-event-emitters';
-export * from './mechanisms/initialize';
 export * from './mechanisms/internals';
 export * from './mechanisms/options';
 export * from './mechanisms/roving-tabindex';

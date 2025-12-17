@@ -1,2 +1,2 @@
-export * from './state.decorator';
+export * from './css-state.decorator';
 export * from './types';

@@ -46,6 +46,11 @@ export function Aria(
       const update = ensureHostUpdateController(instance);
 
       update.watch(decoratedProp, (newValue, oldValue) => {
+        if (!newValue) {
+          // @ts-expect-error
+          internals[ariaProperty] = null;
+          return;
+        }
         // @ts-expect-error
         internals[ariaProperty] = converter
           ? converter(newValue, oldValue)
