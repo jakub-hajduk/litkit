@@ -1,12 +1,15 @@
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - apps/*
+  - packages/*
 
 catalog:
-  '@storybook/web-components': ^10.0.1
+  '@storybook/web-components': 10.0.1
   '@storybook/web-components-vite': ^10.0.1
   '@biomejs/biome': 2.3.9
   lit: ^3.3.1
   storybook: ^10.0.1
   tsdown: ^0.16.7
   typescript: ^5.9.3
+
+overrides:
+  cemantic: link:../cemantic

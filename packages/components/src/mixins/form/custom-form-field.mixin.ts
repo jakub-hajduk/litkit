@@ -1,7 +1,15 @@
-import { property } from 'lit/decorators.js'
-import { addInitializer, Aria, ChangeEventEmitter, ensureHostUpdateController, ensureInternals, InputEventEmitter, State } from 'litkit'
-import type { Constructor, LitConstructor } from '../../types/types'
-import { ReactiveElement } from 'lit';
+import type { ReactiveElement } from 'lit';
+import { property } from 'lit/decorators.js';
+import {
+  Aria,
+  addInitializer,
+  ChangeEventEmitter,
+  CSSState,
+  ensureHostUpdateController,
+  ensureInternals,
+  InputEventEmitter,
+} from 'litkit';
+import type { Constructor, LitConstructor } from '../../types/types';
 
 export type CustomFormFieldInterface = {
   inputEvent: InputEventEmitter;
@@ -13,25 +21,27 @@ export type CustomFormFieldInterface = {
   description?: string;
 };
 
-export const CustomFormField = <Base extends LitConstructor>(superClass: Base) => {
+export const CustomFormField = <Base extends LitConstructor>(
+  superClass: Base,
+) => {
   class CustomFormFieldMixin extends superClass {
-    static shadowRootOptions = {mode: 'closed'};
+    static shadowRootOptions = { mode: 'closed' };
     static formAssociated = true;
 
     public inputEvent = new InputEventEmitter(this);
-    public changeEvent = new ChangeEventEmitter(this)
+    public changeEvent = new ChangeEventEmitter(this);
 
-    @State('required')
+    @CSSState('required')
     @Aria('ariaRequired')
     @property({ type: Boolean, reflect: true })
     required = false;
 
-    @State('readonly')
+    @CSSState('readonly')
     @Aria('ariaReadOnly')
     @property({ type: Boolean, reflect: true })
     readOnly = false;
 
-    @State('disabled')
+    @CSSState('disabled')
     @Aria('ariaDisabled')
     @property({ type: Boolean, reflect: true })
     disabled = false;
@@ -46,15 +56,15 @@ export const CustomFormField = <Base extends LitConstructor>(superClass: Base) =
   }
 
   addInitializer(CustomFormFieldMixin, (instance: ReactiveElement) => {
-    const updateListener = ensureHostUpdateController(instance)
-    const internals = ensureInternals(instance)
+    const updateListener = ensureHostUpdateController(instance);
+    const internals = ensureInternals(instance);
 
     updateListener.watch('value', (value) => {
       internals.setFormValue(value as any);
       (instance as any).inputEvent?.emit();
       (instance as any).changeEvent?.emit();
     });
-  })
+  });
 
   return CustomFormFieldMixin as Constructor<CustomFormFieldInterface> & Base;
 };

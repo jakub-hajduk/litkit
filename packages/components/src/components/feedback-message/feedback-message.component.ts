@@ -1,67 +1,31 @@
-import { css } from "lit";
-import { html } from "lit";
-import { LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { State } from "litkit";
-import { error } from "../icons/error.icon";
-import { warning } from "../icons/warning.icon";
-import { success } from "../icons/success.icon";
-import { info } from "../icons/info.icon";
+import { html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { CSSState } from 'litkit';
+import { error } from '../icons/error.icon';
+import { info } from '../icons/info.icon';
+import { success } from '../icons/success.icon';
+import { warning } from '../icons/warning.icon';
+import styles from './feedback-message.styles';
 
-@customElement('my-feedback-message')
-export class MyFeedbackMessage extends LitElement {
-  static styles = css`
-    :host {
-      font-size: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      line-height: 1.5rem;
-      align-items: center;
-    }
+@customElement('tru-feedback-message')
+export class FeedbackMessageComponent extends LitElement {
+  static styles = [styles];
 
-    svg {
-        display: block;
-        width: 1rem;
-        height: 1rem;
-        aspect-ratio: 1;
-    }
-
-    :host(:state(error)) {
-      color: var(--error800);
-    }
-
-    :host(:state(warning)) {
-      color: var(--warning800);
-    }
-
-    :host(:state(success)) {
-      color: var(--success800);
-    }
-
-    :host(:state(info)) {
-      color: var(--info800);
-    }
-
-    :host(:state(neutral)) {}
-      color: var(--neutral800);
-    }
-  `;
-
-  @State('error', value => value === 'error')
-  @State('warning', value => value === 'warning')
-  @State('success', value => value === 'success')
-  @State('info', value => value === 'info')
-  @State('neutral', value => value === 'neutral')
-  @property({type: String, reflect: true})
-  variant: 'neutral' | 'success' | 'error' | 'warning' | 'info' = 'neutral';
+  @CSSState('critical', (value) => value === 'critical')
+  @CSSState('caution', (value) => value === 'caution')
+  @CSSState('positive', (value) => value === 'positive')
+  @CSSState('info', (value) => value === 'info')
+  @CSSState('default', (value) => value === 'default')
+  @property({ type: String, reflect: true })
+  variant: 'default' | 'positive' | 'critical' | 'caution' | 'info' = 'default';
 
   get icon() {
     switch (this.variant) {
-      case 'error':
+      case 'critical':
         return error;
-      case 'warning':
+      case 'caution':
         return warning;
-      case 'success':
+      case 'positive':
         return success;
       case 'info':
         return info;

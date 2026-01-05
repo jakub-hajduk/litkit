@@ -24,7 +24,6 @@
     "enabled": true,
     "rules": {
       "suspicious": {
-        "noAssignInExpressions": "off",
         "noExplicitAny": "off"
       },
       "recommended": true

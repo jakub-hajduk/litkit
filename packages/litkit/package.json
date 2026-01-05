@@ -69,5 +69,8 @@
       "require": "./dist/update.cjs"
     },
     "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "vite": "^7.1.12"
   }
 }

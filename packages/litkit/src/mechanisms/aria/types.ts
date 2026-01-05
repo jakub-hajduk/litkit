@@ -70,5 +70,3 @@ export type AriaRole =
   | 'tree'
   | 'treegrid'
   | 'treeitem';
-
-export type ConverterFn = (newValue: any, oldValue: any) => any;

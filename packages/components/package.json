@@ -8,7 +8,6 @@
     "name": "Jakub Hajduk",
     "email": "devhajduk@gmail.com"
   },
-  "type": "module",
   "scripts": {
     "dev": "tsdown --watch ./src",
     "build": "tsdown",
@@ -22,6 +21,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.4",
   "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@storybook/web-components": "catalog:",
     "@storybook/web-components-vite": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"

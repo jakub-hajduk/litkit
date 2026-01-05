@@ -2,6 +2,7 @@
 export * from './mechanisms/aria';
 export * from './mechanisms/css-state';
 export * from './mechanisms/custom-event-emitter';
+export * from './mechanisms/delegate-value';
 export * from './mechanisms/event-listener';
 export * from './mechanisms/generic-event-emitters';
 export * from './mechanisms/internals';

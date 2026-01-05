@@ -1,9 +1,7 @@
-import type { Meta } from "@storybook/web-components-vite";
-import { css, html, LitElement } from "lit";
+import type { Meta } from '@storybook/web-components-vite';
+import { html } from 'lit';
 import './select.component';
-import "../option/option.component"
-import { customElement } from "lit/decorators.js";
-import { Focusable } from "../../mixins/focusable/focusable.mixin";
+import '../option/option.component';
 
 const meta: Meta = {
   title: 'Components/Select',
@@ -13,52 +11,28 @@ const meta: Meta = {
 export default meta;
 
 export const Option = () => html`
-  <my-option value="1">Option 1</my-option>
+  <tru-option value="1">Option 1</tru-option>
 `;
 
-
 const checkForm = (event: Event) => {
-  const form = event?.currentTarget as HTMLFormElement
+  const form = event?.currentTarget as HTMLFormElement;
   if (!form) return;
   const formData = new FormData(form);
 
-  console.log( Object.fromEntries(formData.entries()) )
-}
-
-@customElement('test-te')
-class Elo extends Focusable(LitElement) {
-  static styles = [
-    css`
-      :host {
-          display: block;
-          padding: 8px 12px
-      }
-      :host(:focus) {
-
-          background-color: var(--neutral200);
-      }
-    `,
-  ];
-
-  render() {
-    return html`
-      <div>Hello World</div>
-    `;
-  }
-}
+  console.log(Object.fromEntries(formData as any));
+};
 
 export const Select = () => html`
-<form @change=${checkForm} style="height: 400px;">
-    <test-te></test-te>
-  <my-select name="color">
-    <my-option value="red">Red</my-option>
-    <my-option value="green">Green</my-option>
-    <my-option value="blue">Blue</my-option>
-    <my-option value="orange">Orange</my-option>
-    <my-option value="yellow">Yellow</my-option>
-    <my-option value="pink">Pink</my-option>
-    <my-option value="Brown">Brown</my-option>
-    <my-option value="white" disabled>White</my-option>
-  </my-select>
+<form @change=${checkForm}>
+  <tru-select name="color">
+    <tru-option value="red">Red</tru-option>
+    <tru-option value="green">Green</tru-option>
+    <tru-option value="blue">Blue</tru-option>
+    <tru-option value="orange">Orange</tru-option>
+    <tru-option value="yellow">Yellow</tru-option>
+    <tru-option value="pink">Pink</tru-option>
+    <tru-option value="Brown">Brown</tru-option>
+    <tru-option value="white" disabled>White</tru-option>
+  </tru-select>
 </form>
 `;

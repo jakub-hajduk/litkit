@@ -1,6 +1,8 @@
 import type { Initializer, LitElement, ReactiveElement } from 'lit';
 import type { Constructor } from './types';
 
+type ElementInitializer = <T extends ReactiveElement>(instance: T) => void;
+
 /**
  * A utility function that simplifies the process of adding an initializer to a Lit element's
  * constructor. Lit initializers are functions that run when a component instance is created,
@@ -18,7 +20,7 @@ import type { Constructor } from './types';
  */
 export function addInitializer<T extends LitElement>(
   target: T | Constructor<T>,
-  initializer: Initializer,
+  initializer: ElementInitializer,
 ): void {
   let ctor = target.constructor as typeof ReactiveElement;
 

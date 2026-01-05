@@ -1,8 +1,8 @@
 import type { LitElement, ReactiveElement } from 'lit';
 import { addInitializer } from '../../shared/add-initializer.util';
+import type { ConverterFn } from '../../shared/types';
 import { ensureInternals } from '../internals/internals';
 import { ensureHostUpdateController } from '../update/host-update.controller';
-import type { ConverterFn } from './types';
 
 /**
  * A property decorator that links a component's property to a custom element state.
@@ -48,8 +48,8 @@ export function CSSState(
       const internals = ensureInternals(instance);
       const update = ensureHostUpdateController(instance);
 
-      update.watch(decoratedPropName, (value) => {
-        const isState = converter ? converter(value) : Boolean(value);
+      update.watch(decoratedPropName, (value, oldValue) => {
+        const isState = converter ? converter(value, oldValue) : Boolean(value);
 
         if (isState) {
           // @ts-expect-error

@@ -1,8 +1,9 @@
 import type { LitElement, ReactiveElement } from 'lit';
 import { addInitializer } from '../../shared/add-initializer.util';
+import type { ConverterFn } from '../../shared/types';
 import { ensureInternals } from '../internals/internals';
 import { ensureHostUpdateController } from '../update/host-update.controller';
-import type { AriaProperty, ConverterFn } from './types';
+import type { AriaProperty } from './types';
 
 /**
  * A property decorator that automatically reflects the value of a component property

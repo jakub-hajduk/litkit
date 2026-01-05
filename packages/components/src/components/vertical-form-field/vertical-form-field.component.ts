@@ -1,60 +1,37 @@
-import { type TemplateResult, LitElement, css } from "lit";
-import { customElement } from "lit/decorators.js";
-import { html } from "lit/static-html.js";
-import { SlottedElements, SlottedText, Role } from "litkit";
-import type { CustomFormFieldInterface } from "../../mixins/form/custom-form-field.mixin";
-import type { DelegatedFormFieldInterface } from "../../mixins/form/delegated-form-field.mixin";
+import { css, LitElement, type TemplateResult } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { html } from 'lit/static-html.js';
+import { Role, SlottedElements, SlottedText } from 'litkit';
+import type { CustomFormFieldInterface } from '../../mixins/form/custom-form-field.mixin';
+import type { DelegatedFormFieldInterface } from '../../mixins/form/delegated-form-field.mixin';
+import styles from './vertical-form-field.styles';
 
 @Role('presentation')
-@customElement('my-vertical-form-field')
+@customElement('tru-vertical-form-field')
 export class MyVerticalFormField extends LitElement {
-  static styles = [
-    css`
-      #vertical-form-field {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        width: 100%;
-      }
+  static styles = [styles];
 
-      ::slotted([slot=label]) {
-          cursor: pointer;
-          color: var(--neutral1000);
-          font-weight: 500 !important;
-      }
-
-      #hint {
-        font-size: 0.9rem;
-        color: var(--neutral500);
-      }
-
-      #field{
-        width: 100%;
-      }
-
-      #feedback {
-        font-size: 0.9rem;
-      }
-    `
-  ]
-
-  get field(): HTMLElement | HTMLElement & CustomFormFieldInterface | HTMLElement & DelegatedFormFieldInterface<any> {
-    return this.defaultSlottElements.at(0) as HTMLElement
+  get field():
+    | HTMLElement
+    | (HTMLElement & CustomFormFieldInterface)
+    | (HTMLElement & DelegatedFormFieldInterface<any>) {
+    return this.defaultSlottElements.at(0) as HTMLElement;
   }
 
   get isFieldRequired(): boolean {
-    return (this.field && 'required' in this.field && this.field.required) || false;
+    return (
+      (this.field && 'required' in this.field && this.field.required) || false
+    );
   }
 
   @SlottedElements()
-  private defaultSlottElements: HTMLElement[] = []
+  private defaultSlottElements: HTMLElement[] = [];
 
   @SlottedText('label')
-  private slottedLabelText: string | null = null
+  private slottedLabelText: string | null = null;
 
   @SlottedText('hint')
-  private slottedHintText: string | null = null
+  private slottedHintText: string | null = null;
 
   handleLabelClick() {
     this.field.focus();

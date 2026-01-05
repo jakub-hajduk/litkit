@@ -1,96 +1,80 @@
-import { customElement, property, query } from "lit/decorators.js";
-import { SlottedNodes, ListenKeys, Listen, Role, RovingTabindexController } from "litkit";
-import { MyOption } from "../option/option.component";
-import { css, html, LitElement, type CSSResult, type TemplateResult } from "lit";
-import { CustomFormField } from "../../mixins/form/custom-form-field.mixin";
-import { Focusable } from "../../mixins/focusable/focusable.mixin";
-import { MyDropdown } from "../dropdown/dropdown.component";
+import { type CSSResult, html, LitElement, type TemplateResult } from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
+import {
+  Listen,
+  ListenKeys,
+  Role,
+  RovingTabindexController,
+  SlottedNodes,
+} from 'litkit';
+import { Focusable } from '../../mixins/focusable/focusable.mixin';
+import { CustomFormField } from '../../mixins/form/custom-form-field.mixin';
+import '../dropdown/dropdown.component';
+import { formFieldStyles } from '../../shared/styles/field.styles';
+import type { DropdownComponent } from '../dropdown/dropdown.component';
+import { OptionComponent } from '../option/option.component';
+import styles from './select.styles';
 
-const styles = css`
-  :host {
-      display: block;
-      align-items: center;
-      padding: 8px 12px;
-      width: 100%;
-      border: 1px solid var(--neutral400);
-      color: var(--neutral1200);
-      box-sizing: border-box;
-      border-radius: 4px;
-      anchor-name: --reference-element;
-      cursor: pointer;
-      transition: box-shadow 100ms ease-in-out;
-  }
-
-  :host(:focus-within) {
-      outline: none;
-      box-shadow:
-          0 0 0 3px white,
-          0 0 0 6px var(--neutral400);
-  }
-
-  my-dropdown {
-    position-anchor: --reference-element;
-  }
-  `
-
-const nonDisabled = (node: Node) => node instanceof MyOption && node.disabled === false
+const nonDisabled = (node: Node) =>
+  node instanceof OptionComponent && node.disabled === false;
 
 @Role('combobox')
-@customElement('my-select')
-export class MySelect extends Focusable(CustomFormField(LitElement)) {
-  static styles: CSSResult[] = [
-    styles
-  ]
+@customElement('tru-select')
+export class SelectComponent extends Focusable(CustomFormField(LitElement)) {
+  static styles: CSSResult[] = [styles, formFieldStyles()];
 
-  currentlySelectedTarget?: MyOption;
+  currentlySelectedTarget?: OptionComponent;
 
   @SlottedNodes(null, nonDisabled)
-  options: MyOption[] = [];
+  options: OptionComponent[] = [];
 
-  rovingTabindex: RovingTabindexController<MyOption> = new RovingTabindexController(this, {
-    getElements: () => this.options,
-  })
+  rovingTabindex: RovingTabindexController<OptionComponent> =
+    new RovingTabindexController(this, {
+      getElements: () => this.options,
+    });
 
   @property({ type: String, reflect: true })
-  value?: string
+  value?: string;
 
-  @query('my-dropdown')
-  dropdown!: MyDropdown;
+  @query('#dropdown')
+  dropdown!: DropdownComponent;
 
   @Listen('click')
   @ListenKeys('keydown', ['ArrowDown', 'ArrowUp', 'Enter', 'Space'])
   openDropdown(event: Event): void {
     event.stopImmediatePropagation();
     event.preventDefault();
-    if (event.target !== this) return
-    this.dropdown.show()
-    this.rovingTabindex.focus(this.currentlySelectedTarget)
+    if (event.target !== this) return;
+    this.dropdown.show();
+    this.rovingTabindex.focus(this.currentlySelectedTarget);
   }
 
   @Listen('selected')
   select(event: CustomEvent<string>): void {
-    const target = event.target as MyOption
-    if (this.currentlySelectedTarget === target) return
+    const target = event.target as OptionComponent;
+    if (this.currentlySelectedTarget === target) return;
 
     if (this.currentlySelectedTarget) {
       this.currentlySelectedTarget.selected = false;
     }
 
     this.currentlySelectedTarget = target;
-    this.value = target.value
+    this.value = target.value;
 
-    this.dropdown.hide()
-    this.focus()
+    this.dropdown.hide();
+    this.focus();
   }
 
   render(): TemplateResult {
     return html`
-        <div>
+        <div id="container">
           ${this.currentlySelectedTarget?.label || 'Nothing selected'}
         </div>
-        <my-dropdown class="dropdown" role="listbox">
-            <slot ></slot>
-        </my-dropdown>
+        <tru-dropdown id="dropdown" role="listbox">
+            <div id="option-list">
+                <slot></slot>
+            </divid>
+        </tru-dropdown>
     `;
   }
 }

@@ -10,7 +10,7 @@ catalogs:
       specifier: 2.3.9
       version: 2.3.9
     '@storybook/web-components':
-      specifier: ^10.0.1
+      specifier: 10.0.1
       version: 10.0.1
     '@storybook/web-components-vite':
       specifier: ^10.0.1
@@ -28,9 +28,16 @@ catalogs:
       specifier: ^5.9.3
       version: 5.9.3
 
+overrides:
+  cemantic: link:../cemantic
+
 importers:
 
   .:
+    dependencies:
+      cemantic:
+        specifier: link:../cemantic
+        version: link:../cemantic
     devDependencies:
       turbo:
         specifier: ^2.5.8
@@ -66,6 +73,12 @@ importers:
         specifier: workspace:*
         version: link:../litkit
     devDependencies:
+      '@biomejs/biome':
+        specifier: 'catalog:'
+        version: 2.3.9
+      '@storybook/web-components':
+        specifier: 'catalog:'
+        version: 10.0.1(lit@3.3.1)(storybook@10.0.1(@testing-library/dom@10.4.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(vite@7.1.12(@types/node@22.13.14)(lightningcss@1.30.1)))
       '@storybook/web-components-vite':
         specifier: 'catalog:'
         version: 10.0.1(esbuild@0.25.9)(lit@3.3.1)(rollup@4.46.3)(storybook@10.0.1(@testing-library/dom@10.4.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(vite@7.1.12(@types/node@22.13.14)(lightningcss@1.30.1)))(vite@7.1.12(@types/node@22.13.14)(lightningcss@1.30.1))
@@ -81,6 +94,9 @@ importers:
       lit:
         specifier: 'catalog:'
         version: 3.3.1
+      vite:
+        specifier: ^7.1.12
+        version: 7.1.12(@types/node@22.13.14)(lightningcss@1.30.1)
     devDependencies:
       '@biomejs/biome':
         specifier: 'catalog:'
