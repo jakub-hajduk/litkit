@@ -7,14 +7,14 @@ import type { DelegatedFormFieldInterface } from '../../mixins/form/delegated-fo
 import styles from './vertical-form-field.styles';
 
 @Role('presentation')
-@customElement('tru-vertical-form-field')
+@customElement('tru-vertical-field')
 export class MyVerticalFormField extends LitElement {
   static styles = [styles];
 
   get field():
     | HTMLElement
     | (HTMLElement & CustomFormFieldInterface)
-    | (HTMLElement & DelegatedFormFieldInterface<any>) {
+    | (HTMLElement & DelegatedFormFieldInterface) {
     return this.defaultSlottElements.at(0) as HTMLElement;
   }
 

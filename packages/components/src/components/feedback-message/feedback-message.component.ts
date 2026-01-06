@@ -30,7 +30,7 @@ export class FeedbackMessageComponent extends LitElement {
       case 'info':
         return info;
       default:
-        return;
+        return html``;
     }
   }
 

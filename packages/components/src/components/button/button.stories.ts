@@ -4,7 +4,7 @@ import './button.component';
 
 const meta: Meta = {
   title: 'Components/Button',
-  component: 'my-button',
+  component: 'tru-button',
 };
 
 export default meta;

@@ -15,24 +15,22 @@ export function formFieldStyles(
           background-color: var(--tru-color-canvas-100);
           box-sizing: border-box;
           cursor: pointer;
-          transition: box-shadow 100ms ease-in-out;
+          transition: outline-color 100ms ease-in-out;
+          outline-color: transparent;
       }
 
       :host(:focus) {
           outline: none;
       }
-      
+
       :host(:focus-visible) ${unsafeCSS(wrapperSelector)} {
-          outline: none;
-          box-shadow:
-                  0 0 0 3px var(--tru-color-canvas-100),
-                  0 0 0 6px var(--tru-color-primary-500);
+          outline: 6px var(--tru-color-primary-500);
+          outline-offset: var(--tru-space-medium-100);
       }
-  
-      :host(:not(:focus-visible):focus) > ${unsafeCSS(wrapperSelector)} {
-          box-shadow:
-                  0 0 0 3px var(--tru-color-canvas-100),
-                  0 0 0 6px var(--tru-color-primary-500);
+
+      :host(:not(:focus-visible):focus)  ${unsafeCSS(wrapperSelector)} {
+          outline: 3px solid var(--tru-color-primary-500);
+          outline-offset: 3px;
       }
       
       :host(:state(disabled)) > ${unsafeCSS(wrapperSelector)} {
@@ -61,6 +59,6 @@ export function formFieldStyles(
 
       ${unsafeCSS(fieldSelector)}:focus {
           outline: none;
-    }
+      }
   `;
 }

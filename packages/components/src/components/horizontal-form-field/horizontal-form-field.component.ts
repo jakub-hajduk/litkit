@@ -1,4 +1,4 @@
-import { css, LitElement, type TemplateResult } from 'lit';
+import { LitElement, type TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { html } from 'lit/static-html.js';
 import { Role, SlottedElements, SlottedText } from 'litkit';
@@ -7,14 +7,14 @@ import type { DelegatedFormFieldInterface } from '../../mixins/form/delegated-fo
 import styles from './horizontal-form-field.styles';
 
 @Role('presentation')
-@customElement('tru-horizontal-form-field')
+@customElement('tru-horizontal-field')
 export class MyHorizontalFormField extends LitElement {
   static styles = [styles];
 
   get field():
     | HTMLElement
     | (HTMLElement & CustomFormFieldInterface)
-    | (HTMLElement & DelegatedFormFieldInterface<any>) {
+    | (HTMLElement & DelegatedFormFieldInterface) {
     return this.defaultSlottElements.at(0) as HTMLElement;
   }
 

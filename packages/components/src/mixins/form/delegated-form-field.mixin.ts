@@ -9,6 +9,7 @@ import {
   ensureHostUpdateController,
   InputEventEmitter,
 } from 'litkit';
+import { ensureInternals } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types';
 
 type FormValue = File | string | FormData | null;
@@ -66,12 +67,14 @@ export const DelegatedFormField = <Base extends LitConstructor>(
       DelegatedFormFieldInterface;
 
     typedInstance.updateComplete.then(() => {
+      const Internals = ensureInternals(typedInstance);
       const HostUpdateListener = ensureHostUpdateController(typedInstance);
       const HostEventListener = ensureHostEventListener(typedInstance);
 
       HostUpdateListener.watch('value', (value: string) => {
         (typedInstance._delegatedElement as HTMLInputElement).value =
           value || '';
+        Internals.setFormValue(value as any);
       });
 
       HostEventListener.registerListener(

@@ -1,5 +1,5 @@
 import { property } from 'lit/decorators.js'
-import { Aria, CustomEventEmitter, State } from 'litkit'
+import { Aria, CustomEventEmitter, CSSState } from 'litkit'
 import type { Constructor, LitConstructor, MaybePromise } from '../../types/types'
 
 export interface SelectableInterface {
@@ -16,7 +16,7 @@ export const Selectable = <Base extends LitConstructor>(superClass: Base) => {
     selectedEvent = new CustomEventEmitter(this, 'selected', {bubbles: true, composed: true})
 
     @Aria('ariaSelected')
-    @State('selected')
+    @CSSState('selected')
     @property({ type: Boolean, reflect: true })
     selected = false;
 

@@ -11,15 +11,14 @@ export default css`
         border-radius: var(--tru-radius-rectangle-300);
         transition-duration: 100ms;
         transition-timing-function: ease-in-out;
-        transition-property: border-color, color, transform, background-color, box-shadow;
+        transition-property: border-color, color, transform, background-color, outline-color;
+        outline-color: transparent;
         user-select: none;
     }
 
     :host(:focus-visible) {
-        outline: none;
-        box-shadow:
-                0 0 0 3px var(--tru-color-canvas-100),
-                0 0 0 6px var(--tru-color-primary-500);
+        outline: 3px solid var(--tru-color-primary-500);
+        outline-offset: 3px;
     }
 
     :host(:active:not(:state(disabled))) {

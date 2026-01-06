@@ -7,21 +7,21 @@ import '../feedback-message/feedback-message.component';
 
 const meta: Meta = {
   title: 'Components/Form Field/Vertical',
-  component: 'tru-vertical-form-field',
+  component: 'tru-vertical-field',
 };
 
 export default meta;
 
 export const FormField = () => {
   return html`
-    <tru-vertical-form-field>
+    <tru-vertical-field>
       <label slot="label">Label for the field</label>
       <input id="name" type="text" />
       <span slot="hint">Hint for the field</span>
-    </tru-vertical-form-field>
+    </tru-vertical-field>
     <br/>
     <br/>
-    <tru-vertical-form-field>
+    <tru-vertical-field>
       <label slot="label">Label for the field</label>
       <span slot="hint">Hint for the field</span>
       <tru-select name="options">
@@ -31,6 +31,6 @@ export const FormField = () => {
       <tru-feedback-message variant="critical" slot="feedback">
           Meh,something went wrong!
       </tru-feedback-message>
-    </tru-vertical-form-field>
+    </tru-vertical-field>
   `;
 };

@@ -1,5 +1,5 @@
 import type { ReactiveElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import {
   Aria,
   addInitializer,
@@ -9,6 +9,8 @@ import {
   ensureInternals,
   InputEventEmitter,
 } from 'litkit';
+import { SlottedText } from 'litkit'
+import { Action } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types';
 
 export type CustomFormFieldInterface = {
@@ -21,7 +23,7 @@ export type CustomFormFieldInterface = {
   description?: string;
 };
 
-export const CustomFormField = <Base extends LitConstructor>(
+export const CheckableFormField = <Base extends LitConstructor>(
   superClass: Base,
 ) => {
   class CustomFormFieldMixin extends superClass {
@@ -46,23 +48,52 @@ export const CustomFormField = <Base extends LitConstructor>(
     @property({ type: Boolean, reflect: true })
     disabled = false;
 
-    @Aria('ariaLabel')
     @property({ type: String, reflect: true })
     label?: string = '';
 
-    @Aria('ariaDescription')
     @property({ type: String, reflect: true })
     description?: string = '';
+
+    @Aria('ariaLabel')
+    @SlottedText()
+    @state()
+    finalLabel: string = ''
+
+    @Aria('ariaDescription')
+    @SlottedText('description')
+    @state()
+    finalDescription: string = ''
+
+    @Action()
+    handleClick(event: MouseEvent) {
+      if (event.target !== this) return;
+      event.stopImmediatePropagation();
+      (this as any).checked = !(this as any).checked;
+    }
   }
 
   addInitializer(CustomFormFieldMixin, (instance: ReactiveElement) => {
     const updateListener = ensureHostUpdateController(instance);
     const internals = ensureInternals(instance);
 
-    updateListener.watch('value', (value) => {
-      internals.setFormValue(value as any);
-      (instance as any).inputEvent?.emit();
-      (instance as any).changeEvent?.emit();
+    updateListener.watch('label', (value, oldValue) => {
+      if (value && value !== oldValue) {
+        (instance as any).finalLabel = value;
+      }
+    })
+
+    updateListener.watch('description', (value, oldValue) => {
+      if (value && value !== oldValue) {
+        (instance as any).finalDescription = value;
+      }
+    })
+
+    updateListener.watch('checked', (value, oldValue) => {
+      if (value && value !== oldValue) {
+        internals.setFormValue(value as any);
+        (instance as any).inputEvent?.emit();
+        (instance as any).changeEvent?.emit();
+      }
     });
   });
 

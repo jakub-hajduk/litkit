@@ -5,7 +5,7 @@ export default css`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--tru-space-medium-700);
+        gap: var(--tru-space-medium-100);
         width: 100%;
       }
 
