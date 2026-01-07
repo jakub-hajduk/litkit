@@ -3,8 +3,8 @@ import { html } from 'lit';
 import './number-input.component';
 
 const meta: Meta = {
-  title: 'Components/Number Input',
-  component: 'tru-text-input',
+  title: 'Components/Inputs/Number',
+  component: 'tru-number-input',
 };
 
 export default meta;

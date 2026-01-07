@@ -3,7 +3,7 @@ import { html } from 'lit';
 import './text-input.component';
 
 const meta: Meta = {
-  title: 'Components/Text Input',
+  title: 'Components/Inputs/Text',
   component: 'tru-text-input',
 };
 
