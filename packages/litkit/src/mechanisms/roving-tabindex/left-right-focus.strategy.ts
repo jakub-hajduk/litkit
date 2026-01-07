@@ -8,7 +8,7 @@ import type { RovingTabindexStrategy } from './types';
  * This strategy is designed to be used with the `RovingTabindexController` to manage focus
  * in a list-like component.
  */
-export class UpDownFocusStrategy<T extends HTMLElement>
+export class LeftRightFocusStrategy<T extends HTMLElement>
   implements RovingTabindexStrategy<T>
 {
   /**
@@ -29,9 +29,9 @@ export class UpDownFocusStrategy<T extends HTMLElement>
     currentElement: T | null,
     elements: T[],
   ): T | undefined {
-    if (currentElement && event.key === 'ArrowUp')
+    if (currentElement && event.key === 'ArrowLeft')
       return elements[elements.indexOf(currentElement) - 1] || elements.at(0);
-    if (currentElement && event.key === 'ArrowDown')
+    if (currentElement && event.key === 'ArrowRight')
       return elements[elements.indexOf(currentElement) + 1] || elements.at(-1);
     if (event.key === 'Home') return elements.at(0);
     if (event.key === 'End') return elements.at(-1);

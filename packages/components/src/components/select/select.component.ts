@@ -11,6 +11,7 @@ import { Focusable } from '../../mixins/focusable/focusable.mixin';
 import { CustomFormField } from '../../mixins/form/custom-form-field.mixin';
 import '../dropdown/dropdown.component';
 import { formFieldStyles } from '../../shared/styles/field.styles';
+import { focusStyles } from '../../shared/styles/focus.styles';
 import type { DropdownComponent } from '../dropdown/dropdown.component';
 import { OptionComponent } from '../option/option.component';
 import styles from './select.styles';
@@ -21,7 +22,7 @@ const nonDisabled = (node: Node) =>
 @Role('combobox')
 @customElement('tru-select')
 export class SelectComponent extends Focusable(CustomFormField(LitElement)) {
-  static styles: CSSResult[] = [styles, formFieldStyles()];
+  static styles: CSSResult[] = [styles, formFieldStyles(), focusStyles()];
 
   currentlySelectedTarget?: OptionComponent;
 

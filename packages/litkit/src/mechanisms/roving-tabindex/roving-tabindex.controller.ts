@@ -5,7 +5,7 @@ import {
   type HostEventListenerController,
 } from '../event-listener';
 import type { Host, RovingTabindexControllerOptions } from './types';
-import { UpDownStrategy } from './updown-focus.strategy';
+import { UpDownFocusStrategy } from './updown-focus.strategy';
 
 /**
  * A reactive controller that implements the roving tabindex accessibility pattern. This pattern
@@ -44,14 +44,15 @@ export class RovingTabindexController<T extends HTMLElement>
   private listener: HostEventListenerController;
 
   private options: RovingTabindexControllerOptions<T> = {
-    getElements: (host) => {
-      const slotElement = host.shadowRoot?.querySelector(
+    getElements: () => {
+      const slotElement = this.host.shadowRoot?.querySelector(
         'slot:not([name])',
       ) as HTMLSlotElement;
       if (slotElement) return slotElement.assignedElements() as T[];
       return [];
     },
-    strategy: new UpDownStrategy(),
+    getCurrentElement: () => this.currentElement,
+    strategy: new UpDownFocusStrategy(),
   };
 
   constructor(
@@ -72,7 +73,7 @@ export class RovingTabindexController<T extends HTMLElement>
    * attaches keydown listeners, and sets the initial focus.
    */
   private updateElements(): void {
-    this.elements = this.options.getElements(this.host);
+    this.elements = this.options.getElements();
     if (this.elements.length === 0) return;
 
     for (const element of this.elements) {
@@ -97,7 +98,9 @@ export class RovingTabindexController<T extends HTMLElement>
       }
     }
 
-    this.focus(this.elements[0]);
+    const currentElement = this.options.getCurrentElement();
+
+    this.focus(currentElement);
   }
 
   /**

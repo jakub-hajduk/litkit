@@ -2,6 +2,10 @@ import { css } from 'lit';
 
 export default css`
     :host {
+        display: block;
+    }
+    
+    :host #container {
         anchor-name: --reference-element;
     }
     

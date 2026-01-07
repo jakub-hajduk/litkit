@@ -59,6 +59,6 @@ export class ButtonComponent extends Focusable(LitElement) {
   }
 
   render() {
-    return html`<slot></slot>`;
+    return html`<div id="container"><slot></slot></div>`;
   }
 }

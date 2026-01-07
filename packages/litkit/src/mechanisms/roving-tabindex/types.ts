@@ -18,6 +18,7 @@ export interface FocusableListControllerOptions<T extends HTMLElement> {
    * @default A function that returns elements from the default slot.
    */
   getElements: () => T[];
+
   /**
    * An array of keyboard event codes that trigger focus movement to the previous item.
    * @default ['ArrowUp']
@@ -101,10 +102,12 @@ export interface RovingTabindexControllerOptions<T extends HTMLElement> {
    * A function that returns the array of elements to be managed by the controller.
    * It receives the host element as an argument.
    */
-  getElements: <E extends HTMLElement>(element: E) => T[];
+  getElements: () => T[];
   /**
    * The navigation strategy to be used by the controller. This determines how keyboard
    * events are translated into focus movements.
    */
   strategy: RovingTabindexStrategy<T>;
+
+  getCurrentElement: () => T | undefined;
 }

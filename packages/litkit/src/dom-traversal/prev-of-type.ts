@@ -2,11 +2,11 @@ import type { ElementConstructor } from './types';
 
 export function prevOfType<T extends ElementConstructor>(
   element: HTMLElement,
-  constructor: T
+  ctor: T
 ): InstanceType<T> | null {
   let prev = element.previousElementSibling;
   while (prev) {
-    if (prev instanceof constructor) {
+    if (prev instanceof ctor) {
       return prev as InstanceType<T>;
     }
     prev = prev.previousElementSibling;

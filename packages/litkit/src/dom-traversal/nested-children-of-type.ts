@@ -2,9 +2,9 @@ import type { ElementConstructor } from './types';
 
 export function nestedChildrenOfType<T extends ElementConstructor>(
   element: HTMLElement,
-  constructor: T
+  ctor: T
 ): InstanceType<T>[] {
   return Array.from(element.getElementsByTagName('*')).filter(
-    (child) => child instanceof constructor
+    (child) => child instanceof ctor
   ) as InstanceType<T>[];
 }

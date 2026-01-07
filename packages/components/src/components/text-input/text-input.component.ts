@@ -3,6 +3,7 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { Focusable } from '../../mixins/focusable/focusable.mixin';
 import { DelegatedFormField } from '../../mixins/form/delegated-form-field.mixin';
 import { formFieldStyles } from '../../shared/styles/field.styles';
+import { focusStyles } from '../../shared/styles/focus.styles';
 import styles from './text-input.styles';
 
 @customElement('tru-text-input')
@@ -10,7 +11,7 @@ export class TextInputComponent extends Focusable(
   DelegatedFormField(LitElement),
 ) {
   static formAssociated = true;
-  static styles = [styles, formFieldStyles()];
+  static styles = [styles, formFieldStyles(), focusStyles()];
 
   @query('input', true)
   _delegatedElement?: HTMLInputElement;
