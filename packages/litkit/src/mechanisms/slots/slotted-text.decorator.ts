@@ -26,7 +26,10 @@ import { ensureSlotController } from '../slots';
  *
  * @param slotName The name of the slot to observe. If not provided, the default (unnamed) slot is observed.
  */
-export function SlottedText(slotName: string | null = null): PropertyDecorator {
+export function SlottedText(
+  slotName: string | null = null,
+  isFallback = true,
+): PropertyDecorator {
   return (<ElementClass extends LitElement>(
     target: ElementClass,
     decoratedPropertyName: keyof ElementClass,
@@ -38,8 +41,11 @@ export function SlottedText(slotName: string | null = null): PropertyDecorator {
         const newValue = nodes
           .map((node) => node.textContent)
           .join('') as string;
-        (instance as any)[decoratedPropertyName] = newValue;
-        instance.requestUpdate(decoratedPropertyName, oldValue);
+
+        if (!isFallback || (isFallback && !oldValue && !!newValue)) {
+          (instance as any)[decoratedPropertyName] = newValue;
+          instance.requestUpdate(decoratedPropertyName, oldValue);
+        }
       });
     });
   }) as PropertyDecorator;

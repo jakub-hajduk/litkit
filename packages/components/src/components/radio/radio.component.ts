@@ -2,17 +2,16 @@ import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Action, Aria, CSSState, Role, SlottedText } from 'litkit';
 import { Selectable } from '../../mixins/selectable/selectable.mixin';
-import { buttonStyles } from '../../shared/styles/button.styles';
-import styles from './toggle-button.styles';
+import styles from './radio.styles';
 
 @Role('radio')
-@customElement('tru-toggle-button')
-export class ToggleButtonComponent extends Selectable(LitElement) {
-  static styles = [buttonStyles(), styles];
+@customElement('tru-radio')
+export class RadioComponent extends Selectable(LitElement) {
+  static styles = [styles];
 
   @SlottedText()
   @Aria('ariaLabel')
-  @property({ type: String, reflect: true })
+  @property({ type: String, attribute: true })
   label?: string;
 
   @Aria('ariaDescription')
@@ -36,6 +35,7 @@ export class ToggleButtonComponent extends Selectable(LitElement) {
 
   render() {
     return html`<div id="container" inert>
+        <div id="tick"></div>
         <slot></slot></div>`;
   }
 }

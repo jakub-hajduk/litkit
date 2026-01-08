@@ -8,6 +8,8 @@ import './option/option.component';
 import './checkbox/checkbox.component';
 import './toggle-button-group/toggle-button-group.component';
 import './toggle-button/toggle-button.component';
+import './radio-group/radio-group.component';
+import './radio/radio.component';
 
 const meta: Meta = {
   title: 'Form',
@@ -49,13 +51,25 @@ export const Form = () => {
             <label slot="label">
                 Preferred color
             </label>
-            <tru-toggle-button-group name="preferred-color" value="orange">
+            <tru-toggle-button-group name="preferred-color">
                 <tru-toggle-button value="blue">Blue</tru-toggle-button>
                 <tru-toggle-button value="yellow">Yellow</tru-toggle-button>
                 <tru-toggle-button value="orange">Orange</tru-toggle-button>
                 <tru-toggle-button value="pink">Pink</tru-toggle-button>
                 <tru-toggle-button value="black">Black</tru-toggle-button>
             </tru-toggle-button-group>
+        </tru-vertical-field>
+        <tru-vertical-field>
+            <label slot="label">
+                Size
+            </label>
+            <tru-radio-group name="size">
+                <tru-radio value="xs">Extra small</tru-radio>
+                <tru-radio value="s">Small</tru-radio>
+                <tru-radio value="m" label="Label is set by an attribute" description="This option has additional description set by description attribute">Medium</tru-radio>
+                <tru-radio value="l">Large</tru-radio>
+                <tru-radio value="xl">Extra large</tru-radio>
+            </tru-radio-group>
         </tru-vertical-field>
       </tru-stack>
   </form>`;

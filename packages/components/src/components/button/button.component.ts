@@ -29,7 +29,7 @@ export class ButtonComponent extends Focusable(LitElement) {
 
   @SlottedText()
   @Aria('ariaLabel')
-  @property({ type: String, state: true })
+  @property({ type: String, reflect: true })
   label?: string;
 
   @Aria('ariaDescription')

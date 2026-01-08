@@ -1,6 +1,7 @@
 import type { ReactiveElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import {
+  Action,
   Aria,
   addInitializer,
   ChangeEventEmitter,
@@ -8,9 +9,8 @@ import {
   ensureHostUpdateController,
   ensureInternals,
   InputEventEmitter,
+  SlottedText,
 } from 'litkit';
-import { SlottedText } from 'litkit'
-import { Action } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types';
 
 export type CustomFormFieldInterface = {
@@ -48,21 +48,15 @@ export const CheckableFormField = <Base extends LitConstructor>(
     @property({ type: Boolean, reflect: true })
     disabled = false;
 
-    @property({ type: String, reflect: true })
-    label?: string = '';
-
-    @property({ type: String, reflect: true })
-    description?: string = '';
-
     @Aria('ariaLabel')
     @SlottedText()
-    @state()
-    finalLabel: string = ''
+    @property({ type: String, attribute: true })
+    label: string = '';
 
     @Aria('ariaDescription')
     @SlottedText('description')
-    @state()
-    finalDescription: string = ''
+    @property({ type: String, attribute: true })
+    description?: string = '';
 
     @Action()
     handleClick(event: MouseEvent) {
@@ -75,18 +69,6 @@ export const CheckableFormField = <Base extends LitConstructor>(
   addInitializer(CustomFormFieldMixin, (instance: ReactiveElement) => {
     const updateListener = ensureHostUpdateController(instance);
     const internals = ensureInternals(instance);
-
-    updateListener.watch('label', (value, oldValue) => {
-      if (value && value !== oldValue) {
-        (instance as any).finalLabel = value;
-      }
-    })
-
-    updateListener.watch('description', (value, oldValue) => {
-      if (value && value !== oldValue) {
-        (instance as any).finalDescription = value;
-      }
-    })
 
     updateListener.watch('checked', (value, oldValue) => {
       if (value && value !== oldValue) {

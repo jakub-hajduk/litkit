@@ -109,6 +109,9 @@ https://leonardocolor.io/theme.html?name=Earth+01&config=%7B%22baseScale%22%3A%2
   --tru-radius-rectangle-1200: 1.281rem; /* 20.5px; */
   --tru-radius-rectangle-1300: 1.375rem; /* 22px;   */
 
+  --tru-radius-pill-700: 99999rem;
+  --tru-radius-circle-700: 99999rem;
+
   --tru-color-canvas-100: #ffffff;
   --tru-color-canvas-200: #fffaf5;
   --tru-color-neutral-100: #fcf7f2;
