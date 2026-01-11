@@ -1,7 +1,7 @@
 import type { Initializer, LitElement, ReactiveElement } from 'lit';
 import type { Constructor } from './types';
 
-type ElementInitializer = <T extends ReactiveElement>(instance: T) => void;
+type ElementInitializer<T extends ReactiveElement> = (instance: T) => void;
 
 /**
  * A utility function that simplifies the process of adding an initializer to a Lit element's
@@ -20,7 +20,7 @@ type ElementInitializer = <T extends ReactiveElement>(instance: T) => void;
  */
 export function addInitializer<T extends LitElement>(
   target: T | Constructor<T>,
-  initializer: ElementInitializer,
+  initializer: ElementInitializer<T>,
 ): void {
   let ctor = target.constructor as typeof ReactiveElement;
 
@@ -28,5 +28,5 @@ export function addInitializer<T extends LitElement>(
     ctor = target as unknown as typeof ReactiveElement;
   }
 
-  ctor.addInitializer(initializer);
+  ctor.addInitializer(initializer as Initializer);
 }

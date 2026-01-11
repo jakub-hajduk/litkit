@@ -1,22 +1,34 @@
-import type { Meta } from '@storybook/web-components-vite'
-import { css, html, LitElement } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { Action, Role, RovingTabindexController, SelectableOptions } from 'litkit'
-import { Focusable } from '../focusable/focusable.mixin'
-import { CustomFormField } from '../form/custom-form-field.mixin'
-import { Selectable, type SelectableInterface } from '../selectable/selectable.mixin'
-import { type OptionElement, WithSingleSelect } from './with-single-select.mixin'
+import type { Meta } from '@storybook/web-components-vite';
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import {
+  Action,
+  Role,
+  RovingTabindexController,
+  SelectableOptions,
+} from 'litkit';
+import { Focusable } from '../focusable/focusable.mixin';
+import { CustomFormField } from '../form/custom-form-field.mixin';
+import {
+  Selectable,
+  type SelectableInterface,
+} from '../selectable/selectable.mixin';
+import {
+  type SelectableElement,
+  WithSingleSelect,
+} from './with-single-select.mixin';
 
 const meta: Meta = {
   title: 'Selectable',
-}
+};
 
-export default meta
+export default meta;
 
 @Role('radio')
 @customElement('test-option')
 class OptionCE extends Selectable(Focusable(LitElement)) {
-  static styles = [css`
+  static styles = [
+    css`
       :host {
           border: 1px solid var(--neutral400);
           color: var(--neutral1200);
@@ -27,23 +39,25 @@ class OptionCE extends Selectable(Focusable(LitElement)) {
       }
       :host(:state(selected)) {
           background: var(--neutral200);
-      }`]
+      }`,
+  ];
 
   @Action()
   click() {
-    this.select()
+    this.select();
   }
 
   render() {
     // ☐ ☑ ☒
-    return html`${this.selected ? '\u2611' : '\u2610'}&nbsp;<slot></slot>`
+    return html`${this.selected ? '\u2611' : '\u2610'}&nbsp;<slot></slot>`;
   }
 }
 
 @Role('radiogroup')
 @customElement('test-single-select')
 class SingleSelectCE extends CustomFormField(WithSingleSelect(LitElement)) {
-  static styles = [css`
+  static styles = [
+    css`
       :host {
         border: 1px solid var(--neutral400);
         color: var(--neutral1200);
@@ -53,33 +67,35 @@ class SingleSelectCE extends CustomFormField(WithSingleSelect(LitElement)) {
         flex-direction: column;
         gap: 8px;
       }
-  `]
+  `,
+  ];
 
   rovingTabindex = new RovingTabindexController(this, {
-    getElements: () => this.options
-  })
+    getElements: () => this.options,
+  });
 
   @SelectableOptions()
-  readonly options: OptionElement[] = []
+  readonly options: SelectableElement[] = [];
 
   render() {
-    return html`<slot></slot>`
+    return html`<slot></slot>`;
   }
 }
 
 export const SingleSelect = {
   render: () => {
-    let count = 5
+    let count = 5;
     const addOption = () => {
-      const hostElement = document.querySelector('test-single-select')
-      const newElement = document.createElement('test-option') as HTMLElement & SelectableInterface
+      const hostElement = document.querySelector('test-single-select');
+      const newElement = document.createElement('test-option') as HTMLElement &
+        SelectableInterface;
 
-      const label = `option-${++count}`
+      const label = `option-${++count}`;
 
-      newElement.value = label
-      newElement.innerText = label
-      hostElement?.appendChild(newElement)
-    }
+      newElement.value = label;
+      newElement.innerText = label;
+      hostElement?.appendChild(newElement);
+    };
 
     return html`
     <button @click="${addOption}">Add option</button>
@@ -89,6 +105,6 @@ export const SingleSelect = {
         <test-option value="option-3">option-3</test-option>
         <test-option value="option-4">option-4</test-option>
         <test-option value="option-5">option-5</test-option>
-    </test-single-select>`
-  }
-}
+    </test-single-select>`;
+  },
+};

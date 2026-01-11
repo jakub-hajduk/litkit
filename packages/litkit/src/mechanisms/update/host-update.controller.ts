@@ -4,7 +4,7 @@ import type {
   ReactiveControllerHost,
   ReactiveElement,
 } from 'lit';
-import type { Handler } from './types';
+import type { Handler, HandlerOptions } from './types';
 
 /**
  * A unique symbol used to store the `HostUpdateController` instance on the host element,
@@ -42,7 +42,10 @@ export const HostUpdateListener: unique symbol = Symbol('Update');
  */
 export class HostUpdateController implements ReactiveController {
   host: ReactiveControllerHost;
-  handlers: Record<PropertyKey, Handler<any>[]> = {};
+  handlers: Record<
+    PropertyKey,
+    { handler: Handler<any>; options: HandlerOptions }[]
+  > = {};
 
   constructor(host: ReactiveControllerHost) {
     (this.host = host).addController(this);
@@ -55,8 +58,12 @@ export class HostUpdateController implements ReactiveController {
    * @param property The name of the property to watch.
    * @param handler A function to be called with the new and old values of the property.
    */
-  watch<T>(property: PropertyKey, handler: Handler<T>): void {
-    (this.handlers[property] ??= []).push(handler);
+  watch<T>(
+    property: PropertyKey,
+    handler: Handler<T>,
+    options: HandlerOptions = { once: false },
+  ): void {
+    (this.handlers[property] ??= []).push({ handler, options });
     // @ts-expect-error - To be done later... (Yeah, sure...)
     handler(this.host[property], undefined);
   }
@@ -75,8 +82,14 @@ export class HostUpdateController implements ReactiveController {
       if (!this.handlers[property]) continue;
 
       await this.host.updateComplete;
-      for (const handler of this.handlers[property]) {
+      for (const entry of this.handlers[property]) {
+        const { handler, options } = entry;
         await Promise.resolve(handler(newValue, oldValue));
+        if (options.once)
+          this.handlers[property].splice(
+            this.handlers[property].indexOf(entry),
+            1,
+          );
       }
     }
   }

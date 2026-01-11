@@ -26,7 +26,7 @@ export type CustomFormFieldInterface = {
 export const CheckableFormField = <Base extends LitConstructor>(
   superClass: Base,
 ) => {
-  class CustomFormFieldMixin extends superClass {
+  class CheckableFormFieldMixin extends superClass {
     static shadowRootOptions = { mode: 'closed' };
     static formAssociated = true;
 
@@ -66,7 +66,7 @@ export const CheckableFormField = <Base extends LitConstructor>(
     }
   }
 
-  addInitializer(CustomFormFieldMixin, (instance: ReactiveElement) => {
+  addInitializer(CheckableFormFieldMixin, (instance: ReactiveElement) => {
     const updateListener = ensureHostUpdateController(instance);
     const internals = ensureInternals(instance);
 
@@ -79,5 +79,6 @@ export const CheckableFormField = <Base extends LitConstructor>(
     });
   });
 
-  return CustomFormFieldMixin as Constructor<CustomFormFieldInterface> & Base;
+  return CheckableFormFieldMixin as Constructor<CustomFormFieldInterface> &
+    Base;
 };

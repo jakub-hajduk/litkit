@@ -30,12 +30,12 @@ export const Form = () => {
       <tru-stack>
         <tru-vertical-field>
             <label slot="label">Name</label>
-            <tru-text-input name="name"></tru-text-input>
+            <tru-text-input name="name" value="Marvin"></tru-text-input>
         </tru-vertical-field>
         <tru-vertical-field>
             <label slot="label">Language</label>
             <span slot="hint">Please select your preferred programming language</span>
-            <tru-select name="lang">
+            <tru-select name="lang" value="typescript">
                 <tru-option value="dot-net">.NET</tru-option>
                 <tru-option value="go">Go</tru-option>
                 <tru-option value="java">Java</tru-option>
@@ -45,13 +45,13 @@ export const Form = () => {
                 <tru-option value="javascript">JavaScript</tru-option>
             </tru-select>
         </tru-vertical-field>
-        <tru-checkbox name="agreement">I am ready to use this framework.</tru-checkbox>
+        <tru-checkbox name="agreement" checked>I am ready to use this framework.</tru-checkbox>
         <tru-checkbox name="ka" label="This checkbox is labelled differently.">I am over 18 years old.</tru-checkbox>
         <tru-vertical-field>
             <label slot="label">
                 Preferred color
             </label>
-            <tru-toggle-button-group name="preferred-color">
+            <tru-toggle-button-group name="preferred-color" value="orange">
                 <tru-toggle-button value="blue">Blue</tru-toggle-button>
                 <tru-toggle-button value="yellow">Yellow</tru-toggle-button>
                 <tru-toggle-button value="orange">Orange</tru-toggle-button>
@@ -67,7 +67,7 @@ export const Form = () => {
                 <tru-radio value="xs">Extra small</tru-radio>
                 <tru-radio value="s">Small</tru-radio>
                 <tru-radio value="m" label="Label is set by an attribute" description="This option has additional description set by description attribute">Medium</tru-radio>
-                <tru-radio value="l">Large</tru-radio>
+                <tru-radio value="l" selected>Large</tru-radio>
                 <tru-radio value="xl">Extra large</tru-radio>
             </tru-radio-group>
         </tru-vertical-field>
