@@ -1,15 +1,15 @@
-import type { Meta } from '@storybook/web-components-vite'
-import { css, html, LitElement } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { Action, Role } from 'litkit'
-import { Focusable } from '../focusable/focusable.mixin'
-import { Selectable } from './selectable.mixin'
+import type { Meta } from '@storybook/web-components-vite';
+import { css, html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { Action, Role } from 'litkit';
+import { Focusable } from '../focusable/focusable.mixin';
+import { Selectable } from './selectable.mixin';
 
 const meta: Meta = {
   title: 'Selectable',
-}
+};
 
-export default meta
+export default meta;
 
 const base = css`
     :host {
@@ -20,24 +20,27 @@ const base = css`
         display: block;
         cursor: pointer;
     }
-    `
+    `;
 
 @Role('button')
 @customElement('test-selectable')
 class SelectableCE extends Selectable(Focusable(LitElement)) {
-  static styles = [base, css`
+  static styles = [
+    base,
+    css`
       :host(:state(selected)) {
           background: var(--neutral200);
-      }`]
+      }`,
+  ];
 
   @Action()
   click(): void {
-    this.select()
+    this.select();
   }
 
   render() {
     // ☐ ☑ ☒
-    return html`${this.selected ? '\u2611' : '\u2610'}&nbsp;<slot></slot>`
+    return html`${this.selected ? '\u2611' : '\u2610'}&nbsp;<slot></slot>`;
   }
 }
 
@@ -49,6 +52,6 @@ export const SelectableItem = {
         <test-selectable value="option-3">Option 3</test-selectable>
         <test-selectable value="option-4">Option 4</test-selectable>
         <test-selectable value="option-5">Option 5</test-selectable>
-    </div>`
-  }
-}
+    </div>`;
+  },
+};

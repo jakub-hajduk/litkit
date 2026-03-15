@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "tsdown --watch ./src/",
     "build": "tsdown",
-    "format": "biome --check --fix",
+    "format": "biome check --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",

@@ -1,11 +1,11 @@
-import type { Constructor, LitConstructor } from '../../types/types'
+import type { Constructor, LitConstructor } from '../../types/types';
 
-export interface WithMultiselectInterface {
-}
+export type WithMultiselectInterface = object;
 
-export const WithMultiSelect = <Base extends LitConstructor>(superClass: Base) => {
-  class WithMultiSelectMixin extends superClass {
-  }
+export const WithMultiSelect = <Base extends LitConstructor>(
+  superClass: Base,
+) => {
+  class WithMultiSelectMixin extends superClass {}
 
   return WithMultiSelectMixin as Constructor<WithMultiselectInterface> & Base;
 };

@@ -1,4 +1,4 @@
-import { css, unsafeCSS } from 'lit'
+import { css, unsafeCSS } from 'lit';
 
 export function buttonStyles(wrapperSelector = '#container') {
   return css`
@@ -56,5 +56,5 @@ export function buttonStyles(wrapperSelector = '#container') {
           border-color: var(--tru-color-neutral-400);
           background-color: var(--tru-color-neutral-100);
           color: var(--tru-color-neutral-500);
-      }`
+      }`;
 }

@@ -1,6 +1,10 @@
-import { property } from 'lit/decorators.js'
-import { Aria, CustomEventEmitter, CSSState } from 'litkit'
-import type { Constructor, LitConstructor, MaybePromise } from '../../types/types'
+import { property } from 'lit/decorators.js';
+import { Aria, CSSState, CustomEventEmitter } from 'litkit';
+import type {
+  Constructor,
+  LitConstructor,
+  MaybePromise,
+} from '../../types/types';
 
 export interface SelectableInterface {
   selectedEvent: CustomEventEmitter;
@@ -13,7 +17,10 @@ export interface SelectableInterface {
 
 export const Selectable = <Base extends LitConstructor>(superClass: Base) => {
   class SelectableMixin extends superClass implements SelectableInterface {
-    selectedEvent = new CustomEventEmitter(this, 'selected', {bubbles: true, composed: true})
+    selectedEvent = new CustomEventEmitter(this, 'selected', {
+      bubbles: true,
+      composed: true,
+    });
 
     @Aria('ariaSelected')
     @CSSState('selected')
@@ -22,18 +29,23 @@ export const Selectable = <Base extends LitConstructor>(superClass: Base) => {
 
     @property({
       reflect: true,
-      type: String
-    }) value?: string | number
+      type: String,
+    })
+    value?: string | number;
 
     public async select(this: SelectableInterface): Promise<void> {
-      if (this.canSelect && !(await Promise.resolve(this.canSelect?.call(this)))) return
+      if (
+        this.canSelect &&
+        !(await Promise.resolve(this.canSelect?.call(this)))
+      )
+        return;
 
-      const prevented = !this.selectedEvent.emit(this.value)
-      if (prevented) return
+      const prevented = !this.selectedEvent.emit(this.value);
+      if (prevented) return;
 
-      this.selected = !this.selected
+      this.selected = !this.selected;
 
-      if (this.afterSelect) await Promise.resolve(this.afterSelect())
+      if (this.afterSelect) await Promise.resolve(this.afterSelect());
     }
   }
 

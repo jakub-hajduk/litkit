@@ -7,9 +7,9 @@ import {
   CSSState,
   ensureHostEventListener,
   ensureHostUpdateController,
+  ensureInternals,
   InputEventEmitter,
 } from 'litkit';
-import { ensureInternals } from 'litkit'
 import type { Constructor, LitConstructor } from '../../types/types';
 
 type FormValue = File | string | FormData | null;

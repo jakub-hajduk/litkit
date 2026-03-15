@@ -6,7 +6,7 @@ import {
   type TemplateResult,
 } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { CustomEventEmitter } from '../custom-event-emitter'
+import { CustomEventEmitter } from '../custom-event-emitter';
 
 /**
  * A popover-based dropdown component with cancellable open and close lifecycle events.
@@ -56,20 +56,24 @@ export class Dropdown extends LitElement {
    * Emits before the dropdown opens.
    * Prevent the event to cancel opening.
    */
-  private openEvent = new CustomEventEmitter(this, 'dropdown-open', { cancelable: true })
+  private openEvent = new CustomEventEmitter(this, 'dropdown-open', {
+    cancelable: true,
+  });
   /**
    * Emits before the dropdown closes.
    * Prevent the event to cancel closing.
    */
-  private closeEvent = new CustomEventEmitter(this, 'dropdown-close', { cancelable: true })
+  private closeEvent = new CustomEventEmitter(this, 'dropdown-close', {
+    cancelable: true,
+  });
   /**
    * Emits after the dropdown is opened.
    */
-  private openedEvent = new CustomEventEmitter(this, 'dropdown-opened')
+  private openedEvent = new CustomEventEmitter(this, 'dropdown-opened');
   /**
    * Emits after the dropdown is closed.
    */
-  private closedEvent = new CustomEventEmitter(this, 'dropdown-closed')
+  private closedEvent = new CustomEventEmitter(this, 'dropdown-closed');
 
   override popover = 'auto';
 
@@ -77,7 +81,7 @@ export class Dropdown extends LitElement {
 
   show(): void {
     const shouldOpen = !this.openEvent.emit();
-    if(shouldOpen) {
+    if (shouldOpen) {
       this.showPopover();
       this.openedEvent.emit();
     }
@@ -85,11 +89,11 @@ export class Dropdown extends LitElement {
 
   hide(): void {
     const shouldClose = !this.closeEvent.emit();
-    if(shouldClose) {
-      this.hidePopover()
+    if (shouldClose) {
+      this.hidePopover();
       this.closedEvent.emit();
     }
-  };
+  }
 
   override render(): TemplateResult {
     return html`<slot></slot>`;

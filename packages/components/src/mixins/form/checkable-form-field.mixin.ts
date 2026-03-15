@@ -1,5 +1,5 @@
 import type { ReactiveElement } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import {
   Action,
   Aria,

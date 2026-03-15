@@ -1,4 +1,4 @@
-import { css, LitElement, type TemplateResult } from 'lit';
+import { LitElement, type TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { html } from 'lit/static-html.js';
 import { Role, SlottedElements, SlottedText } from 'litkit';

@@ -1,5 +1,5 @@
-import type { PropertyValues } from 'lit'
-import type { Constructor, LitConstructor } from '../../types/types'
+import type { PropertyValues } from 'lit';
+import type { Constructor, LitConstructor } from '../../types/types';
 
 export interface FocusableElementInterface {
   disableFocus(): void;
