@@ -1,5 +1,12 @@
 import type { ElementConstructor } from './types';
 
+/**
+ * Finds the next sibling that matches the provided element constructor.
+ * This performs stable sibling traversal using runtime instance checks.
+ *
+ * @example
+ * const nextRow = nextOfType(currentRow, HTMLTableRowElement);
+ */
 export function nextOfType<T extends ElementConstructor>(
   element: HTMLElement,
   ctor: T

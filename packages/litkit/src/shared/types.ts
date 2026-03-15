@@ -10,7 +10,5 @@ export type MaybePromise<T> = Promise<T> | T;
  *
  * @param value The new input value from the component's property.
  * @param value The previous input value from the component's property.
- * @returns The transformed value.
  */
-
 export type ConverterFn = (newValue: any, oldValue: any) => any;
