@@ -3,6 +3,12 @@ import { addInitializer } from '../../shared/add-initializer.util';
 import type { ConverterFn } from '../../shared/types';
 import { ensureHostUpdateController } from '../update/host-update.controller';
 
+/**
+ * @experimental
+ *
+ * I dopn't know whether this even makes sense...
+ *
+ */
 export function DelegateValue(
   selector: string,
   targetProperty?: PropertyKey,
@@ -13,10 +19,6 @@ export function DelegateValue(
     decoratedPropName: keyof ElementClass,
   ): void => {
     addInitializer(target, (instance: ReactiveElement) => {
-      console.log(
-        { a: instance.constructor },
-        instance.constructor.elementProperties.get(decoratedPropName),
-      );
       instance.updateComplete.then(() => {
         const element = instance.renderRoot.querySelector(selector);
 
