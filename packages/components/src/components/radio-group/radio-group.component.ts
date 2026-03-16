@@ -1,11 +1,11 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Role, RovingTabindexController, SlottedElementsOfType } from 'litkit';
-import { CustomFormField } from '../../mixins/form/custom-form-field.mixin';
+import { CustomFormField } from 'litkit-primitives';
 import {
   type SelectableElement,
   WithSingleSelect,
-} from '../../mixins/with-single-select/with-single-select.mixin';
+} from 'litkit-primitives';
 import { RadioComponent } from '../radio/radio.component';
 import styles from './radio-group.styles';
 

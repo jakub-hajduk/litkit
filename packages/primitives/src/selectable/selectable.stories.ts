@@ -6,7 +6,7 @@ import { Focusable } from '../focusable/focusable.mixin';
 import { Selectable } from './selectable.mixin';
 
 const meta: Meta = {
-  title: 'Selectable',
+  title: 'Primitives/Selectable',
 };
 
 export default meta;

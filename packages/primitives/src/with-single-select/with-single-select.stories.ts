@@ -8,7 +8,7 @@ import {
   SelectableOptions,
 } from 'litkit';
 import { Focusable } from '../focusable/focusable.mixin';
-import { CustomFormField } from '../form/custom-form-field.mixin';
+import { CustomFormField } from '../form-fields/custom-form-field.mixin';
 import {
   Selectable,
   type SelectableInterface,
@@ -19,7 +19,7 @@ import {
 } from './with-single-select.mixin';
 
 const meta: Meta = {
-  title: 'Selectable',
+  title: 'Primitives/Selectable',
 };
 
 export default meta;
@@ -99,7 +99,7 @@ export const SingleSelect = {
 
     return html`
     <button @click="${addOption}">Add option</button>
-    <test-single-select @change="${(e: Event) => console.log(e.target?.value)}"">
+    <test-single-select @change="${(e: any) => console.log(e.target?.value)}"">
         <test-option value="option-1">option-1</test-option>
         <test-option value="option-2">option-2</test-option>
         <test-option value="option-3">option-3</test-option>

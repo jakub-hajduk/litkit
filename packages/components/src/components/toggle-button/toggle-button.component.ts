@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Action, Aria, CSSState, Role, SlottedText } from 'litkit';
-import { Selectable } from '../../mixins/selectable/selectable.mixin';
+import { Selectable } from 'litkit-primitives';
 import { buttonStyles } from '../../shared/styles/button.styles';
 import styles from './toggle-button.styles';
 

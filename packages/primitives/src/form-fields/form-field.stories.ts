@@ -2,11 +2,11 @@ import type { Meta } from '@storybook/web-components-vite';
 import { css, html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { Role } from 'litkit';
-import { CustomFormField } from '../form/custom-form-field.mixin';
-import { DelegatedFormField } from '../form/delegated-form-field.mixin';
+import { CustomFormField } from './custom-form-field.mixin';
+import { DelegatedFormField } from './delegated-form-field.mixin';
 
 const meta: Meta = {
-  title: 'Form field',
+  title: 'Primitives/Form field',
 };
 
 export default meta;
@@ -22,7 +22,7 @@ const base = css`
 
 @Role('textbox')
 @customElement('test-delegated-field')
-class DelegatedFieldCE extends DelegatedFormField<string>(LitElement) {
+class DelegatedFieldCE extends DelegatedFormField(LitElement) {
   static styles = [
     base,
     css`

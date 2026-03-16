@@ -12,7 +12,7 @@ import './radio-group/radio-group.component';
 import './radio/radio.component';
 
 const meta: Meta = {
-  title: 'Form',
+  title: 'Components/Form',
 };
 
 export default meta;

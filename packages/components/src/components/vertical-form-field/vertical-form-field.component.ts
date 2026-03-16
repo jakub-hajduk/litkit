@@ -2,8 +2,8 @@ import { LitElement, type TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { html } from 'lit/static-html.js';
 import { Role, SlottedElements, SlottedText } from 'litkit';
-import type { CustomFormFieldInterface } from '../../mixins/form/custom-form-field.mixin';
-import type { DelegatedFormFieldInterface } from '../../mixins/form/delegated-form-field.mixin';
+import type { CustomFormFieldInterface } from 'litkit-primitives';
+import type { DelegatedFormFieldInterface } from 'litkit-primitives';
 import styles from './vertical-form-field.styles';
 
 @Role('presentation')

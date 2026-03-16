@@ -13,7 +13,7 @@ import {
 } from 'litkit';
 import type { Constructor, LitConstructor } from '../types';
 
-export type CustomFormFieldInterface = {
+export type CheckableFormFieldInterface = {
   inputEvent: InputEventEmitter;
   changeEvent: ChangeEventEmitter;
   required?: boolean;
@@ -79,6 +79,6 @@ export const CheckableFormField = <Base extends LitConstructor>(
     });
   });
 
-  return CheckableFormFieldMixin as Constructor<CustomFormFieldInterface> &
+  return CheckableFormFieldMixin as Constructor<CheckableFormFieldInterface> &
     Base;
 };

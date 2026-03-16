@@ -4,7 +4,7 @@ import { customElement } from 'lit/decorators.js';
 import { SlotChange, SlottedNodes, SlottedText } from 'litkit';
 
 const meta: Meta = {
-  title: 'Slot Controller',
+  title: 'Components/Slot Controller',
 };
 
 export default meta;

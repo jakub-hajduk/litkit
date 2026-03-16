@@ -2,11 +2,11 @@ import type { Meta } from '@storybook/web-components-vite';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { Role } from 'litkit';
-import { Button } from '../../mixins/actionable/button.mixin';
-import { Focusable } from '../../mixins/focusable/focusable.mixin';
+import { Actionable } from './actionable.mixin';
+import { Focusable } from '../focusable/focusable.mixin';
 
 const meta: Meta = {
-  title: 'Button',
+  title: 'Primitives/Button',
   component: 'my-button',
 };
 
@@ -14,7 +14,7 @@ export default meta;
 
 @Role('button')
 @customElement('test-button')
-class ButtonCE extends Focusable(Button(LitElement)) {
+class ButtonCE extends Focusable(Actionable(LitElement)) {
   static styles = [
     css`
       :host {

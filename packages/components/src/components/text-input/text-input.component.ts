@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { Focusable } from '../../mixins/focusable/focusable.mixin';
-import { DelegatedFormField } from '../../mixins/form/delegated-form-field.mixin';
+import { Focusable } from 'litkit-primitives';
+import { DelegatedFormField } from 'litkit-primitives';
 import { formFieldStyles } from '../../shared/styles/field.styles';
 import { focusStyles } from '../../shared/styles/focus.styles';
 import styles from './text-input.styles';

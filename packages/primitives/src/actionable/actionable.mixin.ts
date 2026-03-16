@@ -6,7 +6,7 @@ import {
   CustomEventEmitter,
   ensureInternals,
 } from 'litkit';
-import type { Constructor, LitConstructor } from '../../types/types';
+import type { Constructor, LitConstructor } from '../types';
 
 export interface ButtonInterface {
   actionEvent: CustomEventEmitter;
@@ -17,8 +17,8 @@ export interface ButtonInterface {
   click(): void;
 }
 
-export const Button = <Base extends LitConstructor>(superClass: Base) => {
-  class ButtonMixin extends superClass {
+export const Actionable = <Base extends LitConstructor>(superClass: Base) => {
+  class ActionableMixin extends superClass {
     actionEvent = new CustomEventEmitter<undefined>(this, 'action');
     static formAssociated = true;
 
@@ -53,5 +53,5 @@ export const Button = <Base extends LitConstructor>(superClass: Base) => {
     }
   }
 
-  return ButtonMixin as Constructor<ButtonInterface> & Base;
+  return ActionableMixin as Constructor<ButtonInterface> & Base;
 };

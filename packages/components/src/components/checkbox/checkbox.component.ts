@@ -1,8 +1,8 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Aria, CSSState, Role } from 'litkit';
-import { Focusable } from '../../mixins/focusable/focusable.mixin';
-import { CheckableFormField } from '../../mixins/form/checkable-form-field.mixin';
+import { Focusable } from 'litkit-primitives';
+import { CheckableFormField } from 'litkit-primitives';
 import styles from './checkbox.styles';
 
 @Role('checkbox')

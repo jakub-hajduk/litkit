@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "lit": "catalog:",
-    "litkit": "workspace:*"
+    "litkit": "workspace:*",
+    "litkit-primitives": "workspace:*"
   },
   "exports": {
     ".": {

@@ -1,5 +1,5 @@
 {
-  "name": "litkit/primitives",
+  "name": "litkit-primitives",
   "version": "0.0.0",
   "description": "Primitives for lit elements",
   "type": "module",

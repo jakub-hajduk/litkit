@@ -6,11 +6,11 @@ import {
   RovingTabindexController,
   SlottedElementsOfType,
 } from 'litkit';
-import { CustomFormField } from '../../mixins/form/custom-form-field.mixin';
+import { CustomFormField } from 'litkit-primitives';
 import {
   type SelectableElement,
   WithSingleSelect,
-} from '../../mixins/with-single-select/with-single-select.mixin';
+} from 'litkit-primitives';
 import { ToggleButtonComponent } from '../toggle-button/toggle-button.component';
 import styles from './toggle-button-group.styles';
 

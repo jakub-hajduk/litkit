@@ -68,6 +68,9 @@ importers:
       litkit:
         specifier: workspace:*
         version: link:../litkit
+      litkit-primitives:
+        specifier: workspace:*
+        version: link:../primitives
     devDependencies:
       '@biomejs/biome':
         specifier: 'catalog:'

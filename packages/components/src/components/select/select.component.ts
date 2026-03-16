@@ -7,8 +7,8 @@ import {
   RovingTabindexController,
   SlottedNodes,
 } from 'litkit';
-import { Focusable } from '../../mixins/focusable/focusable.mixin';
-import { CustomFormField } from '../../mixins/form/custom-form-field.mixin';
+import { Focusable } from 'litkit-primitives';
+import { CustomFormField } from 'litkit-primitives';
 import '../dropdown/dropdown.component';
 import { formFieldStyles } from '../../shared/styles/field.styles';
 import { focusStyles } from '../../shared/styles/focus.styles';

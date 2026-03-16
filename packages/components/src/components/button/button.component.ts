@@ -9,7 +9,7 @@ import {
   Role,
   SlottedText,
 } from 'litkit';
-import { Focusable } from '../../mixins/focusable/focusable.mixin';
+import { Focusable } from 'litkit-primitives';
 import styles from './button.styles';
 
 @Role('button')
