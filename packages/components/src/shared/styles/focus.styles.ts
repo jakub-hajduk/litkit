@@ -9,7 +9,7 @@ export function focusStyles(wrapperSelector = '#container') {
 
       :host(:focus-within) ${unsafeCSS(wrapperSelector)},
       :host(:focus-visible) ${unsafeCSS(wrapperSelector)} {
-          outline: 3px solid var(--tru-color-primary-500);
+          outline: 3px solid var(--lk-color-primary-500);
           outline-offset: 3px;
       }`;
 }

@@ -7,7 +7,7 @@ import type { DelegatedFormFieldInterface } from 'litkit-primitives';
 import styles from './horizontal-form-field.styles';
 
 @Role('presentation')
-@customElement('tru-horizontal-field')
+@customElement('lk-horizontal-field')
 export class MyHorizontalFormField extends LitElement {
   static styles = [styles];
 

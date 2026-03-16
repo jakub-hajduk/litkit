@@ -4,20 +4,20 @@ import './button.component';
 
 const meta: Meta = {
   title: 'Components/Button',
-  component: 'tru-button',
+  component: 'lk-button',
 };
 
 export default meta;
 
 export const Button = () => html`
-    <tru-button>Button</tru-button>
-    <tru-button variant="primary">Primary</tru-button>
-    <tru-button variant="critical">Critical</tru-button>
-    <tru-button variant="ghost">Ghost</tru-button>
+    <lk-button>Button</lk-button>
+    <lk-button variant="primary">Primary</lk-button>
+    <lk-button variant="critical">Critical</lk-button>
+    <lk-button variant="ghost">Ghost</lk-button>
     <br>
     <br>
-    <tru-button disabled>Button</tru-button>
-    <tru-button disabled variant="primary">Primary</tru-button>
-    <tru-button disabled variant="critical">Critical</tru-button>
-    <tru-button disabled variant="ghost">Ghost</tru-button>
+    <lk-button disabled>Button</lk-button>
+    <lk-button disabled variant="primary">Primary</lk-button>
+    <lk-button disabled variant="critical">Critical</lk-button>
+    <lk-button disabled variant="ghost">Ghost</lk-button>
 `;

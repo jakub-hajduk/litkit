@@ -7,7 +7,7 @@ import { success } from '../icons/success.icon';
 import { warning } from '../icons/warning.icon';
 import styles from './feedback-message.styles';
 
-@customElement('tru-feedback-message')
+@customElement('lk-feedback-message')
 export class FeedbackMessageComponent extends LitElement {
   static styles = [styles];
 

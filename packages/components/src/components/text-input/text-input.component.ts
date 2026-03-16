@@ -6,7 +6,7 @@ import { formFieldStyles } from '../../shared/styles/field.styles';
 import { focusStyles } from '../../shared/styles/focus.styles';
 import styles from './text-input.styles';
 
-@customElement('tru-text-input')
+@customElement('lk-text-input')
 export class TextInputComponent extends Focusable(
   DelegatedFormField(LitElement),
 ) {

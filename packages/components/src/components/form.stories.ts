@@ -27,50 +27,50 @@ export const Form = () => {
   };
 
   return html`<form @change=${checkForm}>
-      <tru-stack>
-        <tru-vertical-field>
+      <lk-stack>
+        <lk-vertical-field>
             <label slot="label">Name</label>
-            <tru-text-input name="name" value="Marvin"></tru-text-input>
-        </tru-vertical-field>
-        <tru-vertical-field>
+            <lk-text-input name="name" value="Marvin"></lk-text-input>
+        </lk-vertical-field>
+        <lk-vertical-field>
             <label slot="label">Language</label>
             <span slot="hint">Please select your preferred programming language</span>
-            <tru-select name="lang" value="typescript">
-                <tru-option value="dot-net">.NET</tru-option>
-                <tru-option value="go">Go</tru-option>
-                <tru-option value="java">Java</tru-option>
-                <tru-option value="php">PHP</tru-option>
-                <tru-option value="rust">Rust</tru-option>
-                <tru-option value="typescript">TypeScript</tru-option>
-                <tru-option value="javascript">JavaScript</tru-option>
-            </tru-select>
-        </tru-vertical-field>
-        <tru-checkbox name="agreement" checked>I am ready to use this framework.</tru-checkbox>
-        <tru-checkbox name="ka" label="This checkbox is labelled differently.">I am over 18 years old.</tru-checkbox>
-        <tru-vertical-field>
+            <lk-select name="lang" value="typescript">
+                <lk-option value="dot-net">.NET</lk-option>
+                <lk-option value="go">Go</lk-option>
+                <lk-option value="java">Java</lk-option>
+                <lk-option value="php">PHP</lk-option>
+                <lk-option value="rust">Rust</lk-option>
+                <lk-option value="typescript">TypeScript</lk-option>
+                <lk-option value="javascript">JavaScript</lk-option>
+            </lk-select>
+        </lk-vertical-field>
+        <lk-checkbox name="agreement" checked>I am ready to use this framework.</lk-checkbox>
+        <lk-checkbox name="ka" label="This checkbox is labelled differently.">I am over 18 years old.</lk-checkbox>
+        <lk-vertical-field>
             <label slot="label">
                 Preferred color
             </label>
-            <tru-toggle-button-group name="preferred-color" value="orange">
-                <tru-toggle-button value="blue">Blue</tru-toggle-button>
-                <tru-toggle-button value="yellow">Yellow</tru-toggle-button>
-                <tru-toggle-button value="orange">Orange</tru-toggle-button>
-                <tru-toggle-button value="pink">Pink</tru-toggle-button>
-                <tru-toggle-button value="black">Black</tru-toggle-button>
-            </tru-toggle-button-group>
-        </tru-vertical-field>
-        <tru-vertical-field>
+            <lk-toggle-button-group name="preferred-color" value="orange">
+                <lk-toggle-button value="blue">Blue</lk-toggle-button>
+                <lk-toggle-button value="yellow">Yellow</lk-toggle-button>
+                <lk-toggle-button value="orange">Orange</lk-toggle-button>
+                <lk-toggle-button value="pink">Pink</lk-toggle-button>
+                <lk-toggle-button value="black">Black</lk-toggle-button>
+            </lk-toggle-button-group>
+        </lk-vertical-field>
+        <lk-vertical-field>
             <label slot="label">
                 Size
             </label>
-            <tru-radio-group name="size">
-                <tru-radio value="xs">Extra small</tru-radio>
-                <tru-radio value="s">Small</tru-radio>
-                <tru-radio value="m" label="Label is set by an attribute" description="This option has additional description set by description attribute">Medium</tru-radio>
-                <tru-radio value="l" selected>Large</tru-radio>
-                <tru-radio value="xl">Extra large</tru-radio>
-            </tru-radio-group>
-        </tru-vertical-field>
-      </tru-stack>
+            <lk-radio-group name="size">
+                <lk-radio value="xs">Extra small</lk-radio>
+                <lk-radio value="s">Small</lk-radio>
+                <lk-radio value="m" label="Label is set by an attribute" description="This option has additional description set by description attribute">Medium</lk-radio>
+                <lk-radio value="l" selected>Large</lk-radio>
+                <lk-radio value="xl">Extra large</lk-radio>
+            </lk-radio-group>
+        </lk-vertical-field>
+      </lk-stack>
   </form>`;
 };

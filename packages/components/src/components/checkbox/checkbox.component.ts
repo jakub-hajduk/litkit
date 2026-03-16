@@ -6,7 +6,7 @@ import { CheckableFormField } from 'litkit-primitives';
 import styles from './checkbox.styles';
 
 @Role('checkbox')
-@customElement('tru-checkbox')
+@customElement('lk-checkbox')
 export class CheckboxComponent extends CheckableFormField(
   Focusable(LitElement),
 ) {

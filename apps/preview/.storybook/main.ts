@@ -3,6 +3,7 @@ import type { StorybookConfig } from '@storybook/web-components-vite';
 const config: StorybookConfig = {
   stories: [
     "../../../packages/components/src/**/*.stories.ts",
+    "../../../packages/primitives/src/**/*.stories.ts",
     "../../../packages/litkit/src/**/*.stories.ts"
   ],
   addons: [],

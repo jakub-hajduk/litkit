@@ -2,7 +2,7 @@ import { html, LitElement, type TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './dropdown.styles';
 
-@customElement('tru-dropdown')
+@customElement('lk-dropdown')
 export class DropdownComponent extends LitElement {
   static styles = [styles];
 

@@ -4,7 +4,7 @@ export default css`
             display: inline-block;
             display: flex;
             flex-direction: column;
-            gap: var(--tru-space-medium-600);
+            gap: var(--lk-space-medium-600);
             position: relative;
         }
         

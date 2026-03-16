@@ -11,7 +11,7 @@ import {
 import styles from './option.styles';
 
 @Role('option')
-@customElement('tru-option')
+@customElement('lk-option')
 export class OptionComponent extends LitElement {
   static styles: CSSResult[] = [styles];
   selectedEvent: CustomEventEmitter<string> = new CustomEventEmitter<string>(

@@ -4,15 +4,15 @@ import './number-input.component';
 
 const meta: Meta = {
   title: 'Components/Inputs/Number',
-  component: 'tru-number-input',
+  component: 'lk-number-input',
 };
 
 export default meta;
 
-export const Default = () => html`<tru-number-input></tru-number-input>`;
+export const Default = () => html`<lk-number-input></lk-number-input>`;
 
 export const ImplicitLabel = () =>
-  html`<label>Label associated implicitly<br><br><tru-number-input></tru-number-input></label>`;
+  html`<label>Label associated implicitly<br><br><lk-number-input></lk-number-input></label>`;
 
 export const ExplicitLabel = () =>
-  html`<label for="the-input">Label associated explicitly</label><br><br><tru-number-input id="the-input"></tru-number-input>`;
+  html`<label for="the-input">Label associated explicitly</label><br><br><lk-number-input id="the-input"></lk-number-input>`;

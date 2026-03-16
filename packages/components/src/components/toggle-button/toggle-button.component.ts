@@ -6,7 +6,7 @@ import { buttonStyles } from '../../shared/styles/button.styles';
 import styles from './toggle-button.styles';
 
 @Role('radio')
-@customElement('tru-toggle-button')
+@customElement('lk-toggle-button')
 export class ToggleButtonComponent extends Selectable(LitElement) {
   static styles = [buttonStyles(), styles];
 

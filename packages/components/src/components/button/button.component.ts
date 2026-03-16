@@ -13,7 +13,7 @@ import { Focusable } from 'litkit-primitives';
 import styles from './button.styles';
 
 @Role('button')
-@customElement('tru-button')
+@customElement('lk-button')
 export class ButtonComponent extends Focusable(LitElement) {
   static formAssociated = true;
   static styles = [styles];

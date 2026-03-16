@@ -7,7 +7,7 @@ import type { DelegatedFormFieldInterface } from 'litkit-primitives';
 import styles from './vertical-form-field.styles';
 
 @Role('presentation')
-@customElement('tru-vertical-field')
+@customElement('lk-vertical-field')
 export class MyVerticalFormField extends LitElement {
   static styles = [styles];
 

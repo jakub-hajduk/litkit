@@ -15,7 +15,7 @@ import { ToggleButtonComponent } from '../toggle-button/toggle-button.component'
 import styles from './toggle-button-group.styles';
 
 @Role('radiogroup')
-@customElement('tru-toggle-button-group')
+@customElement('lk-toggle-button-group')
 export class ToggleButtonGroupComponent extends CustomFormField(
   WithSingleSelect(LitElement),
 ) {

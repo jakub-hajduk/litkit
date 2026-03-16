@@ -20,7 +20,7 @@ const nonDisabled = (node: Node) =>
   node instanceof OptionComponent && node.disabled === false;
 
 @Role('combobox')
-@customElement('tru-select')
+@customElement('lk-select')
 export class SelectComponent extends Focusable(CustomFormField(LitElement)) {
   static styles: CSSResult[] = [styles, formFieldStyles(), focusStyles()];
 
@@ -71,11 +71,11 @@ export class SelectComponent extends Focusable(CustomFormField(LitElement)) {
         <div id="container">
           ${this.currentlySelectedTarget?.label || 'Nothing selected'}
         </div>
-        <tru-dropdown id="dropdown" role="listbox">
+        <lk-dropdown id="dropdown" role="listbox">
             <div id="option-list">
                 <slot></slot>
             </divid>
-        </tru-dropdown>
+        </lk-dropdown>
     `;
   }
 }

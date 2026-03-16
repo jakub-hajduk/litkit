@@ -5,7 +5,7 @@ import { DelegatedFormField } from 'litkit-primitives';
 import { formFieldStyles } from '../../shared/styles/field.styles';
 import { focusStyles } from '../../shared/styles/focus.styles';
 
-@customElement('tru-date-input')
+@customElement('lk-date-input')
 export class DateInputComponent extends Focusable(
   DelegatedFormField(LitElement),
 ) {

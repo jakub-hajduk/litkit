@@ -15,9 +15,9 @@ export default css`
     }
     
     #option-list {
-        padding: var(--tru-space-medium-100);
+        padding: var(--lk-space-medium-100);
         display: flex;
         flex-direction: column;
-        gap: var(--tru-space-medium-100);
+        gap: var(--lk-space-medium-100);
     }
     `;

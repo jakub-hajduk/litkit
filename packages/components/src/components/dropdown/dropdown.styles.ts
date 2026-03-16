@@ -17,10 +17,10 @@ export default css`
     transition-timing-function: ease-in-out;
     transition-behavior: allow-discrete;
 
-    border: 1px solid var(--tru-color-neutral-300);
-    background-color: var(--tru-color-canvas-100);
-    border-radius: var(--tru-radius-rectangle-300);
-    margin-top: var(--tru-space-medium-100);
+    border: 1px solid var(--lk-color-neutral-300);
+    background-color: var(--lk-color-canvas-100);
+    border-radius: var(--lk-radius-rectangle-300);
+    margin-top: var(--lk-space-medium-100);
   }
 
   :host(:popover-open) {

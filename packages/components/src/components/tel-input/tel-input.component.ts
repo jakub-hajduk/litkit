@@ -5,7 +5,7 @@ import { DelegatedFormField } from 'litkit-primitives';
 import { formFieldStyles } from '../../shared/styles/field.styles';
 import { focusStyles } from '../../shared/styles/focus.styles';
 
-@customElement('tru-tel-input')
+@customElement('lk-tel-input')
 export class TelInputComponent extends Focusable(
   DelegatedFormField(LitElement),
 ) {

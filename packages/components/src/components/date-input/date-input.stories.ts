@@ -4,15 +4,15 @@ import './date-input.component';
 
 const meta: Meta = {
   title: 'Components/Inputs/Date',
-  component: 'tru-date-input',
+  component: 'lk-date-input',
 };
 
 export default meta;
 
-export const Default = () => html`<tru-date-input></tru-date-input>`;
+export const Default = () => html`<lk-date-input></lk-date-input>`;
 
 export const ImplicitLabel = () =>
-  html`<label>Label associated implicitly<br><br><tru-date-input></tru-date-input></label>`;
+  html`<label>Label associated implicitly<br><br><lk-date-input></lk-date-input></label>`;
 
 export const ExplicitLabel = () =>
-  html`<label for="the-input">Label associated explicitly</label><br><br><tru-date-input id="the-input"></tru-date-input>`;
+  html`<label for="the-input">Label associated explicitly</label><br><br><lk-date-input id="the-input"></lk-date-input>`;

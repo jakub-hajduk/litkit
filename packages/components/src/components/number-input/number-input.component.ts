@@ -5,7 +5,7 @@ import { DelegatedFormField } from 'litkit-primitives';
 import { formFieldStyles } from '../../shared/styles/field.styles';
 import { focusStyles } from '../../shared/styles/focus.styles';
 
-@customElement('tru-number-input')
+@customElement('lk-number-input')
 export class NumberInputComponent extends Focusable(
   DelegatedFormField(LitElement),
 ) {

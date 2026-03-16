@@ -7,12 +7,12 @@ export default css`
     }
 
     :host(:state(selected)) #tick {
-        background-color: var(--tru-color-primary-800);
+        background-color: var(--lk-color-primary-800);
     }
 
     #container {
         display: inline-flex;
-        gap: var(--tru-space-medium-500);
+        gap: var(--lk-space-medium-500);
         vertical-align: middle;
         transition: outline-color 100ms ease-in-out;
         outline-color: transparent;
@@ -23,14 +23,14 @@ export default css`
     }
 
     :host(:focus-visible) #tick {
-        outline: 3px solid var(--tru-color-primary-500);
+        outline: 3px solid var(--lk-color-primary-500);
         outline-offset: 3px;
     }
 
     #tick {
-        border-radius: var(--tru-radius-circle-700);
-        border: 1px solid var(--tru-color-neutral-400);
-        width: var(--tru-size-regular-900);
+        border-radius: var(--lk-radius-circle-700);
+        border: 1px solid var(--lk-color-neutral-400);
+        width: var(--lk-size-regular-900);
         aspect-ratio: 1;
         background-color: transparent;
         transition: background-color ease-in-out 100ms;

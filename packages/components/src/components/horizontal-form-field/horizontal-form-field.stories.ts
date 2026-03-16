@@ -7,30 +7,30 @@ import '../feedback-message/feedback-message.component';
 
 const meta: Meta = {
   title: 'Components/Form Field/Horizontal',
-  component: 'tru-horizontal-field',
+  component: 'lk-horizontal-field',
 };
 
 export default meta;
 
 export const FormField = () => {
   return html`
-    <tru-horizontal-field>
+    <lk-horizontal-field>
       <label slot="label">Label for the field</label>
       <input id="name" type="text" />
       <span slot="hint">Hint for the field</span>
-    </tru-horizontal-field>
+    </lk-horizontal-field>
     <br/>
     <br/>
-    <tru-horizontal-field>
+    <lk-horizontal-field>
       <label slot="label">Label for the field</label>
       <span slot="hint">Hint for the field</span>
-      <tru-select name="options">
-          <tru-option value="option1">Option 1</tru-option>
-          <tru-option value="option2">Option 2</tru-option>
-      </tru-select>
-      <tru-feedback-message variant="critical" slot="feedback">
+      <lk-select name="options">
+          <lk-option value="option1">Option 1</lk-option>
+          <lk-option value="option2">Option 2</lk-option>
+      </lk-select>
+      <lk-feedback-message variant="critical" slot="feedback">
           Meh,something went wrong!
-      </tru-feedback-message>
-    </tru-horizontal-field>
+      </lk-feedback-message>
+    </lk-horizontal-field>
   `;
 };

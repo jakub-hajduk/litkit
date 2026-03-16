@@ -5,7 +5,7 @@ import { Selectable } from 'litkit-primitives';
 import styles from './radio.styles';
 
 @Role('radio')
-@customElement('tru-radio')
+@customElement('lk-radio')
 export class RadioComponent extends Selectable(LitElement) {
   static styles = [styles];
 

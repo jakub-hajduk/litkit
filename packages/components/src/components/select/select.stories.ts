@@ -11,7 +11,7 @@ const meta: Meta = {
 export default meta;
 
 export const Option = () => html`
-  <tru-option value="1">Option 1</tru-option>
+  <lk-option value="1">Option 1</lk-option>
 `;
 
 const checkForm = (event: Event) => {
@@ -24,15 +24,15 @@ const checkForm = (event: Event) => {
 
 export const Select = () => html`
 <form @change=${checkForm}>
-  <tru-select name="color">
-    <tru-option value="red">Red</tru-option>
-    <tru-option value="green">Green</tru-option>
-    <tru-option value="blue">Blue</tru-option>
-    <tru-option value="orange">Orange</tru-option>
-    <tru-option value="yellow">Yellow</tru-option>
-    <tru-option value="pink">Pink</tru-option>
-    <tru-option value="Brown">Brown</tru-option>
-    <tru-option value="white" disabled>White</tru-option>
-  </tru-select>
+  <lk-select name="color">
+    <lk-option value="red">Red</lk-option>
+    <lk-option value="green">Green</lk-option>
+    <lk-option value="blue">Blue</lk-option>
+    <lk-option value="orange">Orange</lk-option>
+    <lk-option value="yellow">Yellow</lk-option>
+    <lk-option value="pink">Pink</lk-option>
+    <lk-option value="Brown">Brown</lk-option>
+    <lk-option value="white" disabled>White</lk-option>
+  </lk-select>
 </form>
 `;

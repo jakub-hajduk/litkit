@@ -10,7 +10,7 @@ import { RadioComponent } from '../radio/radio.component';
 import styles from './radio-group.styles';
 
 @Role('radiogroup')
-@customElement('tru-radio-group')
+@customElement('lk-radio-group')
 export class RadioGroupComponent extends CustomFormField(
   WithSingleSelect(LitElement),
 ) {
